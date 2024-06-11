@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+aws eks list-clusters | jq -r '.clusters[]'

@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+:<<comment
+    klogin
+
+    fetch the latest kubeconfig for the given cluster name in the currently authenticated daccount
+    this will set the current context in kubectl
+
+comment
+
+# shellcheck disable=1091
+source /lib/bash/echos.sh
+
+CLUSTER_NAME="$(aws-eks-select)"
+
+if [ -z "$CLUSTER_NAME" ] || [ "$CLUSTER_NAME" = "no cluster found" ]
+then
+    die "no cluster found"
+else
+    aws eks update-kubeconfig --name "$CLUSTER_NAME"
+fi

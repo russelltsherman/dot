@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+header() {
+  echo ""
+  echo "#######################################################################"
+  echo "$1"
+  echo "#######################################################################"
+}
+
+header "uninstall nix-darwin"
+nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A uninstaller
+./result/bin/darwin-uninstaller
+
+header "uninstall nix package manager"
+/nix/nix-installer uninstall 
+
+header "uninstall homebrew"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh)"
