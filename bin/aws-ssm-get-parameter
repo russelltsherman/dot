@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+PARAMETER_NAME=${1}
+PARAMETER_VALUE="$(aws ssm get-parameter --name "$PARAMETER_NAME" --with-decryption | jq -r .Parameter.Value)"
+
+echo "$PARAMETER_VALUE"

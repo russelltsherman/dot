@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+# shellcheck disable=1091
+source /lib/bash/echos.sh
+
+#
+# get list of eks clusters in current account
+# fzf for selection if more than one present
+#
+
+clusters=$(aws-eks-list-clusters)
+
+if (( $(grep -c . <<<"$clusters") > 1 ))
+then
+    selected=$(printf "%s\n" "${clusters[@]}" | fzf)
+else
+    selected=$clusters
+fi
+
+if [ -z "$selected" ]
+then
+    die "no cluster found"
+else
+    echo "$selected"
+fi

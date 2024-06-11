@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+:<<comment
+    klogout
+
+    unset kubectl current context
+
+comment
+
+kubectl config unset current-context

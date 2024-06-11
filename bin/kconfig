@@ -1,0 +1,78 @@
+#!/usr/bin/env bash
+
+:<<comment
+    kconfig
+
+    dynamically determine which kustomize configuration to apply for the current context
+    a context label consists of a dash delimited array of strings whose format typically
+    follows {namespace}-{stage}-{attribute}.
+    we will scan the available kustomize configurations and return the first path that matches
+    scanning first for envs/{namespace}-{stage}-{attribute}
+    then for envs/{namespace}-{stage}
+    finally for envs/{namespace}
+
+comment
+
+# shellcheck disable=1091
+source /lib/bash/echos.sh
+
+usage() {
+    echo "Usage: $0 [ -d | --debug ]
+                    [ -h | --help ] 
+    " 1>&2 
+    exit 1 
+}
+
+PARSED_ARGUMENTS=$(getopt -o d --long debug -- "$@")
+
+VALID_ARGUMENTS=$?
+if [ "$VALID_ARGUMENTS" != "0" ]
+then
+  usage
+fi
+
+eval set -- "$PARSED_ARGUMENTS"
+while :
+do
+    case $1 in
+        -d | --debug)
+            set -x
+            shift
+            ;;
+        --) shift; break ;;
+        *)
+            echo "unexpected option $1"
+            usage
+            ;;
+    esac
+done
+
+label=$(kcontext) || die
+
+if [ ! -d "./base" ] || [ ! -d "./envs" ]
+then    
+    die "pwd does not appear to be a kustomize configuration"
+fi
+
+label=$(kcontext --label)
+if [ -d "./envs/${label}" ]
+then
+    echo "${label}"
+    exit 0
+fi
+
+stage=$(kcontext --stage)
+if [ -d "./envs/${stage}" ]
+then
+    echo "${stage}"
+    exit 0
+fi
+
+namespace=$(kcontext --namespace)
+if [ -d "./envs/${namespace}" ]
+then
+    echo "${namespace}"
+    exit 0
+fi
+
+die "no cluster configuration found" 
