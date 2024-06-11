@@ -1,0 +1,47 @@
+{pkgs, ...}: {
+  imports = [
+    ./direnv
+  ];
+
+  home.packages = with pkgs; [
+    adrs
+    antigen
+    bat
+    coreutils
+    devbox
+    devenv
+    findutils
+    fzf
+    gh
+    git
+    glab
+    gnugrep
+    gnumake
+    gnupg
+    go
+    helmfile
+    htop
+    jq
+    lazydocker
+    lazygit
+    lsd
+    neovim
+    newsboat
+    nodejs_22
+    oath-toolkit
+    pinentry_mac
+    python3
+    ripgrep
+    rsync
+    screen
+    starship
+    tmux
+    tree
+    # usbutils - not for darwin
+    wget
+    yarn
+    yq
+    zsh
+  ];
+}
+

@@ -1,0 +1,83 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC1091
+
+# allow for automated install of xcode cli tools, nix package manager, and git clone of repo
+
+set -o errtrace
+set -o functrace
+set -o errexit
+# set -o nounset
+set -o pipefail
+
+export GIT_ORG="russelltsherman"
+export GIT_PROJECT="dot"
+export GIT_BRANCH="main"
+export GIT_SRC="${HOME}/src"
+
+header() {
+  echo ""
+  echo "#######################################################################"
+  echo "$1"
+  echo "#######################################################################"
+}
+
+if [ "$(uname -s)" == "Darwin" ]
+then
+  header "ensuring xcode-cli tools are available"
+  if ! xcode-select --print-path &> /dev/null
+  then
+      # Prompt user to install the XCode Command Line Tools
+      xcode-select --install &> /dev/null
+
+      # Wait until the XCode Command Line Tools are installed
+      until xcode-select --print-path &> /dev/null; do
+          sleep 5
+      done
+      echo 'XCode Command Line Tools Installed'
+  fi
+fi
+
+header "clone or update repo"
+if [ -d  "${GIT_SRC}/github.com/${GIT_ORG}/${GIT_PROJECT}" ]
+then
+  # git repo clone exists.. update
+  (
+    cd "${GIT_SRC}/github.com/${GIT_ORG}/${GIT_PROJECT}" || exit;
+    git pull --rebase
+  )
+else
+  mkdir -p "${GIT_SRC}/github.com/${GIT_ORG}"
+  # clone git repo
+  git clone "https://github.com/${GIT_ORG}/${GIT_PROJECT}" \
+    "${GIT_SRC}/github.com/${GIT_ORG}/${GIT_PROJECT}"
+fi
+
+header "allow passwordless sudo"
+make -C "${GIT_SRC}/github.com/${GIT_ORG}/${GIT_PROJECT}" sudo/noprompt
+
+header "install homebrew package manager"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+header "install nix package manager"
+curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
+. /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+
+sudo -i nix-channel --add https://nixos.org/channels/nixpkgs-unstable nixpkgs
+sudo -i nix-channel --update nixpkgs
+
+if [ -f /etc/zshrc ]; then sudo mv /etc/bashrc /etc/zshrc.before-nix-darwin; fi
+if [ -f /etc/bashrc ]; then sudo mv /etc/bashrc /etc/bashrc.before-nix-darwin; fi
+
+header "install nix-darwin"
+nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A installer
+./result/bin/darwin-installer
+
+header "install nix home-manager"
+nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+nix-channel --update
+
+header "execute bootstrap"
+make -C "${GIT_SRC}/github.com/${GIT_ORG}/${GIT_PROJECT}" bootstrap
+
+header "bootstrap complete"
+echo "close and reopen terminal session before continuing"
