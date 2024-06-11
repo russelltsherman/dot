@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-"$HOME/.config"}"
+
+# chk::debian returns true if this OS is Debian Linux
+# usage:
+#     chk::debian && echo::green "this is Debian Linux"
+chk::debian() {
+  uname -a | grep "Debian" &> /dev/null
+}
+
+# chk::linux returns true if this OS is Linux
+# usage:
+#     chk::linux && echo::green "this is Linux"
+chk::linux() {
+  uname -a | grep "Linux" &> /dev/null
+}
+
+# chk::osx returns true if this OS is Darwin
+# usage:
+#     chk::osx && echo::green "this is Mac OS"
+chk::osx() {
+  uname -a | grep "Darwin" &> /dev/null
+}
+
+# chk::ubuntu returns true if this OS is Ubuntu Linux
+# usage:
+#     chk::ubuntu && echo::green "this is Ubuntu Linux"
+chk::ubuntu() {
+  uname -a | grep "Ubuntu" &> /dev/null
+}
+
+# chk::empty returns true if a given value is empty
+# usage:
+#     chk::empty "xx" || echo::red "not empty"
+chk::empty() {
+  local var="$1"
+  [ -z "$var" ]
+}
