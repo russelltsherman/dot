@@ -1,0 +1,107 @@
+#!/usr/bin/env bash
+
+:<<comment
+    kcontext
+
+    read the kubeconfig for the current context and return a string
+
+comment
+
+# shellcheck disable=1091
+source /lib/bash/echos.sh
+
+usage() {
+    echo "Usage: $0 [ -a | --arn ] 
+                    [ -d | --debug ] 
+                    [ -e | --env | --environment ]
+                    [ -h | --help ]    
+                    [ -l | --label ]
+                    [ -n | --namespace ]
+                    [ -s | --stage ]
+        " 1>&2 
+    exit 1 
+}
+
+PARSED_ARGUMENTS=$(getopt -o adehlns --long arn,debug,env,environment,help,namespace,label,stage -- "$@")
+
+VALID_ARGUMENTS=$?
+if [ "$VALID_ARGUMENTS" != "0" ]
+then
+  usage
+fi
+
+eval set -- "$PARSED_ARGUMENTS"
+while :
+do
+    case $1 in
+        -a | --arn) 
+            ARN=1 
+            shift   
+            ;;
+        -d | --debug)
+            set -x
+            shift
+            ;;
+        -e | --env | --environment) 
+            ENV=1 
+            shift   
+            ;;
+        -h | --help)
+            usage
+            ;;
+        -l | --label)  
+            LABEL=1
+            shift
+            ;;
+        -n | --namespace)  
+            NAMESPACE=1
+            shift
+            ;;
+        -s | --stage)  
+            STAGE=1
+            shift
+            ;;
+        --) shift; break ;;
+        *)
+            echo "unexpected option $1"
+            usage
+            ;;
+    esac
+done
+
+# natively outputs the full arn for an aws eks cluster
+# kubectl config current-context
+arn=$(kubectl config current-context) || die
+label=$(echo "$arn" | cut -f2 -d"/")
+
+# shellcheck disable=2206
+parts=(${label//-/ }) # create array from label parts 
+namespace=${parts[0]} 
+stage=${parts[1]}
+
+if [ "$ARN" = "1" ] # output arn and exit
+then
+    echo "$arn"
+    exit 0
+fi
+
+
+if [ "$LABEL" = "1" ] # parse the arn and return the cluster label
+then
+    echo "$label"
+    exit 0
+fi
+
+if [ "$NAMESPACE" = "1" ] # parse the arn and return the cluster label
+then
+    echo "${namespace}"
+    exit 0
+fi
+
+if [ "$STAGE" = "1" ] # parse the arn and return the cluster label
+then
+    echo "${namespace}-${stage}"
+    exit 0
+fi
+
+echo "$arn"
