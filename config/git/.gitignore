@@ -41,6 +41,13 @@ Temporary Items
 # ignore vscode project config
 .vscode/*
 
+# JetBrains Rider
+.idea/
+*.sln.iml
+
+# ignore aider
+.aider*
+
 # ignore TODO files
 TODO*
 NOTE*
