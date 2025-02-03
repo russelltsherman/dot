@@ -28,7 +28,7 @@
     oath-toolkit
     pinentry_mac
     poetry
-    python313Full
+    python312Full
     ripgrep
     rsync
     screen
