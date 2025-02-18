@@ -6,7 +6,7 @@
     # TODO: would be nice if we could specify which applications to be docked
     dock = {
         autohide = true;
-        orientation = "left";
+        orientation = "bottom";
         show-process-indicators = false;
         show-recents = false;
         static-only = true;
