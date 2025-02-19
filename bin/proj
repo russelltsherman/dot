@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+:<<comment
+  proj
+
+  cli for creating new projects
+comment
+
+usage() {
+  echo "Usage: $0 project_type [directory]
+  " 1>&2 
+  exit 1 
+}
+
+project_type=${1}
+dir=${2}
+
+if [ -z "$project_type" ]
+then
+  usage
+fi
+
+git clone https://github.com/russelltsherman/proj-$project_type.git $dir
