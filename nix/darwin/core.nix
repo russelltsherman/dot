@@ -12,9 +12,10 @@
   environment.darwinConfig = "$HOME/src/github.com/russelltsherman/dot";
 
   # Auto upgrade nix package and the daemon service.
-  services.nix-daemon.enable = true;
+  # services.nix-daemon.enable = true;
   
   nix = {
+    enable = false;
     package = pkgs.nix;
     settings = {
       "extra-experimental-features" = [ "nix-command" "flakes" ];
