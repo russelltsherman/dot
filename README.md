@@ -35,3 +35,8 @@ to on the internet.
 ```sh
 make -B /etc/hosts
 ```
+
+## Nix
+
+tend to need to uninstall and reintall nix after macos updates
+use determinate systems installer
