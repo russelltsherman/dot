@@ -25,6 +25,9 @@ be(){
     fb|finbots|finbotsdev)
       profile="finbotsdev"
       ;;
+    fio|formio)
+      profile="formio"
+      ;;
     ob|opsbots)
       profile="opsbots"
       ;;
