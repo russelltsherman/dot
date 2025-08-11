@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC1091
+
+rsync -avh \
+  --include '.config' \
+  --exclude '.*' \
+  --exclude 'Applications' \
+  --exclude 'Library' \
+  /Users/$(whoami) /Volumes/Backup

@@ -20,6 +20,16 @@ Icon
 .VolumeIcon.icns
 .com.apple.timemachine.donotpresent
 
+# ignore TODO files
+TODO**
+NOTE**
+NOTES.md
+
+# ignore direnv
+.envrc
+.vars
+.secrets
+
 # Directories potentially created on remote AFP share
 .AppleDB
 .AppleDesktop
@@ -32,27 +42,5 @@ Temporary Items
 *.swp
 *.swo
 
-# ignore 
-.idea/*
-
-# ignore
-.venv/*
-
 # ignore vscode project config
 .vscode/*
-
-# JetBrains Rider
-.idea/
-*.sln.iml
-
-# ignore aider
-.aider*
-
-# ignore TODO files
-TODO*
-NOTE*
-
-# ignore direnv
-.envrc
-.vars
-.secrets
