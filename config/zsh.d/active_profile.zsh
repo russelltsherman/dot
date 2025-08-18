@@ -19,6 +19,9 @@ be(){
   profile=${1:-$ACTIVE_PROFILE}
 
   case $profile in
+    ar|arch|archive|archiveresale)
+      profile="archiveresale"
+      ;;
     bh|bhco|ef|blockhenge)
       profile="blockhenge"
       ;;
