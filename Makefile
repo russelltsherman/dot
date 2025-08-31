@@ -56,8 +56,8 @@ liblink: ~/lib libclean
 gitconfig:
 	# dotfiles target linked our global gitconfig and gitignore 
 	# here we set git config to reference these files
-	git config --global core.excludesfile $(XDG_CONFIG_HOME)/git/.gitignore
-	git config --global include.path $(XDG_CONFIG_HOME)/git/.gitconfig
+	git config --global core.excludesfile $(XDG_CONFIG_HOME)/git/ignore
+	git config --global include.path $(XDG_CONFIG_HOME)/git/.gitconfig_global
 .PHONY: gitconfig
 
 ## configure sudo to not require password
