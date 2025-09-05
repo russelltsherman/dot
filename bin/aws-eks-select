@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-# shellcheck disable=1091
-source /lib/bash/echos.sh
-
 #
 # get list of eks clusters in current account
 # fzf for selection if more than one present
@@ -19,7 +16,8 @@ fi
 
 if [ -z "$selected" ]
 then
-    die "no cluster found"
+    echo "no cluster found"\
+    exit 1
 else
     echo "$selected"
 fi

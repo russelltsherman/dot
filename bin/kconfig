@@ -13,9 +13,6 @@
 
 comment
 
-# shellcheck disable=1091
-source /lib/bash/echos.sh
-
 usage() {
     echo "Usage: $0 [ -d | --debug ]
                     [ -h | --help ] 
@@ -47,11 +44,13 @@ do
     esac
 done
 
-label=$(kcontext) || die
+label=$(kcontext) || exit 1
+
 
 if [ ! -d "./base" ] || [ ! -d "./envs" ]
 then    
-    die "pwd does not appear to be a kustomize configuration"
+    echo "pwd does not appear to be a kustomize configuration"
+    exit 1
 fi
 
 label=$(kcontext --label)
@@ -75,4 +74,5 @@ then
     exit 0
 fi
 
-die "no cluster configuration found" 
+echo "no cluster configuration found"
+exit 1
