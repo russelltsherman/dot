@@ -25,6 +25,9 @@ brew "gh"
 # Lightweight and flexible command-line JSON processor
 # https://jqlang.github.io/jq/
 brew "jq"
+# Clone of ls with colorful output, file type icons, and more
+# https://github.com/lsd-rs/lsd
+brew "lsd"
 # Ambitious Vim-fork focused on extensibility and agility
 # https://neovim.io/
 brew "neovim"
@@ -46,6 +49,9 @@ brew "screen"
 # Cross-shell prompt for astronauts
 # https://starship.rs/
 brew "starship"
+# Official tldr client written in Rust
+# https://tldr.sh/tlrc/
+brew "tlrc"
 # Terminal multiplexer
 # https://tmux.github.io/
 brew "tmux"
@@ -62,21 +68,39 @@ brew "yq"
 # https://github.com/ajeetdsouza/zoxide
 brew "zoxide"
 
+# https://www.sourcegear.com/diffmerge/ -- deprecated
 cask "diffmerge"
+# https://www.docker.com/
 cask "docker"
+# https://www.dropbox.com/
 cask "dropbox"
+# https://github.com/ryanoasis/nerd-fonts
 cask "font-meslo-lg-nerd-font"
+# https://fork.dev/
 cask "fork"
+# https://www.google.com/chrome/
 cask "google-chrome"
+# https://gpgtools.org/
 cask "gpg-suite"
+# https://keybase.io/
 cask "keybase"
+# https://www.leapp.cloud/
 cask "leapp"
+# https://obsidian.md/
 cask "obsidian"
+# https://www.postman.com/
 cask "postman"
+# https://www.postman.com/downloads/
 cask "postman-cli"
+# https://signal.org/
 cask "signal"
+# https://slack.com/
 cask "slack"
+# https://theunarchiver.com/
 cask "the-unarchiver"
+# https://code.visualstudio.com/
 cask "visual-studio-code"
+# https://www.videolan.org/vlc/
 cask "vlc"
+# https://wezterm.org/
 cask "wezterm"
