@@ -22,3 +22,9 @@ if [ -f $FILE ]
 then
    source $FILE
 fi
+
+FILE=~/bin/antigen.zsh
+if [ -f $FILE ]
+then
+   source $FILE
+fi
