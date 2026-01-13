@@ -109,7 +109,19 @@ be(){
   then
     zsh::reload
   fi
-}
 
-# call be function without argument to load saved active profile
-be 
+  case $profile in
+    ar|arch|archive|archiveresale)
+      archiveresale
+      ;;
+    bh|bhco|ef|blockhenge)
+      blockhenge
+      ;;
+    rs|russelltsherman)
+      russelltsherman
+      ;;
+    *)
+      ;;
+  esac
+
+}
