@@ -10,3 +10,4 @@
 
 # add user bin dir to path
 export PATH="${PATH}:${HOME}/bin"
+export PATH="${PATH}:${HOME}/.local/bin"

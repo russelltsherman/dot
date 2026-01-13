@@ -18,11 +18,12 @@ bootstrap:
 
 ## clean symlinks from user bin directory
 binclean: 
-	@for file in $(BINSCRIPT_NAMES) ; do if [ -L ~/bin/$${file} ];then rm ~/bin/$${file}; fi; done
+	@for file in $(BINSCRIPT_NAMES) ; do if [ -L ~/.local/bin/$${file} ];then rm ~/.local/bin/$${file}; fi; done
 .PHONY: binclean
 
 binlink: ~/bin binclean
-	@for file in $(BINSCRIPT_NAMES) ; do ln -sv $(current_dir)/bin/$${file} ~/bin/$${file}; done
+	mkdir -p ~/.local/bin
+	@for file in $(BINSCRIPT_NAMES) ; do ln -sv $(current_dir)/bin/$${file} ~/.local/bin/$${file}; done
 .PHONY: binlink
 
 configclean:
