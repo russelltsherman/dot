@@ -1,3 +1,10 @@
+DEFAULT_REGION_FILE=~/.aws/region
+
+if [[ -f "$DEFAULT_REGION_FILE" ]]
+then
+  export AWS_REGION="$(head -n 1 $DEFAULT_REGION_FILE)"
+fi
+
 if chk::command "aws"
 then
 
