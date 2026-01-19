@@ -1,0 +1,9 @@
+[commit]
+	gpgsign = false
+
+[github]
+	user = russelltsherman
+
+[user]
+	name = Russell Sherman
+	email = russell.t.sherman@gmail.com

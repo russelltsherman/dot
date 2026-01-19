@@ -1,0 +1,9 @@
+[commit]
+	gpgsign = false
+
+[github]
+	user = russell-at-archive
+
+[user]
+	name = Russell Sherman
+	email = russell@archiveresale.com

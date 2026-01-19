@@ -1,0 +1,1358 @@
+{
+  "numStartups": 96,
+  "installMethod": "unknown",
+  "autoUpdates": true,
+  "verbose": "false",
+  "autoCompactEnabled": "true",
+  "customApiKeyResponses": {
+    "approved": [
+      "Tbv5hTL5x2g-gPvp2gAA",
+      "zkCRPm-MhhA-ES2chAAA",
+      "YKQ2-nGvxvA-bOQ_4AAA"
+    ],
+    "rejected": []
+  },
+  "tipsHistory": {
+    "new-user-warmup": 1,
+    "plan-mode-for-complex-tasks": 94,
+    "ide-hotkey": 2,
+    "memory-command": 84,
+    "shift-enter": 93,
+    "theme-command": 89,
+    "status-line": 84,
+    "prompt-queue": 75,
+    "enter-to-steer-in-relatime": 90,
+    "todo-list": 92,
+    "ide-upsell-external-terminal": 92,
+    "# for memory": 86,
+    "install-github-app": 10,
+    "drag-and-drop-images": 88,
+    "permissions": 92,
+    "paste-images-mac": 92,
+    "double-esc": 13,
+    "continue": 94,
+    "custom-commands": 93,
+    "double-esc-code-restore": 94,
+    "shift-tab": 94,
+    "image-paste": 78,
+    "custom-agents": 95,
+    "git-worktrees": 96
+  },
+  "promptQueueUseCount": 5,
+  "showExpandedTodos": true,
+  "cachedStatsigGates": {
+    "tengu_disable_bypass_permissions_mode": false,
+    "tengu_use_file_checkpoints": true
+  },
+  "firstStartTime": "2025-09-28T02:10:31.546Z",
+  "userID": "818652de7c09f6a68995f2b81a579eb1a4bc8204cdb8a8a6b43f2e091768a031",
+  "projects": {
+    "/Users/russellsherman": {
+      "allowedTools": [],
+      "history": [
+        {
+          "display": "evaulate posgres 16.6 compatibility with hasura",
+          "pastedContents": {}
+        },
+        {
+          "display": "do rds minor version upgraded require downtime?",
+          "pastedContents": {}
+        },
+        {
+          "display": "refactor the response to clearly list changes from 16.4 to 16.5 then to 16.6",
+          "pastedContents": {}
+        },
+        {
+          "display": "explain the differences between postgres 16.4 and 16.6 i am especially interested in which of my application queries might break when i upgrade",
+          "pastedContents": {}
+        },
+        {
+          "display": "/dad-joke ",
+          "pastedContents": {}
+        }
+      ],
+      "mcpContextUris": [],
+      "mcpServers": {
+        "context7": {
+          "type": "stdio",
+          "command": "npx",
+          "args": [
+            "-y",
+            "@upstash/context7-mcp",
+            "--api-key",
+            "ctx7sk-97b74899-ff27-4b06-a383-10b4cdcca895"
+          ],
+          "env": {}
+        }
+      },
+      "enabledMcpjsonServers": [],
+      "disabledMcpjsonServers": [],
+      "hasTrustDialogAccepted": false,
+      "projectOnboardingSeenCount": 3,
+      "hasClaudeMdExternalIncludesApproved": false,
+      "hasClaudeMdExternalIncludesWarningShown": false,
+      "lastTotalWebSearchRequests": 4,
+      "lastCost": 0.6889493,
+      "lastAPIDuration": 220887,
+      "lastToolDuration": 126900,
+      "lastDuration": 8392994,
+      "lastLinesAdded": 0,
+      "lastLinesRemoved": 0,
+      "lastTotalInputTokens": 99741,
+      "lastTotalOutputTokens": 6716,
+      "lastTotalCacheCreationInputTokens": 113164,
+      "lastTotalCacheReadInputTokens": 196001,
+      "lastSessionId": "548deb79-0180-4d5d-80b7-19ace7329edb"
+    },
+    "/Users/russellsherman/src/github.com/russelltsherman/proj-claude": {
+      "allowedTools": [],
+      "history": [
+        {
+          "display": "can you tell me how to set up a gitlab pipeline which authenticates to aws to fetch short lived access tokens",
+          "pastedContents": {}
+        },
+        {
+          "display": "search obsidian for todo notes",
+          "pastedContents": {}
+        },
+        {
+          "display": "write a note to obsidian with the top technology news stories of the day",
+          "pastedContents": {}
+        },
+        {
+          "display": "write a note to obsidian with the top news stories of the day",
+          "pastedContents": {}
+        },
+        {
+          "display": " how much the the obsidian vault comply with the para method",
+          "pastedContents": {}
+        },
+        {
+          "display": "read from obsidian",
+          "pastedContents": {}
+        },
+        {
+          "display": "create a new file with random facts wtihin obsidian",
+          "pastedContents": {}
+        },
+        {
+          "display": "/mcp ",
+          "pastedContents": {}
+        },
+        {
+          "display": "/mpc",
+          "pastedContents": {}
+        },
+        {
+          "display": "can you tell me what is wrong with the obsidian mcp tool",
+          "pastedContents": {}
+        },
+        {
+          "display": "/mcp ",
+          "pastedContents": {}
+        },
+        {
+          "display": "/permissions ",
+          "pastedContents": {}
+        },
+        {
+          "display": "lets create a plan for a news aggregation app",
+          "pastedContents": {}
+        },
+        {
+          "display": "/install-github-app ",
+          "pastedContents": {}
+        },
+        {
+          "display": "/mcp ",
+          "pastedContents": {}
+        },
+        {
+          "display": "/commit-code ",
+          "pastedContents": {}
+        }
+      ],
+      "mcpContextUris": [],
+      "mcpServers": {
+        "context7": {
+          "type": "stdio",
+          "command": "npx",
+          "args": [
+            "-y",
+            "@upstash/context7-mcp",
+            "--api-key",
+            "YOUR_API_KEY"
+          ],
+          "env": {}
+        },
+        "mcp-obsidian": {
+          "command": "uvx",
+          "args": [
+            "mcp-obsidian"
+          ],
+          "env": {
+            "OBSIDIAN_API_KEY": "12a7a46a8eea849c148a611ea56d57c6a769046d91744fa61425672fcc28850e"
+          }
+        },
+        "taskmaster-ai": {
+          "command": "npx",
+          "args": [
+            "-y",
+            "--package=task-master-ai",
+            "task-master-ai"
+          ],
+          "env": {
+            "ANTHROPIC_API_KEY": "YOUR_ANTHROPIC_API_KEY_HERE",
+            "PERPLEXITY_API_KEY": "YOUR_PERPLEXITY_API_KEY_HERE",
+            "MODEL": "claude-3-7-sonnet-20250219",
+            "PERPLEXITY_MODEL": "sonar-pro",
+            "MAX_TOKENS": 64000,
+            "TEMPERATURE": 0.2,
+            "DEFAULT_SUBTASKS": 5,
+            "DEFAULT_PRIORITY": "medium"
+          }
+        }
+      },
+      "enabledMcpjsonServers": [],
+      "disabledMcpjsonServers": [],
+      "hasTrustDialogAccepted": true,
+      "projectOnboardingSeenCount": 0,
+      "hasClaudeMdExternalIncludesApproved": false,
+      "hasClaudeMdExternalIncludesWarningShown": false,
+      "hasCompletedProjectOnboarding": true,
+      "lastTotalWebSearchRequests": 2,
+      "lastCost": 0.6605920000000001,
+      "lastAPIDuration": 269712,
+      "lastToolDuration": 49521,
+      "lastDuration": 10164901,
+      "lastLinesAdded": 0,
+      "lastLinesRemoved": 0,
+      "lastTotalInputTokens": 954,
+      "lastTotalOutputTokens": 5790,
+      "lastTotalCacheCreationInputTokens": 133784,
+      "lastTotalCacheReadInputTokens": 180694,
+      "lastSessionId": "f770598f-f9bd-433b-a418-e92b1a216bc1"
+    },
+    "/Users/russellsherman/src/github.com/russelltsherman/proj-devcontainer": {
+      "allowedTools": [],
+      "history": [
+        {
+          "display": "/install-github-app ",
+          "pastedContents": {}
+        }
+      ],
+      "mcpContextUris": [],
+      "mcpServers": {},
+      "enabledMcpjsonServers": [],
+      "disabledMcpjsonServers": [],
+      "hasTrustDialogAccepted": true,
+      "projectOnboardingSeenCount": 1,
+      "hasClaudeMdExternalIncludesApproved": false,
+      "hasClaudeMdExternalIncludesWarningShown": false,
+      "lastCost": 0.0003072,
+      "lastAPIDuration": 1749,
+      "lastToolDuration": 0,
+      "lastDuration": 96489,
+      "lastLinesAdded": 0,
+      "lastLinesRemoved": 0,
+      "lastTotalInputTokens": 149,
+      "lastTotalOutputTokens": 47,
+      "lastTotalCacheCreationInputTokens": 0,
+      "lastTotalCacheReadInputTokens": 0,
+      "lastTotalWebSearchRequests": 0,
+      "lastSessionId": "42bef8fb-88c2-4e82-a5ed-9adc97005219"
+    },
+    "/Users/russellsherman/src/github.com/russelltsherman/devcontainer-features": {
+      "allowedTools": [],
+      "history": [
+        {
+          "display": "/install-github-app ",
+          "pastedContents": {}
+        }
+      ],
+      "mcpContextUris": [],
+      "mcpServers": {},
+      "enabledMcpjsonServers": [],
+      "disabledMcpjsonServers": [],
+      "hasTrustDialogAccepted": true,
+      "projectOnboardingSeenCount": 2,
+      "hasClaudeMdExternalIncludesApproved": false,
+      "hasClaudeMdExternalIncludesWarningShown": false,
+      "exampleFiles": [
+        "README.md",
+        "color.py",
+        "hello.py",
+        "common.py",
+        "main.py"
+      ],
+      "exampleFilesGeneratedAt": 1759058667774,
+      "lastTotalWebSearchRequests": 0,
+      "lastCost": 0.00023359999999999999,
+      "lastAPIDuration": 1121,
+      "lastToolDuration": 0,
+      "lastDuration": 838666,
+      "lastLinesAdded": 0,
+      "lastLinesRemoved": 0,
+      "lastTotalInputTokens": 227,
+      "lastTotalOutputTokens": 13,
+      "lastTotalCacheCreationInputTokens": 0,
+      "lastTotalCacheReadInputTokens": 0,
+      "lastSessionId": "b264fcd0-bc0d-4f42-a6d5-9f3f5032d260"
+    },
+    "/Users/russellsherman/src/github.com/russelltsherman": {
+      "allowedTools": [],
+      "history": [
+        {
+          "display": "/exit ",
+          "pastedContents": {}
+        },
+        {
+          "display": "/cost ",
+          "pastedContents": {}
+        }
+      ],
+      "mcpContextUris": [],
+      "mcpServers": {},
+      "enabledMcpjsonServers": [],
+      "disabledMcpjsonServers": [],
+      "hasTrustDialogAccepted": true,
+      "projectOnboardingSeenCount": 1,
+      "hasClaudeMdExternalIncludesApproved": false,
+      "hasClaudeMdExternalIncludesWarningShown": false,
+      "lastCost": 0,
+      "lastAPIDuration": 0,
+      "lastToolDuration": 0,
+      "lastDuration": 20765,
+      "lastLinesAdded": 0,
+      "lastLinesRemoved": 0,
+      "lastTotalInputTokens": 0,
+      "lastTotalOutputTokens": 0,
+      "lastTotalCacheCreationInputTokens": 0,
+      "lastTotalCacheReadInputTokens": 0,
+      "lastTotalWebSearchRequests": 0,
+      "lastSessionId": "b7271fde-9b48-47fd-911f-d7e658df2a9d"
+    },
+    "/Users/russellsherman/src/gitlab.com/bhco/cryptomnio/tf/config/aws": {
+      "allowedTools": [],
+      "history": [
+        {
+          "display": "when creating an iam role in aws to allow gitlab pipelines to authenticate what options should be selected when creating the role",
+          "pastedContents": {}
+        }
+      ],
+      "mcpContextUris": [],
+      "mcpServers": {},
+      "enabledMcpjsonServers": [],
+      "disabledMcpjsonServers": [],
+      "hasTrustDialogAccepted": true,
+      "projectOnboardingSeenCount": 1,
+      "hasClaudeMdExternalIncludesApproved": false,
+      "hasClaudeMdExternalIncludesWarningShown": false,
+      "exampleFiles": [
+        "iam.tf",
+        "lambda.tf",
+        "api.tf",
+        "Dockerfile",
+        "Makefile"
+      ],
+      "exampleFilesGeneratedAt": 1759234423452,
+      "lastCost": 0.06510205,
+      "lastAPIDuration": 15655,
+      "lastToolDuration": 0,
+      "lastDuration": 306093,
+      "lastLinesAdded": 0,
+      "lastLinesRemoved": 0,
+      "lastTotalInputTokens": 595,
+      "lastTotalOutputTokens": 348,
+      "lastTotalCacheCreationInputTokens": 15983,
+      "lastTotalCacheReadInputTokens": 0,
+      "lastTotalWebSearchRequests": 0,
+      "lastSessionId": "a820ca9f-05fd-4c47-8581-b8474c2f4ba1"
+    },
+    "/Users/russellsherman/src/github.com/russelltsherman/cerebrum": {
+      "allowedTools": [],
+      "history": [
+        {
+          "display": "please rewrite that. the documentdb is on my end, ",
+          "pastedContents": {}
+        },
+        {
+          "display": "my use case might be a little more complex, i am lookiing to allow connection to documentdb, to a vpc which exists in an aws account which i do not own.  and i need special attention paid to what i need to ask the other account owner to do to facilitate proper configuration of this peering",
+          "pastedContents": {}
+        },
+        {
+          "display": "help me understand how to create vpc peering between two aws vpc especially regarding routing rules",
+          "pastedContents": {}
+        },
+        {
+          "display": "design the cidr ranges for a vpc which will span three availability zones. each zone will include public, private, and data subnets.\n",
+          "pastedContents": {}
+        },
+        {
+          "display": "calculate the value of one dollar which doubles every day at 30 days",
+          "pastedContents": {}
+        },
+        {
+          "display": "please start from the beginning, rechecking all vpc, subnet, and nacl configurations",
+          "pastedContents": {}
+        },
+        {
+          "display": "i cannot confirm, please recheck",
+          "pastedContents": {}
+        },
+        {
+          "display": "please recheck and advise",
+          "pastedContents": {}
+        },
+        {
+          "display": "given what you know about these environments help me to troubleshoot an issue.  in the canary environment i sometimes see pods having trouble reaching outside the vpc.  errors pulling images, tineoute contacting temporal server, timeouts connection to github.  these issues only seem to happen in the canary network.",
+          "pastedContents": {}
+        },
+        {
+          "display": "inspect our canary and staging vpc configurations and report on ady differences you find",
+          "pastedContents": {}
+        },
+        {
+          "display": "before any and all aws commands ensure you set the region env var to us-east-2",
+          "pastedContents": {}
+        },
+        {
+          "display": "are there any which support 10g and poe on the same port?",
+          "pastedContents": {}
+        },
+        {
+          "display": "i'm shopping for a new network switch, i'm looking for a standard 19\" rack mount which supports 10G ethernet and incorporates poe+ i prefer unifi brand",
+          "pastedContents": {}
+        },
+        {
+          "display": "in a homelab environment what is the best method for hositng home assistant? proxmox, portainer, docker compose, baremetal?",
+          "pastedContents": {}
+        },
+        {
+          "display": "lets do a deeper comparison of Proxmox and XCP-ng",
+          "pastedContents": {}
+        },
+        {
+          "display": "research options for homelab hypervizors ",
+          "pastedContents": {}
+        },
+        {
+          "display": "write results to markdown file",
+          "pastedContents": {}
+        },
+        {
+          "display": "compare features and price options of terraform cloud and spacelift",
+          "pastedContents": {}
+        },
+        {
+          "display": "write results to markdown file",
+          "pastedContents": {}
+        },
+        {
+          "display": "explain which region of aws i should choose any why",
+          "pastedContents": {}
+        },
+        {
+          "display": "look at the kubernetes-datadog-implementation.md file and provide detailed explanations for each of the custom metrics specifically regarding what they look at and how they help to diagnose issues.",
+          "pastedContents": {}
+        },
+        {
+          "display": "how to implement custom datadog metrics when using aws rds and datadog agents running within kubernetes",
+          "pastedContents": {}
+        },
+        {
+          "display": "report on spefically how we can detect blocked queries and how we might perform anomoly detection regarding query length",
+          "pastedContents": {}
+        },
+        {
+          "display": "lets lears about best practices in monitoring AWS RDS Postgres using Datadog, i am expressly interested in what aspects to monitor, specific alarms to configure within datadog, and most importantly educating operators what they should do when specific alarms are triggered. write all results in markdown format to a local directory AWSRDS",
+          "pastedContents": {}
+        },
+        {
+          "display": "write output to previus file",
+          "pastedContents": {}
+        },
+        {
+          "display": "where can i find examples of claude skills?",
+          "pastedContents": {}
+        },
+        {
+          "display": "write result to file in markdown format ",
+          "pastedContents": {}
+        },
+        {
+          "display": "teach me about claude skills.  i am especially interested in how to create them and how they are used.",
+          "pastedContents": {}
+        },
+        {
+          "display": "why are you searching for anything pertaining to as azure? what does that have to do with the topic in question?",
+          "pastedContents": {}
+        },
+        {
+          "display": "lets lears about best practices when organizing files for terraform projects to be executed by terraform cloud. I am especially curious about how to organize for disaster recovery and cross region backup.",
+          "pastedContents": {}
+        },
+        {
+          "display": "refactor the terraform code to use aws eks auto instead of managed node groups",
+          "pastedContents": {}
+        },
+        {
+          "display": "you say fargate profile is a seperate concept, but isn't aws eks auto enabled by assiging a fargate profile to your eks cluster?",
+          "pastedContents": {}
+        },
+        {
+          "display": "are we talking about running container workloads in fargate, or assigning a fargate profile to eks and allowing aws to manage eks addons using aws eks auto?",
+          "pastedContents": {}
+        },
+        {
+          "display": "evaluate the differences between using node groups and fargate profiles in this setup",
+          "pastedContents": {}
+        },
+        {
+          "display": "using these best practices codify a terraform project to implement these best practices, favor using cloudposse terraform modules, and define the eks cluster to implement aws eks auto, write file into the ArchiveResale/AWS/Terraform directory",
+          "pastedContents": {}
+        },
+        {
+          "display": "write results in markdown format into the ArchiveResale/AWS directory",
+          "pastedContents": {}
+        },
+        {
+          "display": "discuss best practice regarding structuring AWS VPC for EKS orchestrated workloads paying specific attention to subnet cidr ranges",
+          "pastedContents": {}
+        },
+        {
+          "display": "example code to analize and visualize l2 market data",
+          "pastedContents": {}
+        },
+        {
+          "display": "evaluate previous report and provide more detail around each section.  write output to same directory in individual files in markdown format",
+          "pastedContents": {}
+        },
+        {
+          "display": "out put results to Projects/Orderbook directory in markdown format",
+          "pastedContents": {}
+        },
+        {
+          "display": "teach me how to read L2 Market data like a professinal day trader",
+          "pastedContents": {}
+        },
+        {
+          "display": "give claude cli full permission to search without asking and make changes",
+          "pastedContents": {}
+        },
+        {
+          "display": "how can i configure claude cli  so that all web request urls are allowed without adkin",
+          "pastedContents": {}
+        },
+        {
+          "display": "how can i configure claude so that all web request urls are allowed without adkin",
+          "pastedContents": {}
+        },
+        {
+          "display": "write output to Projects/scanner directory in markdown format",
+          "pastedContents": {}
+        },
+        {
+          "display": "find a source of live streaming market data with l2 order book data",
+          "pastedContents": {}
+        },
+        {
+          "display": "evaluate reach remaining section in greater detail, write detail results for each section seperately to the Projects/Screener directory",
+          "pastedContents": {}
+        },
+        {
+          "display": "evaluate the core screening conditions in greater detail, write results to the Projects/Screener directory",
+          "pastedContents": {}
+        },
+        {
+          "display": "evaluate the data feed options in greater detail, include features, pricing, limits, write results in markdown format into the Projects/Screener directory",
+          "pastedContents": {}
+        },
+        {
+          "display": "save result in markdown format to Projects/Screener directory",
+          "pastedContents": {}
+        },
+        {
+          "display": "help me plan a software project. i want to build a stock screener. it will subscribe to a streaming data feed and monitor securities for a variety of conditions",
+          "pastedContents": {}
+        },
+        {
+          "display": "lets analyze once again the status of the staging cluster ip address availability and utilization",
+          "pastedContents": {}
+        },
+        {
+          "display": "well done.",
+          "pastedContents": {}
+        },
+        {
+          "display": "how is that dark, try again",
+          "pastedContents": {}
+        },
+        {
+          "display": "but graveyards do get overcrowded, try again",
+          "pastedContents": {}
+        },
+        {
+          "display": "give me the darkest pun you can muster",
+          "pastedContents": {}
+        },
+        {
+          "display": "I'm trying to identify and remove an item from macos settings allow in the background, where can i find the origin of all of these items",
+          "pastedContents": {}
+        },
+        {
+          "display": "what about the Unifi UPS PDU Pro how might that compare to these other units",
+          "pastedContents": {}
+        },
+        {
+          "display": "please include web links and current prices for the recommended units",
+          "pastedContents": {}
+        },
+        {
+          "display": "i'm loooking for a rack mount electrical power distribution unit that can be switched on and off thrugh a remote shell session",
+          "pastedContents": {}
+        },
+        {
+          "display": "perform same inspection of staging cluster",
+          "pastedContents": {}
+        },
+        {
+          "display": "inspect eks worker nodes in canary cluster only and showto which subnets they are attached, include all worker nodes for canary clouster",
+          "pastedContents": {}
+        },
+        {
+          "display": "inspect eks worker nodes in canary and show what subnets they are attachedto which",
+          "pastedContents": {}
+        },
+        {
+          "display": "discuss specifics regarding optimizing pod networking with cni configurations",
+          "pastedContents": {}
+        },
+        {
+          "display": "solution 1 is impossible you cannot add additional azs to a cluster after it has been created. please verify your other proposed solutions are indeed possible.",
+          "pastedContents": {}
+        },
+        {
+          "display": "you must set the env var AWS_REGION to us-east-2 before all aws cli commands",
+          "pastedContents": {}
+        },
+        {
+          "display": "One or more of the subnets associated with your cluster does not have enough available IP addresses for Amazon EKS to perform cluster management operations",
+          "pastedContents": {}
+        },
+        {
+          "display": "what is considered best practice regarding aws backup start within and complete within time windows",
+          "pastedContents": {}
+        },
+        {
+          "display": "write report to ArchiveResale/RDS directory in markdown format",
+          "pastedContents": {}
+        },
+        {
+          "display": "can rds snapshote be replicated cross-region?",
+          "pastedContents": {}
+        },
+        {
+          "display": "write report to ArchiveResale/RDS directory in markdown format",
+          "pastedContents": {}
+        },
+        {
+          "display": "discover and report upon best practice recommendations regarding AWS RDS architecture for multiregional replication  ",
+          "pastedContents": {}
+        },
+        {
+          "display": "write comprehensive comparison to fil in markdown format",
+          "pastedContents": {}
+        },
+        {
+          "display": "add to this comparison of MCP compatibility and/or ease of deployment of mcp services",
+          "pastedContents": {}
+        },
+        {
+          "display": "compare and contrast features of orbstack vs docker desktop",
+          "pastedContents": {}
+        },
+        {
+          "display": "modify the program for an older individual who may not yet be capable of doing regular push ups",
+          "pastedContents": {}
+        },
+        {
+          "display": "design an exercise program utilizing bodyweight exercises only",
+          "pastedContents": {}
+        },
+        {
+          "display": "you cannot copy please recreate the original files in a new directory",
+          "pastedContents": {}
+        },
+        {
+          "display": "please output previous files to a new directory",
+          "pastedContents": {}
+        },
+        {
+          "display": "show how to create best practice pattern using terraform",
+          "pastedContents": {}
+        },
+        {
+          "display": "looking to implement aws backup to monitor rds backups and notify when ever one fails. what is best practice?",
+          "pastedContents": {}
+        },
+        {
+          "display": "which can provide reliable downgrade of engine version",
+          "pastedContents": {}
+        },
+        {
+          "display": "compare rds snapshots vs backup in terms of rollback or recovery time ",
+          "pastedContents": {}
+        },
+        {
+          "display": "will aws rds allow upgrade of a primary db instance to a newer version than a read replica?",
+          "pastedContents": {}
+        },
+        {
+          "display": "set env var AWS_REGION=us_east_2 before all aws cli commands\nfetch the parameters for production-rds-postgres16 and write to json format file\n",
+          "pastedContents": {}
+        },
+        {
+          "display": "fetch the parameters for production-rds-postgres16 and write to json format file",
+          "pastedContents": {}
+        },
+        {
+          "display": "set env var AWS_REGION=us_east_2 before all aws cli commands",
+          "pastedContents": {}
+        },
+        {
+          "display": "fetch the parameters for production-rds-postgres16 and write to json format file",
+          "pastedContents": {}
+        },
+        {
+          "display": "fetch the content of an aws dr parameter group",
+          "pastedContents": {}
+        },
+        {
+          "display": "what else can we look at?",
+          "pastedContents": {}
+        },
+        {
+          "display": "target group is healthy",
+          "pastedContents": {}
+        },
+        {
+          "display": "ofundry config is pointing to a load balancer in front of the primary rds endpointfoundry",
+          "pastedContents": {}
+        },
+        {
+          "display": "slot active, lag 0",
+          "pastedContents": {}
+        },
+        {
+          "display": "SELECT * FROM pg_replication_slots; returns what looks like a single physical replication slot",
+          "pastedContents": {}
+        },
+        {
+          "display": "SELECT pg_is_in_recovery(); returns f",
+          "pastedContents": {}
+        },
+        {
+          "display": "how do i Check if the database is still in recovery mode",
+          "pastedContents": {}
+        },
+        {
+          "display": "in our instance foundry is not using a read replica but a primary",
+          "pastedContents": {}
+        },
+        {
+          "display": "aws rds and foundry error ERROR: canceling statement due to conflict with recovery\n",
+          "pastedContents": {}
+        },
+        {
+          "display": "compare and contrast devcontainer and devbox",
+          "pastedContents": {}
+        },
+        {
+          "display": "how to integrate alerts with incident.io rather than pagerduty",
+          "pastedContents": {}
+        }
+      ],
+      "mcpContextUris": [],
+      "mcpServers": {},
+      "enabledMcpjsonServers": [],
+      "disabledMcpjsonServers": [],
+      "hasTrustDialogAccepted": true,
+      "projectOnboardingSeenCount": 4,
+      "hasClaudeMdExternalIncludesApproved": false,
+      "hasClaudeMdExternalIncludesWarningShown": false,
+      "exampleFiles": [
+        "ArchiveResale/Tasks.md",
+        "Wishlist/travel clothing.md",
+        "Trammel/Tasks.md",
+        "Graphite.md",
+        "Areas/gear/Gear/clothes.md"
+      ],
+      "exampleFilesGeneratedAt": 1765973848663,
+      "lastTotalWebSearchRequests": 1,
+      "hasCompletedProjectOnboarding": true,
+      "lastCost": 0.37738845,
+      "lastAPIDuration": 127247,
+      "lastToolDuration": 31652,
+      "lastDuration": 38336243,
+      "lastLinesAdded": 0,
+      "lastLinesRemoved": 0,
+      "lastTotalInputTokens": 382,
+      "lastTotalOutputTokens": 6570,
+      "lastTotalCacheCreationInputTokens": 66695,
+      "lastTotalCacheReadInputTokens": 64194,
+      "lastSessionId": "fa2cf56f-7d70-4042-aca8-52136b466fb2"
+    },
+    "/Users/russellsherman/src/github.com/russelltsherman/proj-localai": {
+      "allowedTools": [],
+      "history": [
+        {
+          "display": "gather similar info for macwhisper for comparison",
+          "pastedContents": {}
+        },
+        {
+          "display": "compare features of wisprflow and superwhisper",
+          "pastedContents": {}
+        }
+      ],
+      "mcpContextUris": [],
+      "mcpServers": {},
+      "enabledMcpjsonServers": [],
+      "disabledMcpjsonServers": [],
+      "hasTrustDialogAccepted": false,
+      "projectOnboardingSeenCount": 1,
+      "hasClaudeMdExternalIncludesApproved": false,
+      "hasClaudeMdExternalIncludesWarningShown": false,
+      "lastCost": 0.48561955,
+      "lastAPIDuration": 140121,
+      "lastToolDuration": 100226,
+      "lastDuration": 3490839,
+      "lastLinesAdded": 0,
+      "lastLinesRemoved": 0,
+      "lastTotalInputTokens": 46466,
+      "lastTotalOutputTokens": 5512,
+      "lastTotalCacheCreationInputTokens": 82837,
+      "lastTotalCacheReadInputTokens": 118674,
+      "lastTotalWebSearchRequests": 3,
+      "lastSessionId": "caf2708a-ce8a-415e-a650-8ec673d57e70"
+    },
+    "/Users/russellsherman/src/github.com/archiveresale": {
+      "allowedTools": [],
+      "history": [
+        {
+          "display": "lets investigate what can go wrong when the server closes a connection enexpectedly",
+          "pastedContents": {}
+        },
+        {
+          "display": "please explain the discrepancy that socketTimeout is mentioned in the redis client configuration documentation https://github.com/redis/node-redis/blob/master/docs/client-configuration.md",
+          "pastedContents": {}
+        },
+        {
+          "display": "do you have the ability to Check the actual type definitions between versions:",
+          "pastedContents": {}
+        },
+        {
+          "display": "can you point me to documentation that says this feature was released in redis version 5",
+          "pastedContents": {}
+        },
+        {
+          "display": "what version of redis would i need to use to set socketTimeout?",
+          "pastedContents": {}
+        },
+        {
+          "display": "when i add the socketTimeout parameter in our redis-adapter file vscode is reporting that the parameter is not valid saying\n\nObject literal may only specify known properties, and 'socketTimeout' does not exist in type '(RedisSocketCommonOptions & Partial<TcpSocketConnectOpts> & { tls?: false | undefined; }) | (RedisSocketCommonOptions & Partial<...> & { ...; }) | (RedisSocketCommonOptions & RedisTlsSocketOptions)'.",
+          "pastedContents": {}
+        },
+        {
+          "display": "can you verify that sockeTimeout is a valid parameter to provide when calling createCluster",
+          "pastedContents": {}
+        },
+        {
+          "display": "i said show me where in the documentation.. for that i was expecting you to produce a web url so that i can see it myself",
+          "pastedContents": {}
+        },
+        {
+          "display": "show me in the redis documentation where it shows that commandTimeout is valid for socket configuration",
+          "pastedContents": {}
+        },
+        {
+          "display": "please rescan and review as the config has changed",
+          "pastedContents": {}
+        },
+        {
+          "display": "we have an issue with a redis cluster running in aws. \nwe have been seeing periodic connection timeout errors from our redis clients and thought it might be caused by the server indefinitely holding open stale connections.   ",
+          "pastedContents": {}
+        },
+        {
+          "display": "summarize and save this output to obsidian",
+          "pastedContents": {}
+        },
+        {
+          "display": "explain difference between startup, liveness, and readiness, and why i might want to use all three",
+          "pastedContents": {}
+        },
+        {
+          "display": "is it better to configure a startup probe or put an initial delay seconds on a readiness probe?",
+          "pastedContents": {}
+        },
+        {
+          "display": "During deployment, how does the disruption budget react to a pod which may not have a startup probe configured, but might not become ready fast enough for the readiness probe to pass?",
+          "pastedContents": {}
+        },
+        {
+          "display": "during a Kubernetes deployment, when the horizontal pod disruption budget is inspecting the pod, explain the difference between a startup probe and a readiness probe.",
+          "pastedContents": {}
+        },
+        {
+          "display": "kubectl command to check pod readinedd probe",
+          "pastedContents": {}
+        },
+        {
+          "display": "explain how the k8d pdb resource uses pod probes to determine its actin",
+          "pastedContents": {}
+        },
+        {
+          "display": "i see that liveness ,readiness, and startup probes hit the same endpoint explain the difference",
+          "pastedContents": {}
+        },
+        {
+          "display": "investigate hasura kubernetes pod configuration i am specifically interested in pod readiness check",
+          "pastedContents": {}
+        },
+        {
+          "display": "can you provide a source for the preceeding statement 'The stateless design eliminates the complexity and potential failure points that come with leader election'",
+          "pastedContents": {}
+        },
+        {
+          "display": "save previous output to obsidian",
+          "pastedContents": {}
+        },
+        {
+          "display": "does hasura in HA mode have any concept of leader election?",
+          "pastedContents": {}
+        },
+        {
+          "display": "save the previous output to obsidian",
+          "pastedContents": {}
+        },
+        {
+          "display": "determine best b]practices for deploying hasura into kubernetes for high availibility",
+          "pastedContents": {}
+        },
+        {
+          "display": "/login ",
+          "pastedContents": {}
+        },
+        {
+          "display": "login",
+          "pastedContents": {}
+        }
+      ],
+      "mcpContextUris": [],
+      "mcpServers": {},
+      "enabledMcpjsonServers": [],
+      "disabledMcpjsonServers": [],
+      "hasTrustDialogAccepted": true,
+      "projectOnboardingSeenCount": 3,
+      "hasClaudeMdExternalIncludesApproved": false,
+      "hasClaudeMdExternalIncludesWarningShown": false,
+      "lastTotalWebSearchRequests": 0
+    },
+    "/Users/russellsherman/src/github.com/archiveresale/archive-infrastructure": {
+      "allowedTools": [],
+      "history": [
+        {
+          "display": "how to configure terraform cloud to allow pulling modules from a private git repo",
+          "pastedContents": {}
+        },
+        {
+          "display": "review all variables declarations and sort them within their file alphabetically",
+          "pastedContents": {}
+        },
+        {
+          "display": "analyze local project and recommend optimizations",
+          "pastedContents": {}
+        },
+        {
+          "display": "write results to local firectory in markdown format",
+          "pastedContents": {}
+        },
+        {
+          "display": "research best practice for terraform using terraform cloud.  specifically i am interested in the recommended settings or workflow to allow creators to develop and plan thouroughly before applying changes",
+          "pastedContents": {}
+        },
+        {
+          "display": "write report to local directory in markdown format",
+          "pastedContents": {}
+        },
+        {
+          "display": "inspect current directory and recommend optimizations to the terraform code",
+          "pastedContents": {}
+        }
+      ],
+      "mcpContextUris": [],
+      "mcpServers": {},
+      "enabledMcpjsonServers": [],
+      "disabledMcpjsonServers": [],
+      "hasTrustDialogAccepted": true,
+      "projectOnboardingSeenCount": 3,
+      "hasClaudeMdExternalIncludesApproved": false,
+      "hasClaudeMdExternalIncludesWarningShown": false,
+      "exampleFiles": [
+        "postgres.tf",
+        "eks.tf",
+        "iam.tf",
+        "vpc.tf",
+        "data-pipelines.tf"
+      ],
+      "exampleFilesGeneratedAt": 1765400041254,
+      "lastTotalWebSearchRequests": 1,
+      "lastCost": 0.14899095,
+      "lastAPIDuration": 45169,
+      "lastToolDuration": 26762,
+      "lastDuration": 17195451,
+      "lastLinesAdded": 0,
+      "lastLinesRemoved": 0,
+      "lastTotalInputTokens": 1521,
+      "lastTotalOutputTokens": 1662,
+      "lastTotalCacheCreationInputTokens": 28833,
+      "lastTotalCacheReadInputTokens": 18096,
+      "lastSessionId": "118ca4a6-1ed8-49ff-9f8e-739caa4d3025"
+    },
+    "/Users/russellsherman/src/github.com/archiveresale/terraform": {
+      "allowedTools": [],
+      "history": [
+        {
+          "display": "how to configure eks to pull images from ecr repo",
+          "pastedContents": {}
+        },
+        {
+          "display": "help me troubleshoot my argocd deployment, i have an application in a degraded state, it's pod is reporting unable to pull an image, the same image version present in another healthy pod",
+          "pastedContents": {}
+        },
+        {
+          "display": "research best practices for organizaing a terraform project that will be managed in terraform cloud",
+          "pastedContents": {}
+        },
+        {
+          "display": "create a new terraform project that will be managed by terraform cloud",
+          "pastedContents": {}
+        }
+      ],
+      "mcpContextUris": [],
+      "mcpServers": {},
+      "enabledMcpjsonServers": [],
+      "disabledMcpjsonServers": [],
+      "hasTrustDialogAccepted": false,
+      "projectOnboardingSeenCount": 2,
+      "hasClaudeMdExternalIncludesApproved": false,
+      "hasClaudeMdExternalIncludesWarningShown": false,
+      "lastTotalWebSearchRequests": 0,
+      "lastCost": 0.2557949,
+      "lastAPIDuration": 76196,
+      "lastToolDuration": 3867,
+      "lastDuration": 691125415,
+      "lastLinesAdded": 0,
+      "lastLinesRemoved": 0,
+      "lastTotalInputTokens": 6920,
+      "lastTotalOutputTokens": 3741,
+      "lastTotalCacheCreationInputTokens": 40764,
+      "lastTotalCacheReadInputTokens": 142209,
+      "lastSessionId": "1f71f390-2983-449d-9486-e5e69265526f"
+    },
+    "/Users/russellsherman/src/github.com/russelltsherman/experiment": {
+      "allowedTools": [],
+      "history": [
+        {
+          "display": "when using proxmox as a hypervisor is it possible to provision virtual machines which use more processor cores and ram than might be present in the underlying hardware",
+          "pastedContents": {}
+        },
+        {
+          "display": "your generate markdown-showase.md file includes a number of markdown lint errors.  review these and report on how you might refactor your markdown skill defintion to prevent these errors in the future.",
+          "pastedContents": {}
+        },
+        {
+          "display": "generate a markdown file showcasing all the features of markdown\n  content, lists, tables, headings, and more.",
+          "pastedContents": {}
+        },
+        {
+          "display": "that looks pretty good, now i will start a new session and see if success continues",
+          "pastedContents": {}
+        },
+        {
+          "display": "you should not rely on send ing a newline to a file to fix lint errors, focus on rewriting the skills file so that it correclty generates the correct content. delete the showcase file, refactor the skill, and try again.",
+          "pastedContents": {}
+        },
+        {
+          "display": "so close, the showcase file still violates MD047, delete it, refactor the skill, and try agian",
+          "pastedContents": {}
+        },
+        {
+          "display": "great but the new markdown showcase file violates MD047 and MD035, delte the file, refactor the skill and try again.",
+          "pastedContents": {}
+        },
+        {
+          "display": "the new markdown showcase file violates MD004. delete this file, refactor the skill to prevent this and try again.",
+          "pastedContents": {}
+        },
+        {
+          "display": "lets test this skill.. generate a markdown file showcasing all the features of markdown content, lists, tables, headings, and more.",
+          "pastedContents": {}
+        },
+        {
+          "display": "please inspect all local markdown files and rewrite them ensuring they comply with standard markdown format rules",
+          "pastedContents": {}
+        },
+        {
+          "display": "the skill.md file still fails validation",
+          "pastedContents": {}
+        },
+        {
+          "display": "the skill file still includes MD031 violations. how do we refactor the skill defintion to prevent this in the future?",
+          "pastedContents": {}
+        },
+        {
+          "display": "there persist some instances of MD031 violations continue to iterate and fix this as well.",
+          "pastedContents": {}
+        },
+        {
+          "display": "now, the markdown files in the markdown generator skills directory need to be rewritten so that they adhere to standard markdown rule",
+          "pastedContents": {}
+        },
+        {
+          "display": "there still exists MD028 violation in the markdown showcase file.. try again to refactor the skill and regenerate the showcase file",
+          "pastedContents": {}
+        },
+        {
+          "display": "here are specific lint rule violations that were reported from the original file. MD028,MD035,MD033,MD047 ensure these are included as well, and as a check rewrite the markdown showcase file to test the skill definition",
+          "pastedContents": {}
+        },
+        {
+          "display": "in the markdown-showcase.md file there are a few instances of lint rules which were not correctly adhered.  inspect these and refactor our skill definition to help ensure these issues do not happen in the future.",
+          "pastedContents": {}
+        },
+        {
+          "display": "in the markdown-showcase.md file there are a few instances of line rules which were not correctly adhered.  inspect these and refactor our skill definition to help ensure these issues do not happen in the future.",
+          "pastedContents": {}
+        },
+        {
+          "display": "lets test this skill.. generate a markdown file showcasing all the features of markdown content, lists, tables, headings, and more.",
+          "pastedContents": {}
+        },
+        {
+          "display": "lets create a claude code skill for generating markdown output. the most important aspect of this skill is that the generated markdown complies with standard markdown lint rules. ",
+          "pastedContents": {}
+        },
+        {
+          "display": "lets create a claude code skill for generating markdown output. the most important aspect of this skill is that the generated markdown complies with standard markdown line rules. ",
+          "pastedContents": {}
+        },
+        {
+          "display": "help me learn about creating claude code skills and when they are most useful.",
+          "pastedContents": {}
+        },
+        {
+          "display": "what is the best way to share thies directives across projects?\ni want to ensure that any time i instruct claude code to output makrdown content that what is created complies with standard markdown formatting rules",
+          "pastedContents": {}
+        },
+        {
+          "display": "your markdown coding standards is missing a couple important elements, blanks around headings and blanks around fences.  \n\nwhat else might it be missing?  \n\nsearch for and include in your standards document all standard markdown lint rules",
+          "pastedContents": {}
+        },
+        {
+          "display": "revisit previously created markdown files and ensure they comply with standards",
+          "pastedContents": {}
+        },
+        {
+          "display": "add to your configuration instructions to include the directive to Always ensure your output adheres to standard Markdown linting rules, including no trailing spaces, consistent list formatting (e.g., * for bullet points), and proper heading hierarchy",
+          "pastedContents": {}
+        },
+        {
+          "display": "write this to markdown file",
+          "pastedContents": {}
+        },
+        {
+          "display": "explain how these components will actually be used to satisfy the intended purpose",
+          "pastedContents": {}
+        },
+        {
+          "display": "write this to a markdown file",
+          "pastedContents": {}
+        },
+        {
+          "display": "lets begin a new coding project here we will create code to both document and manage the configuration for our home network environment\n\nthis environment will include a stack of unifi network hardware, virtualization machines running proxmox, as well the virtual machines, lxc containers, and kubernetes cluster(s) running within the proxmox cluster\n\nat this stage do not create any files or directories, instead create a list of tasks and explain the reason for each",
+          "pastedContents": {}
+        },
+        {
+          "display": "lets begin a new coding project here we will create code to both document and manage the configuration for our home network environment\n\nthis environment will include a stack of unifi network hardware, virtualization machines running proxmox, as well the virtual machines, lxc containers, and kubernetes cluster(s) running within the proxmox cluster",
+          "pastedContents": {}
+        }
+      ],
+      "mcpContextUris": [],
+      "mcpServers": {},
+      "enabledMcpjsonServers": [],
+      "disabledMcpjsonServers": [],
+      "hasTrustDialogAccepted": true,
+      "projectOnboardingSeenCount": 4,
+      "hasClaudeMdExternalIncludesApproved": false,
+      "hasClaudeMdExternalIncludesWarningShown": false,
+      "lastTotalWebSearchRequests": 0,
+      "lastCost": 0.0670631,
+      "lastAPIDuration": 20257,
+      "lastToolDuration": 0,
+      "lastDuration": 2865632,
+      "lastLinesAdded": 0,
+      "lastLinesRemoved": 0,
+      "lastTotalInputTokens": 2654,
+      "lastTotalOutputTokens": 404,
+      "lastTotalCacheCreationInputTokens": 15882,
+      "lastTotalCacheReadInputTokens": 0,
+      "lastSessionId": "be19bb3c-53e2-4708-9f4d-23867abcb7b3"
+    },
+    "/Users/russellsherman/src/github.com/russelltsherman/homelab": {
+      "allowedTools": [],
+      "history": [
+        {
+          "display": "create a readme file with basic getting started instructions for the ansible boilerplate",
+          "pastedContents": {}
+        },
+        {
+          "display": "create a boilerplate andible project ",
+          "pastedContents": {}
+        },
+        {
+          "display": "create a boilerplate project structure to manage cloudflare using terraform and create the files in the terraform/stacks/cloudflare directory",
+          "pastedContents": {}
+        },
+        {
+          "display": "create a new terraform project in the terraform/stacks/tailnet directory",
+          "pastedContents": {}
+        },
+        {
+          "display": "create a new terraform project in the terraform/stacks/unifi directory",
+          "pastedContents": {}
+        },
+        {
+          "display": "create a new packer project in the packer directory",
+          "pastedContents": {}
+        },
+        {
+          "display": "create another in the terraform/stacks/pve84 directory",
+          "pastedContents": {}
+        },
+        {
+          "display": "create a new terraform project in the terraform/stacks/pve42 directory",
+          "pastedContents": {}
+        }
+      ],
+      "mcpContextUris": [],
+      "mcpServers": {},
+      "enabledMcpjsonServers": [],
+      "disabledMcpjsonServers": [],
+      "hasTrustDialogAccepted": true,
+      "projectOnboardingSeenCount": 4,
+      "hasClaudeMdExternalIncludesApproved": false,
+      "hasClaudeMdExternalIncludesWarningShown": false,
+      "lastTotalWebSearchRequests": 0,
+      "lastCost": 0.32840354999999993,
+      "lastAPIDuration": 109601,
+      "lastToolDuration": 1688,
+      "lastDuration": 1651703,
+      "lastLinesAdded": 346,
+      "lastLinesRemoved": 0,
+      "lastTotalInputTokens": 1526,
+      "lastTotalOutputTokens": 5812,
+      "lastTotalCacheCreationInputTokens": 29811,
+      "lastTotalCacheReadInputTokens": 431581,
+      "lastSessionId": "f36edcc1-a2c8-4aed-8d6d-63da7fd00b71"
+    },
+    "/Users/russellsherman/src/github.com/archiveresale/archive": {
+      "allowedTools": [],
+      "history": [
+        {
+          "display": "the canary deployment was reverted to a previous version reflecting the current git branch the issue persists, so it probably is not related to the config changes to keepAlive and connecttimeout",
+          "pastedContents": {}
+        },
+        {
+          "display": "reivew the code repo and try to explain the use of REDIS_ENABLED and REDIS_DISABLED_CONFIG variables",
+          "pastedContents": {}
+        },
+        {
+          "display": "nslookup and telnet commands through kubectl were successful, aws ssm configuration contains correct redis host and port, cloudwatch metrics do not show any significant resource usage",
+          "pastedContents": {}
+        },
+        {
+          "display": "my application running in aws eks is showing errors in its log and i would like help understanding the issue\n[Pasted text #2 +4 lines]",
+          "pastedContents": {
+            "1": {
+              "id": 1,
+              "type": "text",
+              "content": "{\"dd\":{\"env\":\"canary\",\"service\":\"server\",\"version\":\"canary-cb683a6ea59b2b9dc3c02b03928e90ac111c60bb\"},\"ddsource\":\"nodejs\",\"ddtags\":\"env:canary\",\"level\":\"error\",\"message\":\"Redis Client Error Connection timeout\",\"service\":\"server\",\"stack\":\"Error: Connection timeout\\n    at Socket.<anonymous> (/workdir/node_modules/@redis/client/dist/lib/client/socket.js:177:124)\\n    at Object.onceWrapper (node:events:633:28)\\n    at Socket.emit (node:events:531:35)\\n    at Socket.emit (/workdir/node_modules/dd-trace/packages/datadog-instrumentations/src/net.js:65:25)\\n    at Socket._onTimeout (node:net:604:8)\\n    at listOnTimeout (node:internal/timers:588:17)\\n at process.processTimers (node:internal/timers:523:7)\",\"timestamp\":\"2026-01-15T16:24:05.621Z\"}\n\n{\"dd\":{\"env\":\"canary\",\"service\":\"server\",\"version\":\"canary-cb683a6ea59b2b9dc3c02b03928e90ac111c60bb\"},\"ddsource\":\"nodejs\",\"ddtags\":\"env:canary\",\"level\":\"error\",\"message\":\"Redis Client Error Connection timeout\",\"service\":\"server\",\"stack\":\"Error: Connection timeout\\n    at Socket.<anonymous> (/workdir/node_modules/@redis/client/dist/lib/client/socket.js:177:124)\\n    at Object.onceWrapper (node:events:633:28)\\n    at Socket.emit (node:events:531:35)\\n    at Socket.emit (/workdir/node_modules/dd-trace/packages/datadog-instrumentations/src/net.js:65:25)\\n    at Socket._onTimeout (node:net:604:8)\\n    at listOnTimeout (node:internal/timers:588:17)\\n at process.processTimers (node:internal/timers:523:7)\",\"timestamp\":\"2026-01-15T16:24:05.622Z\"}\n\n{\"dd\":{\"env\":\"canary\",\"service\":\"server\",\"version\":\"canary-cb683a6ea59b2b9dc3c02b03928e90ac111c60bb\"},\"ddsource\":\"nodejs\",\"ddtags\":\"env:canary\",\"level\":\"error\",\"message\":\"Redis Connect Error All the root nodes are unavailable\",\"service\":\"server\",\"stack\":\"Error: All the root nodes are unavailable\\n    at RedisClusterSlots._RedisClusterSlots_discoverWithRootNodes (/workdir/node_modules/@redis/client/dist/lib/cluster/cluster-slots.js:169:11)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\\n    at async RedisClusterSlots.connect (/workdir/node_modules/@redis/client/dist/lib/cluster/cluster-slots.js:81:13)\",\"timestamp\":\"2026-01-15T16:24:05.622Z\"}"
+            },
+            "2": {
+              "id": 2,
+              "type": "text",
+              "content": "{\"dd\":{\"env\":\"canary\",\"service\":\"server\",\"version\":\"canary-cb683a6ea59b2b9dc3c02b03928e90ac111c60bb\"},\"ddsource\":\"nodejs\",\"ddtags\":\"env:canary\",\"level\":\"error\",\"message\":\"Redis Client Error Connection timeout\",\"service\":\"server\",\"stack\":\"Error: Connection timeout\\n    at Socket.<anonymous> (/workdir/node_modules/@redis/client/dist/lib/client/socket.js:177:124)\\n    at Object.onceWrapper (node:events:633:28)\\n    at Socket.emit (node:events:531:35)\\n    at Socket.emit (/workdir/node_modules/dd-trace/packages/datadog-instrumentations/src/net.js:65:25)\\n    at Socket._onTimeout (node:net:604:8)\\n    at listOnTimeout (node:internal/timers:588:17)\\n at process.processTimers (node:internal/timers:523:7)\",\"timestamp\":\"2026-01-15T16:24:05.621Z\"}\n\n{\"dd\":{\"env\":\"canary\",\"service\":\"server\",\"version\":\"canary-cb683a6ea59b2b9dc3c02b03928e90ac111c60bb\"},\"ddsource\":\"nodejs\",\"ddtags\":\"env:canary\",\"level\":\"error\",\"message\":\"Redis Client Error Connection timeout\",\"service\":\"server\",\"stack\":\"Error: Connection timeout\\n    at Socket.<anonymous> (/workdir/node_modules/@redis/client/dist/lib/client/socket.js:177:124)\\n    at Object.onceWrapper (node:events:633:28)\\n    at Socket.emit (node:events:531:35)\\n    at Socket.emit (/workdir/node_modules/dd-trace/packages/datadog-instrumentations/src/net.js:65:25)\\n    at Socket._onTimeout (node:net:604:8)\\n    at listOnTimeout (node:internal/timers:588:17)\\n at process.processTimers (node:internal/timers:523:7)\",\"timestamp\":\"2026-01-15T16:24:05.622Z\"}\n\n{\"dd\":{\"env\":\"canary\",\"service\":\"server\",\"version\":\"canary-cb683a6ea59b2b9dc3c02b03928e90ac111c60bb\"},\"ddsource\":\"nodejs\",\"ddtags\":\"env:canary\",\"level\":\"error\",\"message\":\"Redis Connect Error All the root nodes are unavailable\",\"service\":\"server\",\"stack\":\"Error: All the root nodes are unavailable\\n    at RedisClusterSlots._RedisClusterSlots_discoverWithRootNodes (/workdir/node_modules/@redis/client/dist/lib/cluster/cluster-slots.js:169:11)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\\n    at async RedisClusterSlots.connect (/workdir/node_modules/@redis/client/dist/lib/cluster/cluster-slots.js:81:13)\",\"timestamp\":\"2026-01-15T16:24:05.622Z\"}"
+            }
+          }
+        }
+      ],
+      "mcpContextUris": [],
+      "mcpServers": {},
+      "enabledMcpjsonServers": [],
+      "disabledMcpjsonServers": [],
+      "hasTrustDialogAccepted": false,
+      "projectOnboardingSeenCount": 1,
+      "hasClaudeMdExternalIncludesApproved": false,
+      "hasClaudeMdExternalIncludesWarningShown": false,
+      "exampleFiles": [
+        "redis-adapter.ts",
+        "importUtils.ts",
+        "importOrchestration.ts",
+        "fetchSchema.ts",
+        "init-brand.ts"
+      ],
+      "exampleFilesGeneratedAt": 1768494312443
+    }
+  },
+  "isQualifiedForDataSharing": false,
+  "shiftEnterKeyBindingInstalled": true,
+  "hasCompletedOnboarding": true,
+  "lastOnboardingVersion": "1.0.128",
+  "hasOpusPlanDefault": false,
+  "subscriptionNoticeCount": 0,
+  "hasAvailableSubscription": false,
+  "s1mNonSubscriberAccessCache": {
+    "5ded81bd-1168-4518-a01f-7cc7526d352b": {
+      "hasAccess": false,
+      "timestamp": 1759510889129
+    }
+  },
+  "recommendedSubscription": "",
+  "cachedChangelog": "# Changelog\n\n## 1.0.126\n\n- Enable /context command for Bedrock and Vertex\n- Add mTLS support for HTTP-based OpenTelemetry exporters\n\n## 1.0.124\n\n- Set `CLAUDE_BASH_NO_LOGIN` environment variable to 1 or true to to skip login shell for BashTool\n- Fix Bedrock and Vertex environment variables evaluating all strings as truthy\n- No longer inform Claude of the list of allowed tools when permission is denied\n- Fixed security vulnerability in Bash tool permission checks\n- Improved VSCode extension performance for large files\n\n## 1.0.123\n\n- Bash permission rules now support output redirections when matching (e.g., `Bash(python:*)` matches `python script.py > output.txt`)\n- Fixed thinking mode triggering on negation phrases like \"don't think\"\n- Fixed rendering performance degradation during token streaming\n- Added SlashCommand tool, which enables Claude to invoke your slash commands. https://docs.claude.com/en/docs/claude-code/slash-commands#SlashCommand-tool\n- Enhanced BashTool environment snapshot logging\n- Fixed a bug where resuming a conversation in headless mode would sometimes enable thinking unnecessarily\n- Migrated --debug logging to a file, to enable easy tailing & filtering\n\n## 1.0.120\n\n- Fix input lag during typing, especially noticeable with large prompts\n- Improved VSCode extension command registry and sessions dialog user experience\n- Enhanced sessions dialog responsiveness and visual feedback\n- Fixed IDE compatibility issue by removing worktree support check\n- Fixed security vulnerability where Bash tool permission checks could be bypassed using prefix matching\n\n## 1.0.119\n\n- Fix Windows issue where process visually freezes on entering interactive mode\n- Support dynamic headers for MCP servers via headersHelper configuration\n- Fix thinking mode not working in headless sessions\n- Fix slash commands now properly update allowed tools instead of replacing them\n\n## 1.0.117\n\n- Add Ctrl-R history search to recall previous commands like bash/zsh\n- Fix input lag while typing, especially on Windows\n- Add sed command to auto-allowed commands in acceptEdits mode\n- Fix Windows PATH comparison to be case-insensitive for drive letters\n- Add permissions management hint to /add-dir output\n\n## 1.0.115\n\n- Improve thinking mode display with enhanced visual effects\n- Type /t to temporarily disable thinking mode in your prompt\n- Improve path validation for glob and grep tools\n- Show condensed output for post-tool hooks to reduce visual clutter\n- Fix visual feedback when loading state completes\n- Improve UI consistency for permission request dialogs\n\n## 1.0.113\n\n- Deprecated piped input in interactive mode\n- Move Ctrl+R keybinding for toggling transcript to Ctrl+O\n\n## 1.0.112\n\n- Transcript mode (Ctrl+R): Added the model used to generate each assistant message\n- Addressed issue where some Claude Max users were incorrectly recognized as Claude Pro users\n- Hooks: Added systemMessage support for SessionEnd hooks\n- Added `spinnerTipsEnabled` setting to disable spinner tips\n- IDE: Various improvements and bug fixes\n\n## 1.0.111\n\n- /model now validates provided model names\n- Fixed Bash tool crashes caused by malformed shell syntax parsing\n\n## 1.0.110\n\n- /terminal-setup command now supports WezTerm\n- MCP: OAuth tokens now proactively refresh before expiration\n- Fixed reliability issues with background Bash processes\n\n## 1.0.109\n\n- SDK: Added partial message streaming support via `--include-partial-messages` CLI flag\n\n## 1.0.106\n\n- Windows: Fixed path permission matching to consistently use POSIX format (e.g., `Read(//c/Users/...)`)\n\n## 1.0.97\n\n- Settings: /doctor now validates permission rule syntax and suggests corrections\n\n## 1.0.94\n\n- Vertex: add support for global endpoints for supported models\n- /memory command now allows direct editing of all imported memory files\n- SDK: Add custom tools as callbacks\n- Added /todos command to list current todo items\n\n## 1.0.93\n\n- Windows: Add alt + v shortcut for pasting images from clipboard\n- Support NO_PROXY environment variable to bypass proxy for specified hostnames and IPs\n\n## 1.0.90\n\n- Settings file changes take effect immediately - no restart required\n\n## 1.0.88\n\n- Fixed issue causing \"OAuth authentication is currently not supported\"\n- Status line input now includes `exceeds_200k_tokens`\n- Fixed incorrect usage tracking in /cost.\n- Introduced `ANTHROPIC_DEFAULT_SONNET_MODEL` and `ANTHROPIC_DEFAULT_OPUS_MODEL` for controlling model aliases opusplan, opus, and sonnet.\n- Bedrock: Updated default Sonnet model to Sonnet 4\n\n## 1.0.86\n\n- Added /context to help users self-serve debug context issues\n- SDK: Added UUID support for all SDK messages\n- SDK: Added `--replay-user-messages` to replay user messages back to stdout\n\n## 1.0.85\n\n- Status line input now includes session cost info\n- Hooks: Introduced SessionEnd hook\n\n## 1.0.84\n\n- Fix tool_use/tool_result id mismatch error when network is unstable\n- Fix Claude sometimes ignoring real-time steering when wrapping up a task\n- @-mention: Add ~/.claude/\\* files to suggestions for easier agent, output style, and slash command editing\n- Use built-in ripgrep by default; to opt out of this behavior, set USE_BUILTIN_RIPGREP=0\n\n## 1.0.83\n\n- @-mention: Support files with spaces in path\n- New shimmering spinner\n\n## 1.0.82\n\n- SDK: Add request cancellation support\n- SDK: New additionalDirectories option to search custom paths, improved slash command processing\n- Settings: Validation prevents invalid fields in .claude/settings.json files\n- MCP: Improve tool name consistency\n- Bash: Fix crash when Claude tries to automatically read large files\n\n## 1.0.81\n\n- Released output styles, including new built-in educational output styles \"Explanatory\" and \"Learning\". Docs: https://docs.claude.com/en/docs/claude-code/output-styles\n- Agents: Fix custom agent loading when agent files are unparsable\n\n## 1.0.80\n\n- UI improvements: Fix text contrast for custom subagent colors and spinner rendering issues\n\n## 1.0.77\n\n- Bash tool: Fix heredoc and multiline string escaping, improve stderr redirection handling\n- SDK: Add session support and permission denial tracking\n- Fix token limit errors in conversation summarization\n- Opus Plan Mode: New setting in `/model` to run Opus only in plan mode, Sonnet otherwise\n\n## 1.0.73\n\n- MCP: Support multiple config files with `--mcp-config file1.json file2.json`\n- MCP: Press Esc to cancel OAuth authentication flows\n- Bash: Improved command validation and reduced false security warnings\n- UI: Enhanced spinner animations and status line visual hierarchy\n- Linux: Added support for Alpine and musl-based distributions (requires separate ripgrep installation)\n\n## 1.0.72\n\n- Ask permissions: have Claude Code always ask for confirmation to use specific tools with /permissions\n\n## 1.0.71\n\n- Background commands: (Ctrl-b) to run any Bash command in the background so Claude can keep working (great for dev servers, tailing logs, etc.)\n- Customizable status line: add your terminal prompt to Claude Code with /statusline\n\n## 1.0.70\n\n- Performance: Optimized message rendering for better performance with large contexts\n- Windows: Fixed native file search, ripgrep, and subagent functionality\n- Added support for @-mentions in slash command arguments\n\n## 1.0.69\n\n- Upgraded Opus to version 4.1\n\n## 1.0.68\n\n- Fix incorrect model names being used for certain commands like `/pr-comments`\n- Windows: improve permissions checks for allow / deny tools and project trust. This may create a new project entry in `.claude.json` - manually merge the history field if desired.\n- Windows: improve sub-process spawning to eliminate \"No such file or directory\" when running commands like pnpm\n- Enhanced /doctor command with CLAUDE.md and MCP tool context for self-serve debugging\n- SDK: Added canUseTool callback support for tool confirmation\n- Added `disableAllHooks` setting\n- Improved file suggestions performance in large repos\n\n## 1.0.65\n\n- IDE: Fixed connection stability issues and error handling for diagnostics\n- Windows: Fixed shell environment setup for users without .bashrc files\n\n## 1.0.64\n\n- Agents: Added model customization support - you can now specify which model an agent should use\n- Agents: Fixed unintended access to the recursive agent tool\n- Hooks: Added systemMessage field to hook JSON output for displaying warnings and context\n- SDK: Fixed user input tracking across multi-turn conversations\n- Added hidden files to file search and @-mention suggestions\n\n## 1.0.63\n\n- Windows: Fixed file search, @agent mentions, and custom slash commands functionality\n\n## 1.0.62\n\n- Added @-mention support with typeahead for custom agents. @<your-custom-agent> to invoke it\n- Hooks: Added SessionStart hook for new session initialization\n- /add-dir command now supports typeahead for directory paths\n- Improved network connectivity check reliability\n\n## 1.0.61\n\n- Transcript mode (Ctrl+R): Changed Esc to exit transcript mode rather than interrupt\n- Settings: Added `--settings` flag to load settings from a JSON file\n- Settings: Fixed resolution of settings files paths that are symlinks\n- OTEL: Fixed reporting of wrong organization after authentication changes\n- Slash commands: Fixed permissions checking for allowed-tools with Bash\n- IDE: Added support for pasting images in VSCode MacOS using ⌘+V\n- IDE: Added `CLAUDE_CODE_AUTO_CONNECT_IDE=false` for disabling IDE auto-connection\n- Added `CLAUDE_CODE_SHELL_PREFIX` for wrapping Claude and user-provided shell commands run by Claude Code\n\n## 1.0.60\n\n- You can now create custom subagents for specialized tasks! Run /agents to get started\n\n## 1.0.59\n\n- SDK: Added tool confirmation support with canUseTool callback\n- SDK: Allow specifying env for spawned process\n- Hooks: Exposed PermissionDecision to hooks (including \"ask\")\n- Hooks: UserPromptSubmit now supports additionalContext in advanced JSON output\n- Fixed issue where some Max users that specified Opus would still see fallback to Sonnet\n\n## 1.0.58\n\n- Added support for reading PDFs\n- MCP: Improved server health status display in 'claude mcp list'\n- Hooks: Added CLAUDE_PROJECT_DIR env var for hook commands\n\n## 1.0.57\n\n- Added support for specifying a model in slash commands\n- Improved permission messages to help Claude understand allowed tools\n- Fix: Remove trailing newlines from bash output in terminal wrapping\n\n## 1.0.56\n\n- Windows: Enabled shift+tab for mode switching on versions of Node.js that support terminal VT mode\n- Fixes for WSL IDE detection\n- Fix an issue causing awsRefreshHelper changes to .aws directory not to be picked up\n\n## 1.0.55\n\n- Clarified knowledge cutoff for Opus 4 and Sonnet 4 models\n- Windows: fixed Ctrl+Z crash\n- SDK: Added ability to capture error logging\n- Add --system-prompt-file option to override system prompt in print mode\n\n## 1.0.54\n\n- Hooks: Added UserPromptSubmit hook and the current working directory to hook inputs\n- Custom slash commands: Added argument-hint to frontmatter\n- Windows: OAuth uses port 45454 and properly constructs browser URL\n- Windows: mode switching now uses alt + m, and plan mode renders properly\n- Shell: Switch to in-memory shell snapshot to fix file-related errors\n\n## 1.0.53\n\n- Updated @-mention file truncation from 100 lines to 2000 lines\n- Add helper script settings for AWS token refresh: awsAuthRefresh (for foreground operations like aws sso login) and awsCredentialExport (for background operation with STS-like response).\n\n## 1.0.52\n\n- Added support for MCP server instructions\n\n## 1.0.51\n\n- Added support for native Windows (requires Git for Windows)\n- Added support for Bedrock API keys through environment variable AWS_BEARER_TOKEN_BEDROCK\n- Settings: /doctor can now help you identify and fix invalid setting files\n- `--append-system-prompt` can now be used in interactive mode, not just --print/-p.\n- Increased auto-compact warning threshold from 60% to 80%\n- Fixed an issue with handling user directories with spaces for shell snapshots\n- OTEL resource now includes os.type, os.version, host.arch, and wsl.version (if running on Windows Subsystem for Linux)\n- Custom slash commands: Fixed user-level commands in subdirectories\n- Plan mode: Fixed issue where rejected plan from sub-task would get discarded\n\n## 1.0.48\n\n- Fixed a bug in v1.0.45 where the app would sometimes freeze on launch\n- Added progress messages to Bash tool based on the last 5 lines of command output\n- Added expanding variables support for MCP server configuration\n- Moved shell snapshots from /tmp to ~/.claude for more reliable Bash tool calls\n- Improved IDE extension path handling when Claude Code runs in WSL\n- Hooks: Added a PreCompact hook\n- Vim mode: Added c, f/F, t/T\n\n## 1.0.45\n\n- Redesigned Search (Grep) tool with new tool input parameters and features\n- Disabled IDE diffs for notebook files, fixing \"Timeout waiting after 1000ms\" error\n- Fixed config file corruption issue by enforcing atomic writes\n- Updated prompt input undo to Ctrl+\\_ to avoid breaking existing Ctrl+U behavior, matching zsh's undo shortcut\n- Stop Hooks: Fixed transcript path after /clear and fixed triggering when loop ends with tool call\n- Custom slash commands: Restored namespacing in command names based on subdirectories. For example, .claude/commands/frontend/component.md is now /frontend:component, not /component.\n\n## 1.0.44\n\n- New /export command lets you quickly export a conversation for sharing\n- MCP: resource_link tool results are now supported\n- MCP: tool annotations and tool titles now display in /mcp view\n- Changed Ctrl+Z to suspend Claude Code. Resume by running `fg`. Prompt input undo is now Ctrl+U.\n\n## 1.0.43\n\n- Fixed a bug where the theme selector was saving excessively\n- Hooks: Added EPIPE system error handling\n\n## 1.0.42\n\n- Added tilde (`~`) expansion support to `/add-dir` command\n\n## 1.0.41\n\n- Hooks: Split Stop hook triggering into Stop and SubagentStop\n- Hooks: Enabled optional timeout configuration for each command\n- Hooks: Added \"hook_event_name\" to hook input\n- Fixed a bug where MCP tools would display twice in tool list\n- New tool parameters JSON for Bash tool in `tool_decision` event\n\n## 1.0.40\n\n- Fixed a bug causing API connection errors with UNABLE_TO_GET_ISSUER_CERT_LOCALLY if `NODE_EXTRA_CA_CERTS` was set\n\n## 1.0.39\n\n- New Active Time metric in OpenTelemetry logging\n\n## 1.0.38\n\n- Released hooks. Special thanks to community input in https://github.com/anthropics/claude-code/issues/712. Docs: https://docs.claude.com/en/docs/claude-code/hooks\n\n## 1.0.37\n\n- Remove ability to set `Proxy-Authorization` header via ANTHROPIC_AUTH_TOKEN or apiKeyHelper\n\n## 1.0.36\n\n- Web search now takes today's date into context\n- Fixed a bug where stdio MCP servers were not terminating properly on exit\n\n## 1.0.35\n\n- Added support for MCP OAuth Authorization Server discovery\n\n## 1.0.34\n\n- Fixed a memory leak causing a MaxListenersExceededWarning message to appear\n\n## 1.0.33\n\n- Improved logging functionality with session ID support\n- Added prompt input undo functionality (Ctrl+Z and vim 'u' command)\n- Improvements to plan mode\n\n## 1.0.32\n\n- Updated loopback config for litellm\n- Added forceLoginMethod setting to bypass login selection screen\n\n## 1.0.31\n\n- Fixed a bug where ~/.claude.json would get reset when file contained invalid JSON\n\n## 1.0.30\n\n- Custom slash commands: Run bash output, @-mention files, enable thinking with thinking keywords\n- Improved file path autocomplete with filename matching\n- Added timestamps in Ctrl-r mode and fixed Ctrl-c handling\n- Enhanced jq regex support for complex filters with pipes and select\n\n## 1.0.29\n\n- Improved CJK character support in cursor navigation and rendering\n\n## 1.0.28\n\n- Slash commands: Fix selector display during history navigation\n- Resizes images before upload to prevent API size limit errors\n- Added XDG_CONFIG_HOME support to configuration directory\n- Performance optimizations for memory usage\n- New attributes (terminal.type, language) in OpenTelemetry logging\n\n## 1.0.27\n\n- Streamable HTTP MCP servers are now supported\n- Remote MCP servers (SSE and HTTP) now support OAuth\n- MCP resources can now be @-mentioned\n- /resume slash command to switch conversations within Claude Code\n\n## 1.0.25\n\n- Slash commands: moved \"project\" and \"user\" prefixes to descriptions\n- Slash commands: improved reliability for command discovery\n- Improved support for Ghostty\n- Improved web search reliability\n\n## 1.0.24\n\n- Improved /mcp output\n- Fixed a bug where settings arrays got overwritten instead of merged\n\n## 1.0.23\n\n- Released TypeScript SDK: import @anthropic-ai/claude-code to get started\n- Released Python SDK: pip install claude-code-sdk to get started\n\n## 1.0.22\n\n- SDK: Renamed `total_cost` to `total_cost_usd`\n\n## 1.0.21\n\n- Improved editing of files with tab-based indentation\n- Fix for tool_use without matching tool_result errors\n- Fixed a bug where stdio MCP server processes would linger after quitting Claude Code\n\n## 1.0.18\n\n- Added --add-dir CLI argument for specifying additional working directories\n- Added streaming input support without require -p flag\n- Improved startup performance and session storage performance\n- Added CLAUDE_BASH_MAINTAIN_PROJECT_WORKING_DIR environment variable to freeze working directory for bash commands\n- Added detailed MCP server tools display (/mcp)\n- MCP authentication and permission improvements\n- Added auto-reconnection for MCP SSE connections on disconnect\n- Fixed issue where pasted content was lost when dialogs appeared\n\n## 1.0.17\n\n- We now emit messages from sub-tasks in -p mode (look for the parent_tool_use_id property)\n- Fixed crashes when the VS Code diff tool is invoked multiple times quickly\n- MCP server list UI improvements\n- Update Claude Code process title to display \"claude\" instead of \"node\"\n\n## 1.0.11\n\n- Claude Code can now also be used with a Claude Pro subscription\n- Added /upgrade for smoother switching to Claude Max plans\n- Improved UI for authentication from API keys and Bedrock/Vertex/external auth tokens\n- Improved shell configuration error handling\n- Improved todo list handling during compaction\n\n## 1.0.10\n\n- Added markdown table support\n- Improved streaming performance\n\n## 1.0.8\n\n- Fixed Vertex AI region fallback when using CLOUD_ML_REGION\n- Increased default otel interval from 1s -> 5s\n- Fixed edge cases where MCP_TIMEOUT and MCP_TOOL_TIMEOUT weren't being respected\n- Fixed a regression where search tools unnecessarily asked for permissions\n- Added support for triggering thinking non-English languages\n- Improved compacting UI\n\n## 1.0.7\n\n- Renamed /allowed-tools -> /permissions\n- Migrated allowedTools and ignorePatterns from .claude.json -> settings.json\n- Deprecated claude config commands in favor of editing settings.json\n- Fixed a bug where --dangerously-skip-permissions sometimes didn't work in --print mode\n- Improved error handling for /install-github-app\n- Bugfixes, UI polish, and tool reliability improvements\n\n## 1.0.6\n\n- Improved edit reliability for tab-indented files\n- Respect CLAUDE_CONFIG_DIR everywhere\n- Reduced unnecessary tool permission prompts\n- Added support for symlinks in @file typeahead\n- Bugfixes, UI polish, and tool reliability improvements\n\n## 1.0.4\n\n- Fixed a bug where MCP tool errors weren't being parsed correctly\n\n## 1.0.1\n\n- Added `DISABLE_INTERLEAVED_THINKING` to give users the option to opt out of interleaved thinking.\n- Improved model references to show provider-specific names (Sonnet 3.7 for Bedrock, Sonnet 4 for Console)\n- Updated documentation links and OAuth process descriptions\n\n## 1.0.0\n\n- Claude Code is now generally available\n- Introducing Sonnet 4 and Opus 4 models\n\n## 0.2.125\n\n- Breaking change: Bedrock ARN passed to `ANTHROPIC_MODEL` or `ANTHROPIC_SMALL_FAST_MODEL` should no longer contain an escaped slash (specify `/` instead of `%2F`)\n- Removed `DEBUG=true` in favor of `ANTHROPIC_LOG=debug`, to log all requests\n\n## 0.2.117\n\n- Breaking change: --print JSON output now returns nested message objects, for forwards-compatibility as we introduce new metadata fields\n- Introduced settings.cleanupPeriodDays\n- Introduced CLAUDE_CODE_API_KEY_HELPER_TTL_MS env var\n- Introduced --debug mode\n\n## 0.2.108\n\n- You can now send messages to Claude while it works to steer Claude in real-time\n- Introduced BASH_DEFAULT_TIMEOUT_MS and BASH_MAX_TIMEOUT_MS env vars\n- Fixed a bug where thinking was not working in -p mode\n- Fixed a regression in /cost reporting\n- Deprecated MCP wizard interface in favor of other MCP commands\n- Lots of other bugfixes and improvements\n\n## 0.2.107\n\n- CLAUDE.md files can now import other files. Add @path/to/file.md to ./CLAUDE.md to load additional files on launch\n\n## 0.2.106\n\n- MCP SSE server configs can now specify custom headers\n- Fixed a bug where MCP permission prompt didn't always show correctly\n\n## 0.2.105\n\n- Claude can now search the web\n- Moved system & account status to /status\n- Added word movement keybindings for Vim\n- Improved latency for startup, todo tool, and file edits\n\n## 0.2.102\n\n- Improved thinking triggering reliability\n- Improved @mention reliability for images and folders\n- You can now paste multiple large chunks into one prompt\n\n## 0.2.100\n\n- Fixed a crash caused by a stack overflow error\n- Made db storage optional; missing db support disables --continue and --resume\n\n## 0.2.98\n\n- Fixed an issue where auto-compact was running twice\n\n## 0.2.96\n\n- Claude Code can now also be used with a Claude Max subscription (https://claude.ai/upgrade)\n\n## 0.2.93\n\n- Resume conversations from where you left off from with \"claude --continue\" and \"claude --resume\"\n- Claude now has access to a Todo list that helps it stay on track and be more organized\n\n## 0.2.82\n\n- Added support for --disallowedTools\n- Renamed tools for consistency: LSTool -> LS, View -> Read, etc.\n\n## 0.2.75\n\n- Hit Enter to queue up additional messages while Claude is working\n- Drag in or copy/paste image files directly into the prompt\n- @-mention files to directly add them to context\n- Run one-off MCP servers with `claude --mcp-config <path-to-file>`\n- Improved performance for filename auto-complete\n\n## 0.2.74\n\n- Added support for refreshing dynamically generated API keys (via apiKeyHelper), with a 5 minute TTL\n- Task tool can now perform writes and run bash commands\n\n## 0.2.72\n\n- Updated spinner to indicate tokens loaded and tool usage\n\n## 0.2.70\n\n- Network commands like curl are now available for Claude to use\n- Claude can now run multiple web queries in parallel\n- Pressing ESC once immediately interrupts Claude in Auto-accept mode\n\n## 0.2.69\n\n- Fixed UI glitches with improved Select component behavior\n- Enhanced terminal output display with better text truncation logic\n\n## 0.2.67\n\n- Shared project permission rules can be saved in .claude/settings.json\n\n## 0.2.66\n\n- Print mode (-p) now supports streaming output via --output-format=stream-json\n- Fixed issue where pasting could trigger memory or bash mode unexpectedly\n\n## 0.2.63\n\n- Fixed an issue where MCP tools were loaded twice, which caused tool call errors\n\n## 0.2.61\n\n- Navigate menus with vim-style keys (j/k) or bash/emacs shortcuts (Ctrl+n/p) for faster interaction\n- Enhanced image detection for more reliable clipboard paste functionality\n- Fixed an issue where ESC key could crash the conversation history selector\n\n## 0.2.59\n\n- Copy+paste images directly into your prompt\n- Improved progress indicators for bash and fetch tools\n- Bugfixes for non-interactive mode (-p)\n\n## 0.2.54\n\n- Quickly add to Memory by starting your message with '#'\n- Press ctrl+r to see full output for long tool results\n- Added support for MCP SSE transport\n\n## 0.2.53\n\n- New web fetch tool lets Claude view URLs that you paste in\n- Fixed a bug with JPEG detection\n\n## 0.2.50\n\n- New MCP \"project\" scope now allows you to add MCP servers to .mcp.json files and commit them to your repository\n\n## 0.2.49\n\n- Previous MCP server scopes have been renamed: previous \"project\" scope is now \"local\" and \"global\" scope is now \"user\"\n\n## 0.2.47\n\n- Press Tab to auto-complete file and folder names\n- Press Shift + Tab to toggle auto-accept for file edits\n- Automatic conversation compaction for infinite conversation length (toggle with /config)\n\n## 0.2.44\n\n- Ask Claude to make a plan with thinking mode: just say 'think' or 'think harder' or even 'ultrathink'\n\n## 0.2.41\n\n- MCP server startup timeout can now be configured via MCP_TIMEOUT environment variable\n- MCP server startup no longer blocks the app from starting up\n\n## 0.2.37\n\n- New /release-notes command lets you view release notes at any time\n- `claude config add/remove` commands now accept multiple values separated by commas or spaces\n\n## 0.2.36\n\n- Import MCP servers from Claude Desktop with `claude mcp add-from-claude-desktop`\n- Add MCP servers as JSON strings with `claude mcp add-json <n> <json>`\n\n## 0.2.34\n\n- Vim bindings for text input - enable with /vim or /config\n\n## 0.2.32\n\n- Interactive MCP setup wizard: Run \"claude mcp add\" to add MCP servers with a step-by-step interface\n- Fix for some PersistentShell issues\n\n## 0.2.31\n\n- Custom slash commands: Markdown files in .claude/commands/ directories now appear as custom slash commands to insert prompts into your conversation\n- MCP debug mode: Run with --mcp-debug flag to get more information about MCP server errors\n\n## 0.2.30\n\n- Added ANSI color theme for better terminal compatibility\n- Fixed issue where slash command arguments weren't being sent properly\n- (Mac-only) API keys are now stored in macOS Keychain\n\n## 0.2.26\n\n- New /approved-tools command for managing tool permissions\n- Word-level diff display for improved code readability\n- Fuzzy matching for slash commands\n\n## 0.2.21\n\n- Fuzzy matching for /commands\n",
+  "changelogLastFetched": 1759032694360,
+  "lastReleaseNotesSeen": "1.0.128",
+  "githubActionSetupCount": 1,
+  "lastPlanModeUse": 1765196286718,
+  "oauthAccount": {
+    "accountUuid": "6b9e23fa-edce-4483-87ea-353b9e0fc23d",
+    "emailAddress": "russell.t.sherman@gmail.com",
+    "organizationUuid": "a8f05422-69fc-4201-8b59-a87954e0b46a",
+    "displayName": "Russell",
+    "organizationRole": "admin",
+    "workspaceRole": null,
+    "organizationName": "russell.t.sherman@gmail.com's Organization"
+  },
+  "claudeCodeFirstTokenDate": "2025-09-26T23:38:52.214010Z",
+  "fallbackAvailableWarningThreshold": 0.5,
+  "s1mAccessCache": {
+    "a8f05422-69fc-4201-8b59-a87954e0b46a": {
+      "hasAccess": false,
+      "hasAccessNotAsDefault": false,
+      "timestamp": 1768494310772
+    }
+  },
+  "feedbackSurveyState": {
+    "lastShownTime": 1768498228652
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "$schema" : "file:///usr/local/bin/macrowhisper-schema.json",
+  "defaults" : {
+    "actionDelay" : 0,
+    "activeAction" : "autoPaste",
+    "autoUpdateConfig" : true,
+    "clipboardBuffer" : 5,
+    "clipboardStacking" : false,
+    "history" : null,
+    "icon" : "",
+    "moveTo" : "",
+    "noEsc" : false,
+    "noNoti" : false,
+    "noUpdates" : false,
+    "pressReturn" : false,
+    "restoreClipboard" : true,
+    "returnDelay" : 0.1,
+    "scheduledActionTimeout" : 5,
+    "simKeypress" : false,
+    "watch" : "/Users/russellsherman/Documents/superwhisper"
+  },
+  "inserts" : {
+    "autoPaste" : {
+      "action" : ".autoPaste",
+      "actionDelay" : null,
+      "icon" : "•",
+      "moveTo" : "",
+      "noEsc" : null,
+      "pressReturn" : null,
+      "restoreClipboard" : null,
+      "simKeypress" : null,
+      "triggerApps" : "",
+      "triggerLogic" : "or",
+      "triggerModes" : "",
+      "triggerVoice" : ""
+    }
+  },
+  "scriptsAS" : {
+
+  },
+  "scriptsShell" : {
+
+  },
+  "shortcuts" : {
+
+  },
+  "urls" : {
+
+  }
+}

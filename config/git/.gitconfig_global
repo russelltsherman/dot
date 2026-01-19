@@ -1,3 +1,12 @@
+[includeIf "gitdir:~/src/github.com/archiveresale/"]
+  path = ~/.config/git/gitconfig_archiveresale
+
+[includeIf "gitdir:~/src/github.com/russelltsherman/"]
+  path = ~/.config/git/gitconfig_russelltsherman
+
+[includeIf "gitdir:~/src/gitlab.com/bhco/"]
+  path = ~/.config/git/gitconfig_blockhenge
+
 [color]
 # ui = true is a superset of all the more specific color options
 #  as documented at http://book.git-scm.com/5_customizing_git.html

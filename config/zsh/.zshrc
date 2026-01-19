@@ -62,25 +62,29 @@ colors
 setopt extendedglob
 autoload -Uz compaudit compinit
 
+# macos uses bsd stat and the following code results in the following error
+# stat: illegal option -- -
+# usage: stat [-FLnq] [-f format | -l | -r | -s | -x] [-t timefmt] [file ...]
+# 
 # check for presence of GNU coreutils
-if $(stat --version | grep -q "GNU coreutils")
-then
-  # linux/nixos uses GNU style stat
-  if [ "$(date +"%Y-%m-%d")" != "$(stat -c '%.10z' ${ZDOTCACHEDIR}/.zcompdump)" ]
-  then
-    compinit -d ${ZDOTCACHEDIR}/.zcompdump
-  else
-    compinit -i -C 
-  fi
-else
-  # Darwin uses BSD style stat
-  if [ "$(date +'%j')" != "$(stat -f '%Sm' -t '%j' ${ZDOTCACHEDIR}/.zcompdump)" ]
-  then
-    compinit -d ${ZDOTCACHEDIR}/.zcompdump
-  else
-    compinit -i -C 
-  fi
-fi
+# if $(stat --version | grep -q "GNU coreutils")
+# then
+#   # linux/nixos uses GNU style stat
+#   if [ "$(date +"%Y-%m-%d")" != "$(stat -c '%.10z' ${ZDOTCACHEDIR}/.zcompdump)" ]
+#   then
+#     compinit -d ${ZDOTCACHEDIR}/.zcompdump
+#   else
+#     compinit -i -C 
+#   fi
+# else
+#   # Darwin uses BSD style stat
+#   if [ "$(date +'%j')" != "$(stat -f '%Sm' -t '%j' ${ZDOTCACHEDIR}/.zcompdump)" ]
+#   then
+#     compinit -d ${ZDOTCACHEDIR}/.zcompdump
+#   else
+#     compinit -i -C 
+#   fi
+# fi
 
 zstyle ':completion:*' menu select
 zmodload zsh/complist
@@ -104,3 +108,5 @@ then
   done
   LC_COLLATE=$ORIG_COLLATE
 fi
+
+. "$HOME/.data/../bin/env"
