@@ -16,15 +16,6 @@ brew "fd"
 # Collection of GNU find, xargs, and locate
 # https://www.gnu.org/software/findutils/
 brew "findutils"
-# Command-line fuzzy finder written in Go
-# https://github.com/junegunn/fzf
-brew "fzf"
-# GitHub command-line tool
-# https://cli.github.com/
-brew "gh"
-# Lightweight and flexible command-line JSON processor
-# https://jqlang.github.io/jq/
-brew "jq"
 # Clone of ls with colorful output, file type icons, and more
 # https://github.com/lsd-rs/lsd
 brew "lsd"
@@ -64,9 +55,6 @@ brew "tree"
 # Internet file retriever
 # https://www.gnu.org/software/wget/
 brew "wget"
-# Process YAML, JSON, XML, CSV and properties documents from the CLI
-# https://github.com/mikefarah/yq
-brew "yq"
 # Shell extension to navigate your filesystem faster
 # https://github.com/ajeetdsouza/zoxide
 brew "zoxide"

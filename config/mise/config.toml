@@ -1,7 +1,9 @@
 [tools]
 fzf = "latest"
 gh = "latest"
+jq = "latest"
 just = "latest"
 k9s = "latest"
 node = "latest"
 python = "latest"
+yq = "latest"
