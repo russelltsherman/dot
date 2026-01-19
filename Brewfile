@@ -28,6 +28,9 @@ brew "jq"
 # Clone of ls with colorful output, file type icons, and more
 # https://github.com/lsd-rs/lsd
 brew "lsd"
+# Polyglot runtime manager (asdf rust clone)
+# https://mise.jdx.dev/
+brew "mise"
 # Ambitious Vim-fork focused on extensibility and agility
 # https://neovim.io/
 brew "neovim"
