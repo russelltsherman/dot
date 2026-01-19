@@ -1,2 +1,7 @@
 [tools]
+fzf = "latest"
+gh = "latest"
+just = "latest"
+k9s = "latest"
 node = "latest"
+python = "latest"
