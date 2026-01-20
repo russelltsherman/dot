@@ -54,22 +54,29 @@ be(){
   ACTIVE_PROFILE="$profile"
   export ACTIVE_PROFILE
 
+  # refresh pgpss configuration
+  if [[ -f ${HOME}/.config/profiles/${profile}/.pgpass ]]
+  then
+    find ~/.pgpass -maxdepth 1 -type f -exec rm -rf {} \;
+    cp -r ${HOME}/.config/profiles/${profile}/.pgpass  ${HOME}/.pgpass
+  fi
+
   # refresh aws configuration
-  if [[  -d ${HOME}/.config/profiles/${profile}/aws ]]
+  if [[ -d ${HOME}/.config/profiles/${profile}/aws ]]
   then
     find ~/.aws -maxdepth 1 -type f -exec rm -rf {} \;
     cp -r ${HOME}/.config/profiles/${profile}/aws/*  ${HOME}/.aws
   fi
 
   # refresh github configuration
-  if [[  -d ${HOME}/.config/profiles/${profile}/github ]]
+  if [[ -d ${HOME}/.config/profiles/${profile}/github ]]
   then
     find ~/.config/github -maxdepth 1 -type f -exec rm -rf {} \;
     cp -r ${HOME}/.config/profiles/${profile}/github/*  ${HOME}/.config/github
   fi
 
   # refresh gitlab configuration
-  if [[  -d ${HOME}/.config/profiles/${profile}/gitlab ]]
+  if [[ -d ${HOME}/.config/profiles/${profile}/gitlab ]]
   then
     find ~/.config/gitlab -maxdepth 1 -type f -exec rm -rf {} \;
     cp -r ${HOME}/.config/profiles/${profile}/gitlab/*  ${HOME}/.config/gitlab
