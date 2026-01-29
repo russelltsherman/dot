@@ -1,11 +1,16 @@
 [tools]
+awscli = { version = "latest", symlink_bins = "true" }
 bun = "latest"
+flux2 = "latest"
 fzf = "latest"
 gh = "latest"
+github-cli = "latest"
+"github:nushell/nushell" = "latest"
 graphite = "latest"
 jq = "latest"
 just = "latest"
 k9s = "latest"
+kubectl = "latest"
 lsd = "latest"
 neovim = "latest"
 node = "latest"
