@@ -4,9 +4,6 @@ brew "adr-tools"
 # Plugin manager for zsh, inspired by oh-my-zsh and vundle
 # https://antigen.sharats.me/
 brew "antigen"
-# Clone of cat(1) with syntax highlighting and Git integration
-# https://github.com/sharkdp/bat
-brew "bat"
 # GNU File, Shell, and Text utilities
 # https://www.gnu.org/software/coreutils/
 brew "coreutils"
@@ -16,21 +13,12 @@ brew "fd"
 # Collection of GNU find, xargs, and locate
 # https://www.gnu.org/software/findutils/
 brew "findutils"
-# Clone of ls with colorful output, file type icons, and more
-# https://github.com/lsd-rs/lsd
-brew "lsd"
 # Polyglot runtime manager (asdf rust clone)
 # https://mise.jdx.dev/
 brew "mise"
-# Ambitious Vim-fork focused on extensibility and agility
-# https://neovim.io/
-brew "neovim"
 # Tools for one-time password authentication systems
 # https://www.nongnu.org/oath-toolkit/
 brew "oath-toolkit"
-# Create, run, and share large language models (LLMs)
-# https://ollama.com/
-brew "ollama"
 # Search tool like grep and The Silver Searcher
 # https://github.com/BurntSushi/ripgrep
 brew "ripgrep"
@@ -55,9 +43,6 @@ brew "tree"
 # Internet file retriever
 # https://www.gnu.org/software/wget/
 brew "wget"
-# Shell extension to navigate your filesystem faster
-# https://github.com/ajeetdsouza/zoxide
-brew "zoxide"
 
 # https://www.sourcegear.com/diffmerge/ -- deprecated
 cask "diffmerge"
@@ -83,6 +68,8 @@ cask "obsidian"
 cask "postman"
 # https://www.postman.com/downloads/
 cask "postman-cli"
+# https://raycast.com/
+cask "raycast"
 # https://signal.org/
 cask "signal"
 # https://slack.com/
