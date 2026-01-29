@@ -28,9 +28,6 @@ brew "rsync"
 # Terminal multiplexer with VT100/ANSI terminal emulation
 # https://www.gnu.org/software/screen/
 brew "screen"
-# Cross-shell prompt for astronauts
-# https://starship.rs/
-brew "starship"
 # Official tldr client written in Rust
 # https://tldr.sh/tlrc/
 brew "tlrc"
