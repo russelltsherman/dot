@@ -51,6 +51,8 @@ cask "dropbox"
 cask "font-meslo-lg-nerd-font"
 # https://fork.dev/
 cask "fork"
+# https://ghostty.org/
+cask "ghostty"
 # https://www.google.com/chrome/
 cask "google-chrome"
 # https://gpgtools.org/
