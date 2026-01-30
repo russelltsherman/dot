@@ -7,9 +7,6 @@ brew "antigen"
 # GNU File, Shell, and Text utilities
 # https://www.gnu.org/software/coreutils/
 brew "coreutils"
-# Simple, fast and user-friendly alternative to find
-# https://github.com/sharkdp/fd
-brew "fd"
 # Collection of GNU find, xargs, and locate
 # https://www.gnu.org/software/findutils/
 brew "findutils"
