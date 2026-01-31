@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "paiVersion": "2.4",
   "env": {
-    "PAI_CONFIG_DIR": "~/.config/assistant",
+    "PAI_DIR": "/Users/russelltsherman/.config/assistant",
     "PROJECTS_DIR": "",
     "CLAUDE_CODE_MAX_OUTPUT_TOKENS": "80000",
     "BASH_DEFAULT_TIMEOUT_MS": "600000"
@@ -15,14 +15,14 @@
   ],
   "daidentity": {
     "name": "PAI",
-    "fullName": "PAI - Personal AI Infrastructure",
+    "fullName": "PAI - Personal AI",
     "displayName": "PAI",
     "color": "#3B82F6",
     "voiceId": "21m00Tcm4TlvDq8ikWAM",
     "voice": {
       "stability": 0.35,
-      "similarity_boost": 0.80,
-      "style": 0.90,
+      "similarity_boost": 0.8,
+      "style": 0.9,
       "speed": 1.1,
       "use_speaker_boost": true,
       "volume": 0.8
@@ -30,18 +30,20 @@
     "startupCatchphrase": "PAI here, ready to go."
   },
   "principal": {
-    "name": "User",
-    "timezone": "America/Los_Angeles"
+    "name": "Russell",
+    "timezone": "America/Chicago"
   },
   "pai": {
     "repoUrl": "github.com/danielmiessler/PAI",
     "version": "2.4"
   },
   "techStack": {
-    "terminal": "Kitty",
+    "browser": "arc",
+    "terminal": "terminal",
     "packageManager": "bun",
-    "pythonPackageManager": "uv",
-    "language": "TypeScript"
+    "pythonPackageManager": "pip",
+    "language": "TypeScript",
+    "devServerPort": 5173
   },
   "permissions": {
     "allow": [
@@ -103,87 +105,153 @@
     "PreToolUse": [
       {
         "matcher": "Bash",
-        "hooks": [{ "type": "command", "command": "~/.config/assistant/hooks/SecurityValidator.hook.ts" }]
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${PAI_DIR}/hooks/SecurityValidator.hook.ts"
+          }
+        ]
       },
       {
         "matcher": "Edit",
-        "hooks": [{ "type": "command", "command": "~/.config/assistant/hooks/SecurityValidator.hook.ts" }]
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${PAI_DIR}/hooks/SecurityValidator.hook.ts"
+          }
+        ]
       },
       {
         "matcher": "Write",
-        "hooks": [{ "type": "command", "command": "~/.config/assistant/hooks/SecurityValidator.hook.ts" }]
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${PAI_DIR}/hooks/SecurityValidator.hook.ts"
+          }
+        ]
       },
       {
         "matcher": "Read",
-        "hooks": [{ "type": "command", "command": "~/.config/assistant/hooks/SecurityValidator.hook.ts" }]
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${PAI_DIR}/hooks/SecurityValidator.hook.ts"
+          }
+        ]
       },
       {
         "matcher": "AskUserQuestion",
-        "hooks": [{ "type": "command", "command": "~/.config/assistant/hooks/SetQuestionTab.hook.ts" }]
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${PAI_DIR}/hooks/SetQuestionTab.hook.ts"
+          }
+        ]
       }
     ],
     "PostToolUse": [
       {
         "matcher": "AskUserQuestion",
-        "hooks": [{ "type": "command", "command": "~/.config/assistant/hooks/QuestionAnswered.hook.ts" }]
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${PAI_DIR}/hooks/QuestionAnswered.hook.ts"
+          }
+        ]
       }
     ],
     "SessionEnd": [
       {
         "hooks": [
-          { "type": "command", "command": "~/.config/assistant/hooks/WorkCompletionLearning.hook.ts" },
-          { "type": "command", "command": "~/.config/assistant/hooks/SessionSummary.hook.ts" }
+          {
+            "type": "command",
+            "command": "${PAI_DIR}/hooks/WorkCompletionLearning.hook.ts"
+          },
+          {
+            "type": "command",
+            "command": "${PAI_DIR}/hooks/SessionSummary.hook.ts"
+          }
         ]
       }
     ],
     "UserPromptSubmit": [
       {
         "hooks": [
-          { "type": "command", "command": "~/.config/assistant/hooks/FormatReminder.hook.ts" },
-          { "type": "command", "command": "~/.config/assistant/hooks/AutoWorkCreation.hook.ts" },
-          { "type": "command", "command": "~/.config/assistant/hooks/ExplicitRatingCapture.hook.ts" },
-          { "type": "command", "command": "~/.config/assistant/hooks/ImplicitSentimentCapture.hook.ts" },
-          { "type": "command", "command": "~/.config/assistant/hooks/UpdateTabTitle.hook.ts" }
+          {
+            "type": "command",
+            "command": "${PAI_DIR}/hooks/FormatReminder.hook.ts"
+          },
+          {
+            "type": "command",
+            "command": "${PAI_DIR}/hooks/AutoWorkCreation.hook.ts"
+          },
+          {
+            "type": "command",
+            "command": "${PAI_DIR}/hooks/ExplicitRatingCapture.hook.ts"
+          },
+          {
+            "type": "command",
+            "command": "${PAI_DIR}/hooks/ImplicitSentimentCapture.hook.ts"
+          },
+          {
+            "type": "command",
+            "command": "${PAI_DIR}/hooks/UpdateTabTitle.hook.ts"
+          }
         ]
       }
     ],
     "SessionStart": [
       {
         "hooks": [
-          { "type": "command", "command": "~/.config/assistant/hooks/StartupGreeting.hook.ts" },
-          { "type": "command", "command": "~/.config/assistant/hooks/LoadContext.hook.ts" },
-          { "type": "command", "command": "~/.config/assistant/hooks/CheckVersion.hook.ts" }
+          {
+            "type": "command",
+            "command": "${PAI_DIR}/hooks/StartupGreeting.hook.ts"
+          },
+          {
+            "type": "command",
+            "command": "${PAI_DIR}/hooks/LoadContext.hook.ts"
+          },
+          {
+            "type": "command",
+            "command": "${PAI_DIR}/hooks/CheckVersion.hook.ts"
+          }
         ]
       }
     ],
     "Stop": [
       {
-        "hooks": [{ "type": "command", "command": "~/.config/assistant/hooks/StopOrchestrator.hook.ts" }]
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${PAI_DIR}/hooks/StopOrchestrator.hook.ts"
+          }
+        ]
       }
     ],
     "SubagentStop": [
       {
-        "hooks": [{ "type": "command", "command": "~/.config/assistant/hooks/AgentOutputCapture.hook.ts" }]
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${PAI_DIR}/hooks/AgentOutputCapture.hook.ts"
+          }
+        ]
       }
     ]
   },
   "statusLine": {
     "type": "command",
-    "command": "~/.config/assistant/statusline-command.sh"
+    "command": "${PAI_DIR}/statusline-command.sh"
   },
   "alwaysThinkingEnabled": true,
   "_docs": {
-    "_overview": "SETTINGS.JSON - Central configuration for PAI v2.4. Replace __INSTALL_WILL_SET_THIS__ placeholders with your paths.",
+    "_overview": "PAI v2.4 settings. Run install wizard to customize.",
     "_sections": {
-      "contextFiles": "Files loaded at session start. Defaults: SKILL.md, AISTEERINGRULES (SYSTEM+USER), DAIDENTITY. Customize to load additional context.",
-      "daidentity": "AI identity (name, voice). Edit directly to customize.",
-      "principal": "Your identity. Edit name and timezone directly.",
-      "permissions": "Pre-configured for security and usability.",
-      "hooks": "Hook configuration for lifecycle events."
-    },
-    "_env": {
-      "PAI_CONFIG_DIR": "REQUIRED. Root directory for your PAI installation (usually ~/.claude). Replace placeholder with absolute path.",
-      "PROJECTS_DIR": "OPTIONAL. Base directory for projects (e.g., ~/Projects). Skills use ${PROJECTS_DIR}/PAI for public repo path. Set empty string if unused."
+      "contextFiles": "Files loaded at session start. Defaults load SKILL.md, AI Steering Rules, and DA Identity.",
+      "daidentity": "AI identity (name, voice)",
+      "principal": "Your identity",
+      "permissions": "Tool permissions",
+      "hooks": "Lifecycle event hooks"
     }
   },
   "max_tokens": 4096
