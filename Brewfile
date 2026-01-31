@@ -4,6 +4,9 @@ brew "adr-tools"
 # Plugin manager for zsh, inspired by oh-my-zsh and vundle
 # https://antigen.sharats.me/
 brew "antigen"
+# Clone of cat(1) with syntax highlighting and Git integration
+# https://github.com/sharkdp/bat
+brew "bat"
 # GNU File, Shell, and Text utilities
 # https://www.gnu.org/software/coreutils/
 brew "coreutils"
