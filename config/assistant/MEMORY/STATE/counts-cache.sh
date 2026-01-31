@@ -1,0 +1,9 @@
+skills_count=28
+workflows_count=118
+hooks_count=15
+learnings_count=0
+files_count=49
+work_count=2
+research_count=0
+ratings_count=0
+sessions_count=0

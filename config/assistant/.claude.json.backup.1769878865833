@@ -1,0 +1,105 @@
+{
+  "numStartups": 1,
+  "cachedGrowthBookFeatures": {
+    "tengu_1p_event_batch_config": {
+      "scheduledDelayMillis": 5000,
+      "maxExportBatchSize": 200,
+      "maxQueueSize": 8192
+    },
+    "tengu_mcp_tool_search": true,
+    "tengu_scratch": false,
+    "tengu_brass_pebble": false,
+    "tengu_disable_bypass_permissions_mode": false,
+    "tengu_event_sampling_config": {},
+    "tengu_log_segment_events": false,
+    "tengu_log_datadog_events": true,
+    "tengu_marble_anvil": true,
+    "tengu_tool_pear": false,
+    "tengu_scarf_coffee": false,
+    "tengu_keybinding_customization_release": true,
+    "tengu_c4w_usage_limit_notifications_enabled": true,
+    "tengu_thinkback": false,
+    "tengu_pid_based_version_locking": true,
+    "tengu_tool_search_unsupported_models": [
+      "haiku"
+    ],
+    "tengu_system_prompt_global_cache": false,
+    "tengu_attribution_header": true,
+    "enhanced_telemetry_beta": false,
+    "tengu_workout": false,
+    "tengu_marble_kite": true,
+    "tengu-top-of-feed-tip": {
+      "tip": "",
+      "color": ""
+    },
+    "tengu_react_vulnerability_warning": false,
+    "tengu_code_diff_cli": true,
+    "tengu_pr_status_cli": true,
+    "tengu_post_compact_survey": false,
+    "tengu_claudeai_mcp_connectors": false
+  },
+  "userID": "2f950b587828c41f5791d65d859f1043a1885a7de94a47c465365c90f46a0374",
+  "firstStartTime": "2026-01-31T17:00:50.826Z",
+  "sonnet45MigrationComplete": true,
+  "opus45MigrationComplete": true,
+  "opusProMigrationComplete": true,
+  "opusProMigrationTimestamp": 1769878850828,
+  "thinkingMigrationComplete": true,
+  "cachedChromeExtensionInstalled": false,
+  "changelogLastFetched": 1769878865599,
+  "oauthAccount": {
+    "accountUuid": "6b9e23fa-edce-4483-87ea-353b9e0fc23d",
+    "emailAddress": "russell.t.sherman@gmail.com",
+    "organizationUuid": "a8f05422-69fc-4201-8b59-a87954e0b46a",
+    "hasExtraUsageEnabled": false,
+    "displayName": "Russell",
+    "organizationRole": "admin",
+    "workspaceRole": null,
+    "organizationName": "russell.t.sherman@gmail.com's Organization"
+  },
+  "claudeCodeFirstTokenDate": "2025-09-26T23:38:52.214010Z",
+  "hasCompletedOnboarding": true,
+  "lastOnboardingVersion": "2.1.27",
+  "projects": {
+    "/Users/russelltsherman/src/github.com/russelltsherman/dot": {
+      "allowedTools": [],
+      "mcpContextUris": [],
+      "mcpServers": {},
+      "enabledMcpjsonServers": [],
+      "disabledMcpjsonServers": [],
+      "hasTrustDialogAccepted": true,
+      "projectOnboardingSeenCount": 0,
+      "hasClaudeMdExternalIncludesApproved": false,
+      "hasClaudeMdExternalIncludesWarningShown": false,
+      "reactVulnerabilityCache": {
+        "detected": false,
+        "package": null,
+        "packageName": null,
+        "version": null,
+        "packageManager": null
+      }
+    }
+  },
+  "githubRepoPaths": {
+    "russelltsherman/dot": [
+      "/Users/russelltsherman/src/github.com/russelltsherman/dot/config/assistant"
+    ]
+  },
+  "s1mAccessCache": {
+    "a8f05422-69fc-4201-8b59-a87954e0b46a": {
+      "hasAccess": false,
+      "hasAccessNotAsDefault": false,
+      "timestamp": 1769878864857
+    }
+  },
+  "groveConfigCache": {
+    "6b9e23fa-edce-4483-87ea-353b9e0fc23d": {
+      "grove_enabled": true,
+      "timestamp": 1769878864931
+    }
+  },
+  "lastReleaseNotesSeen": "2.1.27",
+  "hasShownOpus45Notice": {
+    "a8f05422-69fc-4201-8b59-a87954e0b46a": true
+  }
+}
