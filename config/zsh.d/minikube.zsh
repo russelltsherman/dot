@@ -1,3 +1,4 @@
+
 if chk::command "minikube"
 then
   eval $(minikube completion zsh)

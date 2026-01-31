@@ -1,3 +1,4 @@
+
 if chk::command "oathtool"
 then
     mfa() {
