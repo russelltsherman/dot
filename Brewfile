@@ -13,6 +13,9 @@ brew "coreutils"
 # Collection of GNU find, xargs, and locate
 # https://www.gnu.org/software/findutils/
 brew "findutils"
+# GNU grep, egrep and fgrep
+# https://www.gnu.org/software/grep/
+brew "grep"
 # Polyglot runtime manager (asdf rust clone)
 # https://mise.jdx.dev/
 brew "mise"
