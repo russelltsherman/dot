@@ -1,7 +1,0 @@
-{
-  "defaultInstructions": "Always follow strict markdown linting rules when writing markdown files, including MD022 (blank lines around headings), MD025 (single H1), MD031 (blanks around fences), MD032 (blank lines around lists), MD047 (single trailing newline), and other standard markdownlint rules.",
-  "markdownLinting": {
-    "enabled": true,
-    "strictMode": true
-  }
-}

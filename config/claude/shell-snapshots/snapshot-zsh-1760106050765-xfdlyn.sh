@@ -1,8 +1,0 @@
-# Snapshot file
-# Unset all aliases to avoid conflicts with functions
-unalias -a 2>/dev/null || true
-# Check for rg availability
-if ! command -v rg >/dev/null 2>&1; then
-  alias rg='/Users/russellsherman/.data/claude/versions/1.0.128 --ripgrep'
-fi
-export PATH=/Users/russellsherman/.venv/bin\:/Users/russellsherman/.data/../bin\:/Users/russellsherman/.antigen/bundles/russelltsherman/zsh-pfetch-main/bin\:/opt/homebrew/opt/coreutils/libexec/gnubin\:/opt/homebrew/bin\:/opt/homebrew/sbin\:/Users/russellsherman/.nix-profile/bin\:/nix/var/nix/profiles/default/bin\:/usr/local/bin\:/System/Cryptexes/App/usr/bin\:/usr/bin\:/bin\:/usr/sbin\:/sbin\:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin\:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin\:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin\:/Library/Apple/usr/bin\:/usr/local/MacGPG2/bin\:/Users/russellsherman/bin\:/run/current-system/sw/bin\:/Users/russellsherman/bin\:/Users/russellsherman/.antigen/bundles/russelltsherman/base16-shell-main\:/Users/russellsherman/.antigen/bundles/russelltsherman/zsh-pfetch-main\:/Users/russellsherman/.antigen/bundles/russelltsherman/zsh-solarized-man-main\:/Users/russellsherman/.antigen/bundles/zsh-users/zsh-autosuggestions\:/Users/russellsherman/.antigen/bundles/zsh-users/zsh-completions\:/Users/russellsherman/.antigen/bundles/zsh-users/zsh-history-substring-search\:/Users/russellsherman/.antigen/bundles/zsh-users/zsh-syntax-highlighting\:/Users/russellsherman/bin\:/Users/russellsherman/.local/bin
