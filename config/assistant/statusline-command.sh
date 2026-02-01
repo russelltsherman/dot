@@ -22,14 +22,14 @@ set -o pipefail
 # CONFIGURATION
 # ─────────────────────────────────────────────────────────────────────────────
 
-PAI_DIR="${PAI_DIR:-$HOME/.config/assistant}"
-SETTINGS_FILE="$PAI_DIR/settings.json"
-RATINGS_FILE="$PAI_DIR/MEMORY/LEARNING/SIGNALS/ratings.jsonl"
-TREND_CACHE="$PAI_DIR/MEMORY/STATE/trending-cache.json"
-MODEL_CACHE="$PAI_DIR/MEMORY/STATE/model-cache.txt"
-QUOTE_CACHE="$PAI_DIR/.quote-cache"
-LOCATION_CACHE="$PAI_DIR/MEMORY/STATE/location-cache.json"
-WEATHER_CACHE="$PAI_DIR/MEMORY/STATE/weather-cache.json"
+PAI_CONFIG_DIR="${PAI_CONFIG_DIR:-$HOME/.config/assistant}"
+SETTINGS_FILE="$PAI_CONFIG_DIR/settings.json"
+RATINGS_FILE="$PAI_CONFIG_DIR/MEMORY/LEARNING/SIGNALS/ratings.jsonl"
+TREND_CACHE="$PAI_CONFIG_DIR/MEMORY/STATE/trending-cache.json"
+MODEL_CACHE="$PAI_CONFIG_DIR/MEMORY/STATE/model-cache.txt"
+QUOTE_CACHE="$PAI_CONFIG_DIR/.quote-cache"
+LOCATION_CACHE="$PAI_CONFIG_DIR/MEMORY/STATE/location-cache.json"
+WEATHER_CACHE="$PAI_CONFIG_DIR/MEMORY/STATE/weather-cache.json"
 
 # NOTE: context_window.used_percentage provides raw context usage from Claude Code.
 # Scaling to compaction threshold is applied if configured in settings.json.
@@ -41,11 +41,11 @@ GIT_CACHE_TTL=5          # 5 seconds (fast refresh, but avoids repeated scans)
 COUNTS_CACHE_TTL=30      # 30 seconds (file counts rarely change mid-session)
 
 # Additional cache files for expensive operations
-GIT_CACHE="$PAI_DIR/MEMORY/STATE/git-status-cache.sh"
-COUNTS_CACHE="$PAI_DIR/MEMORY/STATE/counts-cache.sh"
+GIT_CACHE="$PAI_CONFIG_DIR/MEMORY/STATE/git-status-cache.sh"
+COUNTS_CACHE="$PAI_CONFIG_DIR/MEMORY/STATE/counts-cache.sh"
 
 # Source .env for API keys
-[ -f "$PAI_DIR/.env" ] && source "$PAI_DIR/.env"
+[ -f "$PAI_CONFIG_DIR/.env" ] && source "$PAI_CONFIG_DIR/.env"
 
 # ─────────────────────────────────────────────────────────────────────────────
 # PARSE INPUT (must happen before parallel block consumes stdin)
@@ -116,7 +116,7 @@ mkdir -p "$_parallel_tmp"
     # 1. Git status (if in git repo)
     if git rev-parse --git-dir > /dev/null 2>&1; then
         git_root=$(git rev-parse --show-toplevel 2>/dev/null | tr '/' '_')
-        GIT_REPO_CACHE="$PAI_DIR/MEMORY/STATE/git-cache${git_root}.sh"
+        GIT_REPO_CACHE="$PAI_CONFIG_DIR/MEMORY/STATE/git-cache${git_root}.sh"
 
         # Check cache validity
         if [ -f "$GIT_REPO_CACHE" ]; then
@@ -241,23 +241,23 @@ GITEOF
     else
         # Use GetCounts.ts as single source of truth for deterministic counts
         # This ensures banner and statusline show identical numbers
-        GETCOUNTS_TOOL="$PAI_DIR/skills/CORE/Tools/GetCounts.ts"
+        GETCOUNTS_TOOL="$PAI_CONFIG_DIR/skills/CORE/Tools/GetCounts.ts"
         if [ -f "$GETCOUNTS_TOOL" ]; then
             bun run "$GETCOUNTS_TOOL" --shell > "$_parallel_tmp/counts.sh" 2>/dev/null
             # Map signals_count to learnings_count for compatibility
             sed -i '' 's/signals_count/learnings_count/' "$_parallel_tmp/counts.sh" 2>/dev/null
             # Add sessions_count (not in GetCounts.ts)
-            sessions_count=$(fd -e jsonl . "$PAI_DIR/MEMORY" 2>/dev/null | wc -l | tr -d ' ')
+            sessions_count=$(fd -e jsonl . "$PAI_CONFIG_DIR/MEMORY" 2>/dev/null | wc -l | tr -d ' ')
             echo "sessions_count=$sessions_count" >> "$_parallel_tmp/counts.sh"
         else
             # Fallback if GetCounts.ts doesn't exist
-            skills_count=$(fd -t d -d 1 . "$PAI_DIR/skills" 2>/dev/null | wc -l | tr -d ' ')
-            workflows_count=$(fd --no-ignore -t f -e md . "$PAI_DIR/skills" 2>/dev/null | grep -ci '/[Ww]orkflows/' || echo 0)
-            hooks_count=$(fd -e ts -d 1 . "$PAI_DIR/hooks" 2>/dev/null | wc -l | tr -d ' ')
-            learnings_count=$(fd -e md . "$PAI_DIR/MEMORY/LEARNING" 2>/dev/null | wc -l | tr -d ' ')
-            work_count=$(fd -t d -d 1 . "$PAI_DIR/MEMORY/WORK" 2>/dev/null | wc -l | tr -d ' ')
-            sessions_count=$(fd -e jsonl . "$PAI_DIR/MEMORY" 2>/dev/null | wc -l | tr -d ' ')
-            research_count=$(fd -e md -e json . "$PAI_DIR/MEMORY/RESEARCH" 2>/dev/null | wc -l | tr -d ' ')
+            skills_count=$(fd -t d -d 1 . "$PAI_CONFIG_DIR/skills" 2>/dev/null | wc -l | tr -d ' ')
+            workflows_count=$(fd --no-ignore -t f -e md . "$PAI_CONFIG_DIR/skills" 2>/dev/null | grep -ci '/[Ww]orkflows/' || echo 0)
+            hooks_count=$(fd -e ts -d 1 . "$PAI_CONFIG_DIR/hooks" 2>/dev/null | wc -l | tr -d ' ')
+            learnings_count=$(fd -e md . "$PAI_CONFIG_DIR/MEMORY/LEARNING" 2>/dev/null | wc -l | tr -d ' ')
+            work_count=$(fd -t d -d 1 . "$PAI_CONFIG_DIR/MEMORY/WORK" 2>/dev/null | wc -l | tr -d ' ')
+            sessions_count=$(fd -e jsonl . "$PAI_CONFIG_DIR/MEMORY" 2>/dev/null | wc -l | tr -d ' ')
+            research_count=$(fd -e md -e json . "$PAI_CONFIG_DIR/MEMORY/RESEARCH" 2>/dev/null | wc -l | tr -d ' ')
             ratings_count=$([ -f "$RATINGS_FILE" ] && wc -l < "$RATINGS_FILE" 2>/dev/null | tr -d ' ' || echo 0)
 
             cat > "$_parallel_tmp/counts.sh" << COUNTSEOF
@@ -780,7 +780,7 @@ printf "${SLATE_600}────────────────────
 # LINE 6: LEARNING (with sparklines in normal mode)
 # ═══════════════════════════════════════════════════════════════════════════════
 
-LEARNING_CACHE="$PAI_DIR/MEMORY/STATE/learning-cache.sh"
+LEARNING_CACHE="$PAI_CONFIG_DIR/MEMORY/STATE/learning-cache.sh"
 LEARNING_CACHE_TTL=30  # seconds
 
 if [ -f "$RATINGS_FILE" ] && [ -s "$RATINGS_FILE" ]; then

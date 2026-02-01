@@ -27,7 +27,7 @@ export function expandPath(path: string): string {
 
 /**
  * Get the PAI directory (expanded)
- * Priority: PAI_DIR env var (expanded) → ~/.claude
+ * Priority: PAI_CONFIG_DIR env var (expanded) → ~/.config/assistant
  */
 export function getPaiDir(): string {
   const envPaiDir = process.env.PAI_CONFIG_DIR;
@@ -47,7 +47,7 @@ export function getSettingsPath(): string {
 }
 
 /**
- * Get a path relative to PAI_DIR
+ * Get a path relative to PAI_CONFIG_DIR
  */
 export function paiPath(...segments: string[]): string {
   return join(getPaiDir(), ...segments);

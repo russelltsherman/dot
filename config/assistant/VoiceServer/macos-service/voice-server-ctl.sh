@@ -3,11 +3,11 @@
 # PAIVoice Server Service Control Script
 # Manage the voice server macOS service
 
-PAI_DIR="${PAI_DIR:-$HOME/.claude}"
+PAI_CONFIG_DIR="${PAI_CONFIG_DIR:-$HOME/.config/assistant}"
 SERVICE_NAME="com.paivoice.server"
 PLIST_FILE="com.paivoice.server.plist"
 LAUNCH_AGENTS_DIR="$HOME/Library/LaunchAgents"
-VOICE_SERVER_DIR="$PAI_DIR/VoiceServer"
+VOICE_SERVER_DIR="$PAI_CONFIG_DIR/VoiceServer"
 SERVER_URL="http://localhost:8888"
 
 # Colors for output

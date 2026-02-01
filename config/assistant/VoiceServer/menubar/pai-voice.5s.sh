@@ -3,8 +3,8 @@
 # Voice Server Menu Bar Indicator
 # For BitBar/SwiftBar - updates every 5 seconds
 
-PAI_DIR="${PAI_DIR:-$HOME/.claude}"
-VOICE_DIR="$PAI_DIR/VoiceServer"
+PAI_CONFIG_DIR="${PAI_CONFIG_DIR:-$HOME/.config/assistant}"
+VOICE_DIR="$PAI_CONFIG_DIR/VoiceServer"
 
 # Check if server is running
 if curl -s -f http://localhost:8888/health > /dev/null 2>&1; then

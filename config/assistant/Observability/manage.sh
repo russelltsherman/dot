@@ -1,6 +1,6 @@
 #!/bin/bash
 # Observability Dashboard Manager - Part of PAI infrastructure
-# Location: $PAI_DIR/Observability/ (defaults to ~/.config/assistant/Observability/)
+# Location: $PAI_CONFIG_DIR/Observability/ (defaults to ~/.config/assistant/Observability/)
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 

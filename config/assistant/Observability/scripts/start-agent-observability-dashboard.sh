@@ -3,16 +3,16 @@
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 PROJECT_ROOT="$( cd "$SCRIPT_DIR/.." && pwd )"
-PAI_DIR="${PAI_DIR:-$HOME/.claude}"
+PAI_CONFIG_DIR="${PAI_CONFIG_DIR:-$HOME/.config/assistant}"
 
 # Check if ports are in use
 if lsof -Pi :4000 -sTCP:LISTEN -t >/dev/null 2>&1; then
-    echo "❌ Port 4000 in use. Run: $PAI_DIR/Observability/manage.sh stop"
+    echo "❌ Port 4000 in use. Run: $PAI_CONFIG_DIR/Observability/manage.sh stop"
     exit 1
 fi
 
 if lsof -Pi :5172 -sTCP:LISTEN -t >/dev/null 2>&1; then
-    echo "❌ Port 5172 in use. Run: $PAI_DIR/Observability/manage.sh stop"
+    echo "❌ Port 5172 in use. Run: $PAI_CONFIG_DIR/Observability/manage.sh stop"
     exit 1
 fi
 

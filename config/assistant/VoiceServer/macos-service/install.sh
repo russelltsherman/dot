@@ -6,11 +6,11 @@
 set -e
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-PAI_DIR="${PAI_DIR:-$HOME/.claude}"
+PAI_CONFIG_DIR="${PAI_CONFIG_DIR:-$HOME/.config/assistant}"
 SERVICE_NAME="com.paivoice.server"
 PLIST_FILE="com.paivoice.server.plist"
 LAUNCH_AGENTS_DIR="$HOME/Library/LaunchAgents"
-VOICE_SERVER_DIR="$PAI_DIR/VoiceServer"
+VOICE_SERVER_DIR="$PAI_CONFIG_DIR/VoiceServer"
 
 echo "🚀 PAIVoice Server Service Installer"
 echo "==========================================="

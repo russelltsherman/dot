@@ -108,7 +108,7 @@ function expandEnvVars(content: string): string {
  */
 export function getNotificationConfig(): NotificationConfig {
   try {
-    const paiDir = process.env.PAI_DIR || join(homedir(), '.claude');
+    const paiDir = process.env.PAI_CONFIG_DIR || join(homedir(), '.config/assistant');
     const settingsPath = join(paiDir, 'settings.json');
 
     if (existsSync(settingsPath)) {

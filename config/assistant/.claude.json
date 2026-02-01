@@ -1,5 +1,5 @@
 {
-  "numStartups": 5,
+  "numStartups": 6,
   "installMethod": "native",
   "autoUpdates": false,
   "tipsHistory": {
@@ -22,7 +22,9 @@
     "image-paste": 3,
     "desktop-app": 3,
     "web-app": 3,
-    "mobile-app": 3
+    "mobile-app": 3,
+    "custom-agents": 6,
+    "agent-flag": 6
   },
   "cachedGrowthBookFeatures": {
     "tengu_1p_event_batch_config": {
@@ -77,7 +79,7 @@
   "opusProMigrationTimestamp": 1769878850828,
   "thinkingMigrationComplete": true,
   "cachedChromeExtensionInstalled": false,
-  "changelogLastFetched": 1769878865599,
+  "changelogLastFetched": 1769906135792,
   "oauthAccount": {
     "accountUuid": "6b9e23fa-edce-4483-87ea-353b9e0fc23d",
     "emailAddress": "russell.t.sherman@gmail.com",
@@ -154,7 +156,7 @@
     "a8f05422-69fc-4201-8b59-a87954e0b46a": {
       "hasAccess": false,
       "hasAccessNotAsDefault": false,
-      "timestamp": 1769888857933
+      "timestamp": 1769906134744
     }
   },
   "groveConfigCache": {
@@ -163,7 +165,7 @@
       "timestamp": 1769878864931
     }
   },
-  "lastReleaseNotesSeen": "2.1.27",
+  "lastReleaseNotesSeen": "2.1.29",
   "hasShownOpus45Notice": {
     "a8f05422-69fc-4201-8b59-a87954e0b46a": true
   },

@@ -6,8 +6,8 @@ export HOME="${HOME:-$(eval echo ~$USER)}"
 export PATH="$HOME/.bun/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export PORT=8888
 
-# Use PAI_DIR for the PAI configuration directory
-PAI_DIR="${PAI_DIR:-$HOME/.claude}"
+# Use PAI_CONFIG_DIR for the PAI configuration directory
+PAI_CONFIG_DIR="${PAI_CONFIG_DIR:-$HOME/.config/assistant}"
 
-cd "${PAI_DIR}/Voice-In-The-Cloud"
+cd "${PAI_CONFIG_DIR}/Voice-In-The-Cloud"
 exec "$HOME/.bun/bin/bun" run server.ts

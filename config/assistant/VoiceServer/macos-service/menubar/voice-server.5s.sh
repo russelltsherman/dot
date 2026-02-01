@@ -11,10 +11,10 @@
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
 # Configuration
-PAI_DIR="${PAI_DIR:-$HOME/.claude}"
+PAI_CONFIG_DIR="${PAI_CONFIG_DIR:-$HOME/.config/assistant}"
 SERVICE_NAME="com.paivoice.server"
 SERVER_URL="http://localhost:8888"
-VOICE_SERVER_DIR="$PAI_DIR/VoiceServer"
+VOICE_SERVER_DIR="$PAI_CONFIG_DIR/VoiceServer"
 
 # Check if server is running
 if curl -s "${SERVER_URL}/health" > /dev/null 2>&1; then

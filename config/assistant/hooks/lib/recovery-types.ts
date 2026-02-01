@@ -48,14 +48,14 @@ export interface RecoveryPointSummary {
 }
 
 // Safe paths that don't need journaling (within .claude ecosystem)
-const PAI_DIR = process.env.PAI_DIR || `${process.env.HOME}/.claude`;
+const PAI_CONFIG_DIR = process.env.PAI_CONFIG_DIR || `${process.env.HOME}/.config/assistant`;
 export const SAFE_PATH_PREFIXES = [
-  `${PAI_DIR}/MEMORY/`,  // All MEMORY output is safe (sessions, learnings, raw-outputs, etc.)
-  `${PAI_DIR}/Scratchpad/`,
-  `${PAI_DIR}/Tmp/`,
-  `${PAI_DIR}/Debug/`,
-  `${PAI_DIR}/SessionEnv/`,
-  `${PAI_DIR}/Todos/`,
+  `${PAI_CONFIG_DIR}/MEMORY/`,  // All MEMORY output is safe (sessions, learnings, raw-outputs, etc.)
+  `${PAI_CONFIG_DIR}/Scratchpad/`,
+  `${PAI_CONFIG_DIR}/Tmp/`,
+  `${PAI_CONFIG_DIR}/Debug/`,
+  `${PAI_CONFIG_DIR}/SessionEnv/`,
+  `${PAI_CONFIG_DIR}/Todos/`,
   '/tmp/',
   '/var/tmp/',
 ];

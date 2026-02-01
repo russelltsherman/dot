@@ -5,7 +5,7 @@
 
 set -e
 
-PAI_DIR="${PAI_DIR:-$HOME/.claude}"
+PAI_CONFIG_DIR="${PAI_CONFIG_DIR:-$HOME/.config/assistant}"
 
 # Colors for output
 RED='\033[0;31m'
@@ -65,8 +65,8 @@ check_requirement "Bun installed" \
 
 # Check server.ts exists
 check_requirement "Server file exists" \
-    "[ -f $PAI_DIR/VoiceServer/server.ts ]" \
-    "Server file missing at \$PAI_DIR/VoiceServer/server.ts"
+    "[ -f $PAI_CONFIG_DIR/VoiceServer/server.ts ]" \
+    "Server file missing at \$PAI_CONFIG_DIR/VoiceServer/server.ts"
 
 # Check if port 8888 is available or used by our service
 PORT_CHECK=$(lsof -i :8888 2>/dev/null | grep -v COMMAND | head -1)
@@ -138,7 +138,7 @@ if [ -f ~/Library/LaunchAgents/com.paivoice.server.plist ]; then
                 echo -e "${GREEN}✅ Server is responding${NC}"
             else
                 echo -e "${RED}❌ Server not responding${NC}"
-                echo "   Check logs: tail -f \$PAI_DIR/VoiceServer/logs/voice-server-error.log"
+                echo "   Check logs: tail -f \$PAI_CONFIG_DIR/VoiceServer/logs/voice-server-error.log"
                 ISSUES_FOUND=$((ISSUES_FOUND + 1))
             fi
         else

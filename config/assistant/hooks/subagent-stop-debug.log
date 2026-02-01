@@ -975,3 +975,309 @@ Sources:
 - [Plugins Reference](https://code.claude.com/docs/en/plugins-reference.md)
 - [Claude Code Documentation Map](https://code.claude.com/docs/en/claude_code_docs_map.md)
 agentId: a24541f (for resuming to continue this agent's work if needed)
+[2026-02-01T00:37:41.572Z] 🔍 SubagentStop hook started
+[2026-02-01T00:37:41.573Z] Input received: {"session_id":"58bf5471-a215-4f3a-8ece-f38604dccc65","transcript_path":"/Users/russelltsherman/.conf...
+[2026-02-01T00:37:41.574Z] Transcript path: /Users/russelltsherman/.config/assistant/projects/-Users-russelltsherman-src-github-com-russelltsherman-dot-config-assistant/58bf5471-a215-4f3a-8ece-f38604dccc65.jsonl
+[2026-02-01T00:37:41.574Z] Starting findTaskResult...
+[2026-02-01T00:37:41.779Z] No Task result found in transcript after waiting
+[2026-02-01T00:38:22.550Z] 🔍 SubagentStop hook started
+[2026-02-01T00:38:22.552Z] Input received: {"session_id":"58bf5471-a215-4f3a-8ece-f38604dccc65","transcript_path":"/Users/russelltsherman/.conf...
+[2026-02-01T00:38:22.552Z] Transcript path: /Users/russelltsherman/.config/assistant/projects/-Users-russelltsherman-src-github-com-russelltsherman-dot-config-assistant/58bf5471-a215-4f3a-8ece-f38604dccc65.jsonl
+[2026-02-01T00:38:22.552Z] Starting findTaskResult...
+[2026-02-01T00:38:22.554Z] Task output found, length: 9256
+[2026-02-01T00:38:22.554Z] Task output preview: 
+
+The PAI workflow system is a **sophisticated orchestration framework** that transforms abstract skills into concrete, repeatable, multi-step procedures with state management, parallel execution, and intelligent error handling.
+agentId: a92136e (for resuming to continue this agent's work if needed)
+[2026-02-01T00:38:22.554Z] Instance metadata: {"agent_type":"Explore"}
+[2026-02-01T00:38:22.554Z] No specific completion message found in Task output
+[2026-02-01T00:38:22.554Z] Full task output for debugging: Perfect! Now I have a comprehensive understanding. Let me compile the final report.
+
+## PAI Workflow System - Comprehensive Analysis
+
+Based on my thorough examination of the PAI system, here's everything you need to know about workflows:
+
+### What Workflows Are
+
+Workflows are **operational procedure files** that define step-by-step instructions for executing specific tasks within skills. They are the **execution layer** of the PAI system—where abstract skill capabilities become concrete, actionable steps.
+
+**Key Characteristics:**
+- Located in `Workflows/` subdirectory within each skill
+- Named using **TitleCase** (e.g., `CreateSkill.md`, `QuickResearch.md`)
+- Markdown-based procedural documents with executable instructions
+- Self-contained instructions that guide Claude through task execution
+- Support multi-step processes, parallel execution, conditional branching, and state management
+
+### Directory Structure
+
+Workflows live in a **flat structure** under each skill:
+
+```
+~/.config/assistant/skills/SkillName/
+├── SKILL.md                    # Main skill file (required)
+├── ToolName.md                 # Context/documentation files (optional)
+├── Workflows/                  # Operational procedures
+│   ├── WorkflowOne.md         # TitleCase naming
+│   ├── WorkflowTwo.md
+│   └── WorkflowThree.md
+└── Tools/                      # Executable CLI tools
+    └── ToolName.ts
+```
+
+**Critical constraint:** No nested subdirectories under `Workflows/` - keep flat structure.
+
+### How Workflows Relate to Skills
+
+The relationship is **routing-based**:
+
+1. **SKILL.md** contains a **Workflow Routing Table** that maps triggers to workflow files:
+
+```markdown
+## Workflow Routing
+
+| Workflow | Trigger | File |
+|----------|---------|------|
+| **CreateSkill** | "create a new skill" | `Workflows/CreateSkill.md` |
+| **ValidateSkill** | "validate skill" | `Workflows/ValidateSkill.md` |
+| **UpdateSkill** | "update skill" | `Workflows/UpdateSkill.md` |
+```
+
+2. When a user request **matches a trigger**, Claude loads and executes the corresponding workflow file
+3. The **USE WHEN** field in SKILL.md frontmatter determines when the entire skill activates
+4. Each workflow becomes the **tactical execution plan** for that specific use case
+
+### Workflow Structure & Format
+
+Every workflow follows this pattern (from `advanced-workflows.md`):
+
+**Basic Structure:**
+
+```markdown
+# WorkflowName
+
+Description of what this workflow does.
+
+## Voice Notification
+
+```bash
+curl -s -X POST http://localhost:8888/notify \
+  -H "Content-Type: application/json" \
+  -d '{"message": "Running WorkflowName in SkillName to ACTION"}' \
+  > /dev/null 2>&1 &
+```
+
+Running the **WorkflowName** workflow in the **SkillName** skill to ACTION...
+
+## Step 1: [Description]
+
+[Instructions and tool calls]
+
+## Step 2: [Description]
+
+[More instructions]
+```
+
+**Key Sections:**
+1. **Title** - Workflow name matching file name
+2. **Voice Notification** - Always announce workflow execution
+3. **Step-by-step procedures** - Numbered or named steps
+4. **Tool calls** - Bash, Task, Read, etc. embedded in steps
+5. **Conditional logic** - Branch based on conditions
+6. **Results/Output** - Expected output format
+
+### Workflow Capabilities (From Advanced Patterns)
+
+Workflows support sophisticated patterns:
+
+**1. Sequential Workflows**
+- Multi-step processes with clear progression
+- numbered steps showing current position
+- Decision points for user input
+- Next action suggestions
+
+**2. State-Carrying Workflows**
+- Maintain state between invocations using `.local.md` files
+- Store YAML frontmatter with workflow metadata
+- Read/update state in subsequent workflow calls
+- Example: `/deploy-initialize` → `/deploy-test` → `/deploy-build` → `/deploy-execute`
+
+**3. Conditional Branching**
+- Adapt based on runtime conditions
+- Different paths based on environment, status, or user input
+- Example: Different process for dev vs. production deployment
+
+**4. Command Composition**
+- Orchestrate multiple sub-commands
+- Chain simple commands into complex workflows
+- Meta-commands that coordinate other workflows
+
+**5. Parallel Execution**
+- Coordinate multiple simultaneous operations
+- Monitor all processes and report progress
+- Combine results from parallel branches
+
+**6. Pipeline Patterns**
+- Process output from previous steps
+- Multi-stage analysis and transformation
+- Aggregate results from multiple sources
+
+### Workflow State Management
+
+**Using .local.md Files (Best Practice):**
+
+Workflows store state in `~/.claude/plugin-name-workflow.local.md` or similar:
+
+```markdown
+---
+workflow: deployment
+stage: testing
+started: 2025-01-15T10:30:00Z
+environment: staging
+branch: feature/new-api
+tests_passed: false
+---
+
+# Deployment Workflow State
+
+Current stage: Testing
+Completed steps:
+- ✅ Validation
+- ✅ Branch check
+- ⏳ Testing (in progress)
+
+Pending steps:
+- Build
+- Deploy
+- Smoke tests
+```
+
+**State Patterns:**
+- **Atomic writes** - Complete state files always
+- **State validation** - Check format/completeness on read
+- **Cleanup** - Remove stale state files after completion
+- **Recovery** - Support resuming interrupted workflows
+
+### Workflow Locking & Coordination
+
+**Prevent concurrent execution:**
+
+```bash
+if [ -f .claude/deployment.lock ]; then
+  ERROR: Deployment already in progress
+  Cannot start concurrent deployment
+  Exit.
+fi
+
+Creating deployment lock...
+[Proceed with deployment]
+```
+
+**Cross-command signaling:**
+
+```bash
+# One workflow creates a flag
+Creating: .claude/feature-complete.flag
+
+# Other workflows check for it
+if [ -f .claude/feature-complete.flag ]; then
+  Feature ready for release notes
+fi
+```
+
+### Real-World Examples
+
+**From the actual codebase:**
+
+1. **Research Skill** - Multiple workflow types:
+   - `QuickResearch.md` - Single agent, fast queries
+   - `StandardResearch.md` - 2 agents in parallel, URL verification
+   - `ExtensiveResearch.md` - 12 agents, comprehensive analysis
+   - `WebScraping.md`, `YoutubeExtraction.md`, etc.
+
+2. **CreateSkill Skill** - Workflow sequence:
+   - `CreateSkill.md` - Initial skill creation
+   - `ValidateSkill.md` - Structure validation
+   - `UpdateSkill.md` - Add new workflows
+   - `CanonicalizeSkill.md` - Fix naming/structure
+
+3. **Telos Skill** - Domain-specific workflows:
+   - `CreateNarrativePoints.md`
+   - `InterviewExtraction.md`
+   - `WriteReport.md`
+
+### Integration with Hooks & Agents
+
+**Hooks provide workflow context:**
+- `SessionStart` hook loads CORE context before workflow execution
+- `Stop` hook captures workflow completion for learning
+- `SubagentStop` hook tracks multi-agent workflow results
+- Voice notification hooks announce workflow execution
+
+**Agents (Tasks) within workflows:**
+
+```typescript
+// Parallel agent execution within a workflow
+Task({
+  subagent_type: "ClaudeResearcher",
+  description: "[topic] analysis",
+  prompt: "Do ONE search for: [query]. Return findings immediately."
+})
+
+Task({
+  subagent_type: "GeminiResearcher",
+  description: "[topic] perspectives",
+  prompt: "Do ONE search for: [query]. Return findings immediately."
+})
+```
+
+### Workflow Best Practices
+
+From `advanced-workflows.md`:
+
+**1. Design Principles**
+- Clear progression with numbered steps
+- Explicit state documentation
+- User control through decision points
+- Error recovery strategies
+- Progress indication
+
+**2. State Management**
+- Use persistent `.local.md` files
+- Atomic, complete state writes
+- State validation on read
+- Cleanup stale files
+- Document state file formats
+
+**3. Error Handling**
+- Fail fast and detect errors early
+- Provide clear error messages
+- Offer recovery options
+- Preserve state for recovery
+- Support rollback capabilities
+
+**4. Single Responsibility**
+- Each command/workflow does one thing well
+- Design for composability
+- Standard interfaces
+- Loose coupling
+
+### Key Insights
+
+1. **Workflows ≠ Skills** - Skills are containers; workflows are execution plans
+2. **Workflows enable scaling** - Each new task type gets its own workflow file
+3. **State is critical** - Multi-step workflows must maintain state between invocations
+4. **Parallel execution** - Workflows can orchestrate multiple agents simultaneously
+5. **Composability** - Simple workflows combine into complex ones
+6. **Voice notifications** - Every workflow announces its execution to the user
+7. **Flat structure** - No nested folders, TitleCase naming keeps things discoverable
+
+### Location Summary
+
+**Workflow Files:**
+- `/Users/russelltsherman/.config/assistant/skills/*/Workflows/*.md` - Actual workflow implementations
+- `/Users/russelltsherman/.config/assistant/plugins/marketplaces/claude-plugins-official/plugins/plugin-dev/skills/command-development/references/advanced-workflows.md` - Comprehensive pattern documentation
+- `/Users/russelltsherman/.config/assistant/skills/CORE/SYSTEM/PAISYSTEMARCHITECTURE.md` - System-level documentation
+- `/Users/russelltsherman/.config/assistant/skills/CORE/SYSTEM/SKILLSYSTEM.md` - Skill/workflow structure requirements
+
+The PAI workflow system is a **sophisticated orchestration framework** that transforms abstract skills into concrete, repeatable, multi-step procedures with state management, parallel execution, and intelligent error handling.
+agentId: a92136e (for resuming to continue this agent's work if needed)

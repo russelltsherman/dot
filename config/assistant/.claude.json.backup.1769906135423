@@ -1,9 +1,9 @@
 {
-  "numStartups": 5,
+  "numStartups": 6,
   "installMethod": "native",
   "autoUpdates": false,
   "tipsHistory": {
-    "new-user-warmup": 2,
+    "new-user-warmup": 5,
     "plan-mode-for-complex-tasks": 2,
     "terminal-setup": 3,
     "memory-command": 3,
@@ -66,7 +66,8 @@
     "tengu_streaming_tool_execution2": true,
     "tengu_session_memory": false,
     "tengu_plank_river_frost": "user_intent",
-    "tengu_tst_kx7": false
+    "tengu_tst_kx7": false,
+    "tengu_plum_vx3": false
   },
   "userID": "2f950b587828c41f5791d65d859f1043a1885a7de94a47c465365c90f46a0374",
   "firstStartTime": "2026-01-31T17:00:50.826Z",
@@ -76,7 +77,7 @@
   "opusProMigrationTimestamp": 1769878850828,
   "thinkingMigrationComplete": true,
   "cachedChromeExtensionInstalled": false,
-  "changelogLastFetched": 1769878865599,
+  "changelogLastFetched": 1769906131689,
   "oauthAccount": {
     "accountUuid": "6b9e23fa-edce-4483-87ea-353b9e0fc23d",
     "emailAddress": "russell.t.sherman@gmail.com",
@@ -108,39 +109,39 @@
         "version": null,
         "packageManager": null
       },
-      "lastCost": 0.38769865,
-      "lastAPIDuration": 72102,
-      "lastAPIDurationWithoutRetries": 72099,
-      "lastToolDuration": 35489,
-      "lastDuration": 338866,
+      "lastCost": 0.3682934,
+      "lastAPIDuration": 82907,
+      "lastAPIDurationWithoutRetries": 82901,
+      "lastToolDuration": 43350,
+      "lastDuration": 15782465,
       "lastLinesAdded": 0,
       "lastLinesRemoved": 0,
-      "lastTotalInputTokens": 4409,
-      "lastTotalOutputTokens": 5245,
-      "lastTotalCacheCreationInputTokens": 77511,
-      "lastTotalCacheReadInputTokens": 71489,
-      "lastTotalWebSearchRequests": 0,
-      "lastFpsAverage": 9.1,
-      "lastFpsLow1Pct": 122.92,
+      "lastTotalInputTokens": 4244,
+      "lastTotalOutputTokens": 5885,
+      "lastTotalCacheCreationInputTokens": 79642,
+      "lastTotalCacheReadInputTokens": 85635,
+      "lastTotalWebSearchRequests": 1,
+      "lastFpsAverage": 0.95,
+      "lastFpsLow1Pct": 97.38,
       "lastModelUsage": {
         "claude-haiku-4-5-20251001": {
-          "inputTokens": 4391,
-          "outputTokens": 3433,
-          "cacheReadInputTokens": 34364,
-          "cacheCreationInputTokens": 37138,
-          "webSearchRequests": 0,
-          "costUSD": 0.0714149
+          "inputTokens": 4226,
+          "outputTokens": 3517,
+          "cacheReadInputTokens": 35694,
+          "cacheCreationInputTokens": 49822,
+          "webSearchRequests": 1,
+          "costUSD": 0.09765790000000002
         },
         "claude-opus-4-5-20251101": {
           "inputTokens": 18,
-          "outputTokens": 1812,
-          "cacheReadInputTokens": 37125,
-          "cacheCreationInputTokens": 40373,
+          "outputTokens": 2368,
+          "cacheReadInputTokens": 49941,
+          "cacheCreationInputTokens": 29820,
           "webSearchRequests": 0,
-          "costUSD": 0.31628375
+          "costUSD": 0.27063550000000003
         }
       },
-      "lastSessionId": "ef2b8855-02d2-441f-a507-f783428ba4f9",
+      "lastSessionId": "15f0c8a8-9cdc-4227-8e69-d93b42bde30e",
       "hasCompletedProjectOnboarding": true
     }
   },
@@ -153,7 +154,7 @@
     "a8f05422-69fc-4201-8b59-a87954e0b46a": {
       "hasAccess": false,
       "hasAccessNotAsDefault": false,
-      "timestamp": 1769888857933
+      "timestamp": 1769906134744
     }
   },
   "groveConfigCache": {
