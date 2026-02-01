@@ -22,7 +22,7 @@ set -o pipefail
 # CONFIGURATION
 # ─────────────────────────────────────────────────────────────────────────────
 
-PAI_DIR="${PAI_DIR:-$HOME/.claude}"
+PAI_DIR="${PAI_DIR:-$HOME/.config/assistant}"
 SETTINGS_FILE="$PAI_DIR/settings.json"
 RATINGS_FILE="$PAI_DIR/MEMORY/LEARNING/SIGNALS/ratings.jsonl"
 TREND_CACHE="$PAI_DIR/MEMORY/STATE/trending-cache.json"

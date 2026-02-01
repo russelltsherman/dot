@@ -1,7 +1,29 @@
 {
-  "numStartups": 1,
+  "numStartups": 5,
   "installMethod": "native",
   "autoUpdates": false,
+  "tipsHistory": {
+    "new-user-warmup": 5,
+    "plan-mode-for-complex-tasks": 2,
+    "terminal-setup": 3,
+    "memory-command": 3,
+    "theme-command": 3,
+    "prompt-queue": 3,
+    "enter-to-steer-in-relatime": 3,
+    "todo-list": 3,
+    "ide-upsell-external-terminal": 3,
+    "install-github-app": 3,
+    "install-slack-app": 3,
+    "drag-and-drop-images": 3,
+    "paste-images-mac": 3,
+    "double-esc-code-restore": 3,
+    "continue": 3,
+    "shift-tab": 3,
+    "image-paste": 3,
+    "desktop-app": 3,
+    "web-app": 3,
+    "mobile-app": 3
+  },
   "cachedGrowthBookFeatures": {
     "tengu_1p_event_batch_config": {
       "scheduledDelayMillis": 5000,
@@ -9,7 +31,7 @@
       "maxQueueSize": 8192
     },
     "tengu_mcp_tool_search": true,
-    "tengu_scratch": false,
+    "tengu_scratch": true,
     "tengu_brass_pebble": false,
     "tengu_disable_bypass_permissions_mode": false,
     "tengu_event_sampling_config": {},
@@ -38,7 +60,14 @@
     "tengu_code_diff_cli": true,
     "tengu_pr_status_cli": true,
     "tengu_post_compact_survey": false,
-    "tengu_claudeai_mcp_connectors": false
+    "tengu_claudeai_mcp_connectors": true,
+    "tengu_coral_fern": false,
+    "tengu_cache_plum_violet": true,
+    "tengu_streaming_tool_execution2": true,
+    "tengu_session_memory": false,
+    "tengu_plank_river_frost": "user_intent",
+    "tengu_tst_kx7": false,
+    "tengu_plum_vx3": false
   },
   "userID": "2f950b587828c41f5791d65d859f1043a1885a7de94a47c465365c90f46a0374",
   "firstStartTime": "2026-01-31T17:00:50.826Z",
@@ -80,31 +109,40 @@
         "version": null,
         "packageManager": null
       },
-      "lastCost": 0.000588,
-      "lastAPIDuration": 820,
-      "lastAPIDurationWithoutRetries": 815,
-      "lastToolDuration": 0,
-      "lastDuration": 48975,
+      "lastCost": 0.3682934,
+      "lastAPIDuration": 82907,
+      "lastAPIDurationWithoutRetries": 82901,
+      "lastToolDuration": 43350,
+      "lastDuration": 15782465,
       "lastLinesAdded": 0,
       "lastLinesRemoved": 0,
-      "lastTotalInputTokens": 448,
-      "lastTotalOutputTokens": 28,
-      "lastTotalCacheCreationInputTokens": 0,
-      "lastTotalCacheReadInputTokens": 0,
-      "lastTotalWebSearchRequests": 0,
-      "lastFpsAverage": 0.5,
-      "lastFpsLow1Pct": 100.94,
+      "lastTotalInputTokens": 4244,
+      "lastTotalOutputTokens": 5885,
+      "lastTotalCacheCreationInputTokens": 79642,
+      "lastTotalCacheReadInputTokens": 85635,
+      "lastTotalWebSearchRequests": 1,
+      "lastFpsAverage": 0.95,
+      "lastFpsLow1Pct": 97.38,
       "lastModelUsage": {
         "claude-haiku-4-5-20251001": {
-          "inputTokens": 448,
-          "outputTokens": 28,
-          "cacheReadInputTokens": 0,
-          "cacheCreationInputTokens": 0,
+          "inputTokens": 4226,
+          "outputTokens": 3517,
+          "cacheReadInputTokens": 35694,
+          "cacheCreationInputTokens": 49822,
+          "webSearchRequests": 1,
+          "costUSD": 0.09765790000000002
+        },
+        "claude-opus-4-5-20251101": {
+          "inputTokens": 18,
+          "outputTokens": 2368,
+          "cacheReadInputTokens": 49941,
+          "cacheCreationInputTokens": 29820,
           "webSearchRequests": 0,
-          "costUSD": 0.000588
+          "costUSD": 0.27063550000000003
         }
       },
-      "lastSessionId": "b8d91527-5b8a-456c-aeff-ba803f21b1f6"
+      "lastSessionId": "15f0c8a8-9cdc-4227-8e69-d93b42bde30e",
+      "hasCompletedProjectOnboarding": true
     }
   },
   "githubRepoPaths": {
@@ -116,7 +154,7 @@
     "a8f05422-69fc-4201-8b59-a87954e0b46a": {
       "hasAccess": false,
       "hasAccessNotAsDefault": false,
-      "timestamp": 1769878864857
+      "timestamp": 1769888857933
     }
   },
   "groveConfigCache": {
