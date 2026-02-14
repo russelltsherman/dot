@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 archiveresale () {
-  cd ~/src/github.com/archiveresale && code archiveresale.code-workspace
+  cd ~/src/github.com/archiveresale && open archiveresale.code-workspace
 }
 
 # Archive - Push to CANARY

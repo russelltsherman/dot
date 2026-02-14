@@ -44,6 +44,8 @@ brew "tree"
 # https://www.gnu.org/software/wget/
 brew "wget"
 
+# https://antigravity.google/
+cask "antigravity"
 # https://www.sourcegear.com/diffmerge/ -- deprecated
 cask "diffmerge"
 # https://www.docker.com/
