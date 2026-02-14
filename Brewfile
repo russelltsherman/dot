@@ -13,6 +13,10 @@ brew "coreutils"
 # Collection of GNU find, xargs, and locate
 # https://www.gnu.org/software/findutils/
 brew "findutils"
+# Allows you to manage your stacked changes and submit them for review on GitHub
+# https://graphite.dev/
+brew "withgraphite/tap/graphite"
+
 # GNU grep, egrep and fgrep
 # https://www.gnu.org/software/grep/
 brew "grep"

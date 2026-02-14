@@ -62,30 +62,37 @@ be(){
   fi
 
   # refresh aws configuration
+  find ~/.aws -maxdepth 1 -type f -exec rm -rf {} \;
   if [[ -d ${HOME}/.config/profiles/${profile}/aws ]]
   then
-    find ~/.aws -maxdepth 1 -type f -exec rm -rf {} \;
     cp -r ${HOME}/.config/profiles/${profile}/aws/*  ${HOME}/.aws
   fi
 
   # refresh github configuration
+  find ~/.config/github -maxdepth 1 -type f -exec rm -rf {} \;
   if [[ -d ${HOME}/.config/profiles/${profile}/github ]]
   then
-    find ~/.config/github -maxdepth 1 -type f -exec rm -rf {} \;
     cp -r ${HOME}/.config/profiles/${profile}/github/*  ${HOME}/.config/github
   fi
 
   # refresh gitlab configuration
+  find ~/.config/gitlab -maxdepth 1 -type f -exec rm -rf {} \;
   if [[ -d ${HOME}/.config/profiles/${profile}/gitlab ]]
   then
-    find ~/.config/gitlab -maxdepth 1 -type f -exec rm -rf {} \;
     cp -r ${HOME}/.config/profiles/${profile}/gitlab/*  ${HOME}/.config/gitlab
   fi
 
+  # refresh graphite configuration
+  find ~/.config/graphite/user_config -maxdepth 1 -type f -exec rm -rf {} \;
+  if [[ -d ${HOME}/.config/profiles/${profile}/graphite ]]
+  then
+    cp -r ${HOME}/.config/profiles/${profile}/graphite/*  ${HOME}/.config/graphite
+  fi
+
   # refresh ssh configuration
+  find ~/.ssh -maxdepth 1 -type f -exec rm -rf {} \;
   if [[ -d ${HOME}/.config/profiles/${profile}/ssh ]] 
   then
-    find ~/.ssh -maxdepth 1 -type f -exec rm -rf {} \;
     cp -r ${HOME}/.config/profiles/${profile}/ssh/*  ${HOME}/.ssh
     # refresh ssh-agent keys
     ssh-add -D &> /dev/null
@@ -101,9 +108,9 @@ be(){
   rm -rf ${HOME}/.kube
 
   # refresh mfa configuration
+  find ${HOME}/.config/mfa -maxdepth 1 -type f -exec rm -rf {} \;
   if [[ -d ${HOME}/.config/profiles/${profile}/mfa ]] 
   then
-    find ${HOME}/.config/mfa -maxdepth 1 -type f -exec rm -rf {} \;
     key_count=$(ls ${HOME}/.config/profiles/${profile}/mfa | wc -l)
     if [[ ! $key_count -eq 0 ]]
     then
