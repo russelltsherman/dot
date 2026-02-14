@@ -7,6 +7,9 @@ brew "antigen"
 # Clone of cat(1) with syntax highlighting and Git integration
 # https://github.com/sharkdp/bat
 brew "bat"
+# Tool to route Claude Code requests to different models and customize any request
+# https://github.com/musistudio/claude-code-router
+brew "claude-code-router"
 # GNU File, Shell, and Text utilities
 # https://www.gnu.org/software/coreutils/
 brew "coreutils"
