@@ -19,7 +19,9 @@ brew "findutils"
 # Allows you to manage your stacked changes and submit them for review on GitHub
 # https://graphite.dev/
 brew "withgraphite/tap/graphite"
-
+# Interact with Google Gemini AI models from the command-line
+# https://github.com/google-gemini/gemini-cli
+brew "gemini-cli"
 # GNU grep, egrep and fgrep
 # https://www.gnu.org/software/grep/
 brew "grep"
