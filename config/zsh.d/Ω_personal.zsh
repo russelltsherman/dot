@@ -5,5 +5,5 @@ alias::new 'dot' 'code ~/src/github.com/russelltsherman/dot'
 alias::new 'homelab' 'code ~/src/github.com/russelltsherman/homelab'
 
 russelltsherman() {
-  cd ~/src/github.com/russelltsherman && open homelab.code-workspace
+  cd ~/src/github.com/russelltsherman && open russelltsherman.code-workspace
 }
