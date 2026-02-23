@@ -3,5 +3,5 @@
 alias::new 'cdco' 'cd ~/src/gitlab.com/bhco/cryptomnio && code .'
 
 blockhenge() {
-  cd ~/src/gitlab.com/bhco/ && open bhco.code-workspace
+  cd ~/src/gitlab.com/bhco/ && code bhco.code-workspace
 }
