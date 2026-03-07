@@ -1,20 +1,4 @@
 #
-# get called identity from aws
-#
-function aws_whoami() {
-  echo "AWS whoami"
-  aws sts get-caller-identity
-}
-
-#
-# output message and stop script execution
-#
-function die() {
-  echo "$1"
-  exit 1
-}
-
-#
 # get list of eks clusters in current account
 # fzf for selection if more than one active
 #
