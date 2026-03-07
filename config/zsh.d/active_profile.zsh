@@ -7,17 +7,19 @@ if [[ ! -d "${XDG_CONFIG_HOME}/active" ]]
 then
 fi
 
-
 file="${XDG_CONFIG_HOME}/active/profile"
 
-be(){
+function active_profile() {
   if [[ -f "$file" ]]
   then
-    ACTIVE_PROFILE="$(cat "$file")"
+    active="$(cat "$file")"
   fi
+  printf $active
+}
 
-  profile=${1:-$ACTIVE_PROFILE}
-
+function be(){
+  profile=${1:-$(active_profile)}
+  
   case $profile in
     ar|arch|archive|archiveresale)
       profile="archiveresale"
@@ -50,7 +52,6 @@ be(){
     :
   fi
 
-  echo "$profile" > "$file"
   ACTIVE_PROFILE="$profile"
   export ACTIVE_PROFILE
 
