@@ -61,3 +61,7 @@ Temporary Items
 .vscode/*
 
 **/.claude/settings.local.json
+
+# ignore local git worktrees
+
+.worktrees/*
