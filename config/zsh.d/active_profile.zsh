@@ -47,6 +47,7 @@ function be(){
   if [ "$ACTIVE_PROFILE" != "$profile" ]
   then
     echo "changing active profile from $ACTIVE_PROFILE to $profile"
+    echo "$profile" > "$file"
   else
     # echo "$ACTIVE_PROFILE"
     :
