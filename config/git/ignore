@@ -1,4 +1,4 @@
-### https://raw.github.com/github/gitignore/14f8a8b4c51ecc00b18905a95c117954e6c77b9d/Global/macOS.gitignore
+### <https://raw.github.com/github/gitignore/14f8a8b4c51ecc00b18905a95c117954e6c77b9d/Global/macOS.gitignore>
 
 # General
 
@@ -28,11 +28,16 @@ Icon
 
 .EXAMP**
 .TEST**
+RESOURCE**
 
 # ignore TODO files
 
 TODO**
 NOTE**
+
+# ignore .localgitignore
+
+.localgitignore
 
 # ignore direnv
 
@@ -65,3 +70,7 @@ Temporary Items
 # ignore local git worktrees
 
 .worktrees/*
+
+# ignore project level agent memory
+
+.memsearch/**

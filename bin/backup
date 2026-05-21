@@ -1,24 +1,63 @@
 #!/usr/bin/env bash
-# shellcheck disable=SC1091
+set -euo pipefail
 
-if [[ $EUID -ne 0 ]]; then
-  echo "This script must be run with root privileges (use sudo)."
-  exit 1
-fi
+readonly SOURCE="/Users/russelltsherman"
+readonly DESTS=("REDBAR0" "REDBAR1")
+readonly VOLUMES_ROOT="/Volumes"
 
-DEST=${1}
+readonly RSYNC_FLAGS=(-avh)
+readonly RSYNC_FILTERS=(
+  --include='.config'
+  --include='.data'
+  --exclude='.*'
+  --exclude='Applications'
+  --exclude='Library'
+  --exclude='node_modules'
+)
 
-if [[ ! -z "$DEST" ]]; then
+log() { echo "[$(date '+%Y-%m-%d %H:%M:%S')] $*" >&2; }
+die() { log "ERROR: $*"; exit 1; }
 
-  DESTPATH=/Volumes/$DEST
-  if [ -e "$DESTPATH" ]; then
-    rsync -avh \
-      --include '.config' \
-      --exclude '.*' \
-      --exclude 'Applications' \
-      --exclude 'Library' \
-      /Users/russellsherman $DESTPATH
-  else
-      echo "$DESTPATH does not exist."
-  fi
-fi
+check_root() {
+  [[ $EUID -eq 0 ]] || die "This script must be run with root privileges (use sudo)."
+}
+
+check_mount() {
+  local name="$1"
+  local path="${VOLUMES_ROOT}/${name}"
+  [[ -d "$path" ]] || die "Backup volume not mounted: $path"
+  [[ -w "$path" ]] || die "Backup volume not writable: $path"
+}
+
+# rsync exit codes 23/24 = partial transfer / files vanished — treat as warnings.
+backup_to() {
+  local name="$1"
+  local dest="${VOLUMES_ROOT}/${name}"
+  local rc=0
+
+  log "Starting backup to ${dest}"
+  rsync "${RSYNC_FLAGS[@]}" "${RSYNC_FILTERS[@]}" "$SOURCE" "$dest" || rc=$?
+
+  case "$rc" in
+    0)        log "Backup to ${dest} completed cleanly." ;;
+    23 | 24)  log "Backup to ${dest} completed with warnings (rsync exit ${rc}); continuing." ;;
+    *)        die "Backup to ${dest} failed (rsync exit ${rc})." ;;
+  esac
+}
+
+main() {
+  check_root
+
+  local d
+  for d in "${DESTS[@]}"; do
+    check_mount "$d"
+  done
+
+  for d in "${DESTS[@]}"; do
+    backup_to "$d"
+  done
+
+  log "All backups finished."
+}
+
+main "$@"

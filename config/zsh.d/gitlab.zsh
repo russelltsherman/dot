@@ -1,5 +1,5 @@
 
-export GITLAB_PROFILE="${ACTIVE_PROFILE}"
+export GITLAB_PROFILE="$(active_profile)"
 export GITLAB_TOKEN_FILE="$XDG_CONFIG_HOME/gitlab/$GITLAB_PROFILE"
 
 if [[ -f "$GITLAB_TOKEN_FILE" ]]

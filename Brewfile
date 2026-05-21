@@ -16,6 +16,9 @@ brew "coreutils"
 # Collection of GNU find, xargs, and locate
 # https://www.gnu.org/software/findutils/
 brew "findutils"
+# Render markdown on the CLI
+# https://github.com/charmbracelet/glow
+brew "glow"
 # Allows you to manage your stacked changes and submit them for review on GitHub
 # https://graphite.dev/
 brew "withgraphite/tap/graphite"

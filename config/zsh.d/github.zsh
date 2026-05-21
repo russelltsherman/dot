@@ -1,5 +1,5 @@
 
-export GITHUB_PROFILE="${ACTIVE_PROFILE}"
+export GITHUB_PROFILE="$(active_profile)"
 export GITHUB_TOKEN_FILE="$XDG_CONFIG_HOME/github/$GITHUB_PROFILE"
 
 if [[ -f "$GITHUB_TOKEN_FILE" ]]
