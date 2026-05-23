@@ -1,0 +1,110 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+:<<comment
+  src
+
+  Manage source repositories under ~/src/<host>/<owner>/<repo>.
+
+  Subcommands:
+    sync    Clone missing GitHub repos and fast-forward existing ones.
+comment
+
+SRC_ROOT="${SRC_ROOT:-$HOME/src}"
+
+usage() {
+  cat <<EOF 1>&2
+Usage: $(basename "$0") <command> [args...]
+
+Commands:
+  sync    Clone missing GitHub repos and fast-forward existing ones
+  help    Show this help
+
+Environment:
+  SRC_ROOT   Base directory for repos (default: \$HOME/src)
+EOF
+  exit "${1:-1}"
+}
+
+require() {
+  for cmd in "$@"; do
+    command -v "$cmd" >/dev/null || { echo "required command not found: $cmd" 1>&2; exit 1; }
+  done
+}
+
+cmd_sync() {
+  require gh jq git
+  # Use an API call instead of `gh auth status` — the latter exits non-zero
+  # if any *other* configured account has a stale token, even when the active one works.
+  gh api user -q .login >/dev/null 2>&1 || { echo "gh not authenticated; run: gh auth login" 1>&2; exit 1; }
+
+  local host="github.com"
+  local repos_json count errors=0
+
+  echo "syncing GitHub repos into $SRC_ROOT/$host"
+
+  repos_json="$(gh repo list --limit 1000 --json nameWithOwner,sshUrl,defaultBranchRef)"
+  count="$(jq 'length' <<<"$repos_json")"
+  echo "found $count repos"
+
+  while IFS=$'\t' read -r name_with_owner ssh_url default_branch; do
+    [ -z "$name_with_owner" ] && continue
+    local dir="$SRC_ROOT/$host/$name_with_owner"
+
+    if [ ! -d "$dir" ]; then
+      echo "==> cloning $name_with_owner"
+      mkdir -p "$(dirname "$dir")"
+      if ! git clone "$ssh_url" "$dir"; then
+        echo "    clone failed: $name_with_owner" 1>&2
+        errors=$((errors + 1))
+      fi
+      continue
+    fi
+
+    if [ ! -d "$dir/.git" ]; then
+      echo "==> skip $name_with_owner (exists but not a git repo)"
+      errors=$((errors + 1))
+      continue
+    fi
+
+    echo "==> updating $name_with_owner ($default_branch)"
+    (
+      cd "$dir"
+      git fetch --prune origin
+
+      local current
+      current="$(git symbolic-ref --quiet --short HEAD || echo DETACHED)"
+
+      if [ "$current" != "$default_branch" ]; then
+        echo "    on '$current', not '$default_branch' — fetched only"
+        exit 0
+      fi
+
+      if ! git diff --quiet || ! git diff --cached --quiet; then
+        echo "    working tree dirty — fetched only"
+        exit 0
+      fi
+
+      git merge --ff-only "origin/$default_branch"
+    ) || { echo "    update failed: $name_with_owner" 1>&2; errors=$((errors + 1)); }
+  done < <(jq -r '.[] | [.nameWithOwner, .sshUrl, .defaultBranchRef.name] | @tsv' <<<"$repos_json")
+
+  echo
+  if [ "$errors" -gt 0 ]; then
+    echo "done with $errors error(s)" 1>&2
+    exit 1
+  fi
+  echo "done"
+}
+
+main() {
+  [ $# -ge 1 ] || usage
+  local subcmd="$1"; shift
+  case "$subcmd" in
+    sync)        cmd_sync "$@" ;;
+    help|-h|--help) usage 0 ;;
+    *)           echo "unknown command: $subcmd" 1>&2; usage ;;
+  esac
+}
+
+main "$@"
