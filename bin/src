@@ -1,13 +1,15 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-:<<comment
+:<<'comment'
   src
 
   Manage source repositories under ~/src/<host>/<owner>/<repo>.
 
   Subcommands:
-    sync    Clone missing GitHub repos and fast-forward existing ones.
+    sync git              Walk $SRC_ROOT and fast-forward each git repo to its default branch,
+                          stashing/restoring any uncommitted work around the update.
+    sync import <VOLUME>  Rsync source from /Volumes/<VOLUME>/russelltsherman/src into $SRC_ROOT.
 comment
 
 SRC_ROOT="${SRC_ROOT:-$HOME/src}"
@@ -17,11 +19,25 @@ usage() {
 Usage: $(basename "$0") <command> [args...]
 
 Commands:
-  sync    Clone missing GitHub repos and fast-forward existing ones
-  help    Show this help
+  sync git [-j N]                Fast-forward every git repo under \$SRC_ROOT (stashes dirty trees)
+  sync import <VOLUME> [--dry-run]
+                                 Rsync /Volumes/<VOLUME>/russelltsherman/src into \$SRC_ROOT
+  help                           Show this help
 
 Environment:
-  SRC_ROOT   Base directory for repos (default: \$HOME/src)
+  SRC_ROOT         Base directory for repos (default: \$HOME/src)
+  SRC_SYNC_JOBS    Default parallelism for 'sync git' (default: 8)
+EOF
+  exit "${1:-1}"
+}
+
+sync_usage() {
+  cat <<EOF 1>&2
+Usage: $(basename "$0") sync <subcommand> [args...]
+
+Subcommands:
+  git [-j N]                     Fast-forward every git repo under \$SRC_ROOT (stashes dirty trees)
+  import <VOLUME> [--dry-run]    Rsync /Volumes/<VOLUME>/russelltsherman/src into \$SRC_ROOT
 EOF
   exit "${1:-1}"
 }
@@ -32,78 +48,278 @@ require() {
   done
 }
 
-cmd_sync() {
-  require gh jq git
-  # Use an API call instead of `gh auth status` — the latter exits non-zero
-  # if any *other* configured account has a stale token, even when the active one works.
-  gh api user -q .login >/dev/null 2>&1 || { echo "gh not authenticated; run: gh auth login" 1>&2; exit 1; }
+_update_repo() {
+  # Update one git repo: stash dirty work, fast-forward the default branch,
+  # restore the original branch, and reapply the stash.
+  local dir="$1"
+  (
+    cd "$dir"
 
-  local host="github.com"
-  local repos_json count errors=0
+    git remote get-url origin >/dev/null 2>&1 || { echo "    no 'origin' remote — skipping"; exit 0; }
 
-  echo "syncing GitHub repos into $SRC_ROOT/$host"
-
-  repos_json="$(gh repo list --limit 1000 --json nameWithOwner,sshUrl,defaultBranchRef)"
-  count="$(jq 'length' <<<"$repos_json")"
-  echo "found $count repos"
-
-  while IFS=$'\t' read -r name_with_owner ssh_url default_branch; do
-    [ -z "$name_with_owner" ] && continue
-    local dir="$SRC_ROOT/$host/$name_with_owner"
-
-    if [ ! -d "$dir" ]; then
-      echo "==> cloning $name_with_owner"
-      mkdir -p "$(dirname "$dir")"
-      if ! git clone "$ssh_url" "$dir"; then
-        echo "    clone failed: $name_with_owner" 1>&2
-        errors=$((errors + 1))
-      fi
-      continue
+    # Determine the default branch from origin/HEAD; ask the remote if not cached.
+    local default_branch
+    default_branch="$(git symbolic-ref --quiet --short refs/remotes/origin/HEAD 2>/dev/null | sed 's@^origin/@@')" || true
+    if [ -z "$default_branch" ]; then
+      git remote set-head origin --auto >/dev/null 2>&1 || true
+      default_branch="$(git symbolic-ref --quiet --short refs/remotes/origin/HEAD 2>/dev/null | sed 's@^origin/@@')" || true
     fi
+    [ -n "$default_branch" ] || { echo "    could not determine default branch — skipping" 1>&2; exit 1; }
 
-    if [ ! -d "$dir/.git" ]; then
-      echo "==> skip $name_with_owner (exists but not a git repo)"
-      errors=$((errors + 1))
-      continue
-    fi
-
-    echo "==> updating $name_with_owner ($default_branch)"
-    (
-      cd "$dir"
+    local current
+    current="$(git symbolic-ref --quiet --short HEAD || true)"
+    if [ -z "$current" ]; then
+      echo "    detached HEAD — fetching only"
       git fetch --prune origin
+      exit 0
+    fi
 
-      local current
-      current="$(git symbolic-ref --quiet --short HEAD || echo DETACHED)"
+    # Stash anything in the working tree (tracked + untracked).
+    local stashed=0
+    if ! git diff --quiet \
+       || ! git diff --cached --quiet \
+       || [ -n "$(git ls-files --others --exclude-standard)" ]; then
+      echo "    stashing local changes on '$current'"
+      git stash push --include-untracked --message "src-sync $(date -u +%Y%m%dT%H%M%SZ)" >/dev/null
+      stashed=1
+    fi
 
+    # Restore branch + stash; used on both the success and failure paths.
+    restore() {
       if [ "$current" != "$default_branch" ]; then
-        echo "    on '$current', not '$default_branch' — fetched only"
-        exit 0
+        echo "    checkout $default_branch -> $current"
+        git checkout --quiet "$current" 2>/dev/null || { echo "    warning: could not return to '$current'" 1>&2; return 1; }
       fi
-
-      if ! git diff --quiet || ! git diff --cached --quiet; then
-        echo "    working tree dirty — fetched only"
-        exit 0
+      if [ "$stashed" -eq 1 ]; then
+        echo "    reapplying stash"
+        if ! git stash pop --quiet; then
+          echo "    stash pop conflicted — left as stash@{0} for you to resolve" 1>&2
+          return 1
+        fi
       fi
+    }
 
-      git merge --ff-only "origin/$default_branch"
-    ) || { echo "    update failed: $name_with_owner" 1>&2; errors=$((errors + 1)); }
-  done < <(jq -r '.[] | [.nameWithOwner, .sshUrl, .defaultBranchRef.name] | @tsv' <<<"$repos_json")
+    if [ "$current" != "$default_branch" ]; then
+      echo "    checkout $current -> $default_branch"
+      if ! git checkout --quiet "$default_branch"; then
+        echo "    checkout '$default_branch' failed" 1>&2
+        restore || true
+        exit 1
+      fi
+    fi
+
+    git fetch --prune origin
+    if ! git merge --ff-only "origin/$default_branch"; then
+      echo "    '$default_branch' not fast-forwardable — leaving as-is" 1>&2
+      restore || true
+      exit 1
+    fi
+
+    restore
+  )
+}
+
+_sync_git_worker() {
+  # Worker entry point invoked once per repo by xargs -P. Captures all output
+  # from _update_repo so the per-repo block prints as one contiguous chunk,
+  # guarded by a coarse mkdir-based lock since printf to a tty flushes per
+  # newline and would otherwise interleave with other workers.
+  local dir="$1"
+  local rel="${dir#"$SRC_ROOT"/}"
+  local out rc=0
+  out="$(_update_repo "$dir" 2>&1)" || rc=$?
+
+  if [ "$rc" -ne 0 ]; then
+    if [ -n "${SRC_SYNC_FAIL_DIR:-}" ]; then
+      # Record rel<TAB>reason so the parent can surface a summary at the end.
+      # Pull the last indented status line out of the captured output as the reason.
+      local reason
+      reason="$(printf '%s\n' "$out" | grep -E '^    [^ ]' | tail -n 1 | sed 's/^    //')"
+      [ -z "$reason" ] && reason="(see output above)"
+      printf '%s\t%s\n' "$rel" "$reason" > "$(mktemp "$SRC_SYNC_FAIL_DIR/fail.XXXXXX")"
+    fi
+    out="${out}"$'\n'"    update failed: $rel"
+  fi
+
+  if [ -n "${SRC_SYNC_LOCK_DIR:-}" ]; then
+    while ! mkdir "$SRC_SYNC_LOCK_DIR/lock" 2>/dev/null; do :; done
+    printf '==> %s\n%s\n' "$rel" "$out"
+    rmdir "$SRC_SYNC_LOCK_DIR/lock"
+  else
+    printf '==> %s\n%s\n' "$rel" "$out"
+  fi
+  return "$rc"
+}
+
+cmd_sync_git() {
+  require git find xargs
+
+  [ -d "$SRC_ROOT" ] || { echo "no source dir: $SRC_ROOT" 1>&2; exit 1; }
+
+  local jobs="${SRC_SYNC_JOBS:-8}"
+  while [ $# -gt 0 ]; do
+    case "$1" in
+      -j|--jobs) jobs="${2:?-j requires a number}"; shift ;;
+      -h|--help)
+        cat <<EOF
+Usage: $(basename "$0") sync git [-j N]
+
+Walks \$SRC_ROOT and fast-forwards each git repo to its default branch.
+Dirty working trees are stashed before the update and reapplied after.
+
+Options:
+  -j, --jobs N   Run N updates in parallel (default: \$SRC_SYNC_JOBS or 8)
+EOF
+        exit 0
+        ;;
+      -*) echo "unknown option: $1" 1>&2; exit 1 ;;
+      *)  echo "unexpected argument: $1" 1>&2; exit 1 ;;
+    esac
+    shift
+  done
+
+  case "$jobs" in
+    ''|*[!0-9]*|0) echo "invalid --jobs value: $jobs" 1>&2; exit 1 ;;
+  esac
+
+  echo "updating git repos under $SRC_ROOT (jobs=$jobs)"
+
+  local repos=()
+  while IFS= read -r -d '' git_dir; do
+    repos+=("${git_dir%/.git}")
+  done < <(find "$SRC_ROOT" -mindepth 2 -maxdepth 6 -type d -name .git -prune -print0 2>/dev/null)
+
+  local count=${#repos[@]}
+  echo "found $count repos"
+  [ "$count" -gt 0 ] || { echo "done"; return 0; }
+
+  local fail_dir
+  fail_dir="$(mktemp -d)"
+  # shellcheck disable=SC2064
+  trap "rm -rf '$fail_dir'" EXIT
+
+  export SRC_ROOT
+  export SRC_SYNC_FAIL_DIR="$fail_dir"
+  export SRC_SYNC_LOCK_DIR="$fail_dir"
+
+  # Re-invoke this script per repo so the worker has _update_repo in scope.
+  # Use $BASH explicitly so we don't depend on the file's exec bit.
+  printf '%s\0' "${repos[@]}" \
+    | xargs -0 -P "$jobs" -n 1 "$BASH" "${BASH_SOURCE[0]}" _sync-git-worker \
+    || true
+
+  local errors
+  errors=$(find "$fail_dir" -type f -name 'fail.*' | wc -l | tr -d ' ')
 
   echo
   if [ "$errors" -gt 0 ]; then
-    echo "done with $errors error(s)" 1>&2
+    echo "Failures ($errors):"
+    while IFS= read -r -d '' f; do
+      local rel reason
+      IFS=$'\t' read -r rel reason < "$f"
+      printf '  %s\n      %s\n' "$rel" "$reason"
+    done < <(find "$fail_dir" -type f -name 'fail.*' -print0)
+    echo
+    echo "done — $count repos, $errors error(s)"
     exit 1
   fi
-  echo "done"
+  echo "done — $count repos"
+}
+
+cmd_sync_import() {
+  require rsync
+
+  local volume=""
+  local dest="$SRC_ROOT"
+  local dry_run=0
+
+  while [ $# -gt 0 ]; do
+    case "$1" in
+      -n|--dry-run) dry_run=1 ;;
+      -h|--help)
+        cat <<EOF
+Usage: $(basename "$0") sync import <VOLUME> [--dry-run]
+
+Safely rsync source repositories from an external volume into \$SRC_ROOT.
+
+Arguments:
+  VOLUME          Name of the mounted volume under /Volumes
+                  (source path is /Volumes/<VOLUME>/russelltsherman/src)
+
+Options:
+  -n, --dry-run   Preview the changes without copying anything.
+
+Safety:
+  - Never deletes files on the destination.
+  - Skips files that are newer on the destination (--update).
+  - Excludes .DS_Store and stale git lock files.
+
+Example:
+  $(basename "$0") sync import REDBAR0 --dry-run   # preview
+  $(basename "$0") sync import REDBAR0             # perform the sync
+EOF
+        exit 0
+        ;;
+      --) shift; break ;;
+      -*) echo "unknown option: $1" 1>&2; exit 1 ;;
+      *)
+        if [ -z "$volume" ]; then
+          volume="$1"
+        else
+          echo "unexpected argument: $1" 1>&2; exit 1
+        fi
+        ;;
+    esac
+    shift
+  done
+
+  [ -n "$volume" ] || { echo "missing required argument: VOLUME" 1>&2; exit 1; }
+
+  local source="/Volumes/$volume/russelltsherman/src"
+  [ -d "$source" ] || { echo "source not found (is '$volume' mounted?): $source" 1>&2; exit 1; }
+  mkdir -p "$dest"
+
+  local -a flags=(
+    --archive
+    --human-readable
+    --itemize-changes
+    --update
+    --exclude=.DS_Store
+    --exclude=.git/index.lock
+    --exclude=.git/HEAD.lock
+    --exclude=.git/*.lock
+  )
+
+  if [ "$dry_run" -eq 1 ]; then
+    flags+=(--dry-run)
+    echo "DRY RUN: $source/ -> $dest/"
+  else
+    echo "syncing $source/ -> $dest/"
+  fi
+  echo
+
+  rsync "${flags[@]}" "$source/" "$dest/"
+}
+
+cmd_sync() {
+  [ $# -ge 1 ] || sync_usage
+  local subcmd="$1"; shift
+  case "$subcmd" in
+    git)            cmd_sync_git "$@" ;;
+    import)         cmd_sync_import "$@" ;;
+    help|-h|--help) sync_usage 0 ;;
+    *)              echo "unknown sync subcommand: $subcmd" 1>&2; sync_usage ;;
+  esac
 }
 
 main() {
   [ $# -ge 1 ] || usage
   local subcmd="$1"; shift
   case "$subcmd" in
-    sync)        cmd_sync "$@" ;;
-    help|-h|--help) usage 0 ;;
-    *)           echo "unknown command: $subcmd" 1>&2; usage ;;
+    sync)              cmd_sync "$@" ;;
+    _sync-git-worker)  _sync_git_worker "$@" ;;  # internal, used by xargs fan-out
+    help|-h|--help)    usage 0 ;;
+    *)                 echo "unknown command: $subcmd" 1>&2; usage ;;
   esac
 }
 
