@@ -10,6 +10,9 @@ brew "bat"
 # Tool to route Claude Code requests to different models and customize any request
 # https://github.com/musistudio/claude-code-router
 brew "claude-code-router"
+# OpenAI's coding agent that runs in your terminal
+# https://github.com/openai/codex
+brew "codex"
 # GNU File, Shell, and Text utilities
 # https://www.gnu.org/software/coreutils/
 brew "coreutils"
