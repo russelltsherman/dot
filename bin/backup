@@ -7,9 +7,9 @@ readonly VOLUMES_ROOT="/Volumes"
 
 readonly RSYNC_FLAGS=(-avh)
 readonly RSYNC_FILTERS=(
-  --include='.config'
-  --include='.data'
-  --exclude='.*'
+  --include='/.config'
+  --include='/.data'
+  --exclude='/.*'
   --exclude='Applications'
   --exclude='Library'
   --exclude='node_modules'
