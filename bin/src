@@ -7,8 +7,15 @@ set -euo pipefail
   Manage source repositories under ~/src/<host>/<owner>/<repo>.
 
   Subcommands:
-    sync git              Walk $SRC_ROOT and fast-forward each git repo to its default branch,
-                          stashing/restoring any uncommitted work around the update.
+    clone <URL>           Clone a repo into $SRC_ROOT/<host>/<owner>/<repo>. The
+                          destination path is printed on stdout on success so
+                          callers can `cd "$(src clone <URL>)"`. If <URL> points
+                          at a GitHub user/org (no repo segment), clone every
+                          public, non-archived, non-fork repo they own.
+    sync git [PATH]       Walk $SRC_ROOT (or PATH, if given) and fast-forward each git repo
+                          to its default branch, stashing/restoring any uncommitted work
+                          around the update. If PATH points directly at a git repo, only
+                          that repo is updated.
     sync import <VOLUME>  Rsync source from /Volumes/<VOLUME>/russelltsherman/src into $SRC_ROOT.
 comment
 
@@ -19,14 +26,17 @@ usage() {
 Usage: $(basename "$0") <command> [args...]
 
 Commands:
-  sync git [-j N]                Fast-forward every git repo under \$SRC_ROOT (stashes dirty trees)
+  clone [-j N] <URL>             Clone <URL> into \$SRC_ROOT/<host>/<owner>/<repo>.
+                                 Bulk-clones a GitHub user/org's public source
+                                 repos when <URL> has no repo segment.
+  sync git [-j N] [PATH]         Fast-forward every git repo under \$SRC_ROOT (or PATH)
   sync import <VOLUME> [--dry-run]
                                  Rsync /Volumes/<VOLUME>/russelltsherman/src into \$SRC_ROOT
   help                           Show this help
 
 Environment:
   SRC_ROOT         Base directory for repos (default: \$HOME/src)
-  SRC_SYNC_JOBS    Default parallelism for 'sync git' (default: 8)
+  SRC_SYNC_JOBS    Default parallelism for 'sync git' and bulk 'clone' (default: 8)
 EOF
   exit "${1:-1}"
 }
@@ -36,7 +46,7 @@ sync_usage() {
 Usage: $(basename "$0") sync <subcommand> [args...]
 
 Subcommands:
-  git [-j N]                     Fast-forward every git repo under \$SRC_ROOT (stashes dirty trees)
+  git [-j N] [PATH]              Fast-forward every git repo under \$SRC_ROOT (or PATH)
   import <VOLUME> [--dry-run]    Rsync /Volumes/<VOLUME>/russelltsherman/src into \$SRC_ROOT
 EOF
   exit "${1:-1}"
@@ -46,6 +56,279 @@ require() {
   for cmd in "$@"; do
     command -v "$cmd" >/dev/null || { echo "required command not found: $cmd" 1>&2; exit 1; }
   done
+}
+
+_parse_clone_url() {
+  # Parse a git clone URL and emit "host\towner\trepo" on stdout.
+  # Supports HTTPS and SCP-style SSH URLs:
+  #   https://[user[:pass]@]host[:port]/owner/.../repo[.git][/]
+  #   git@host:owner/.../repo[.git][/]
+  # "owner" may contain '/' to accommodate nested groups (e.g. GitLab subgroups).
+  local url="$1"
+  local host="" path=""
+
+  if [[ "$url" == https://* ]]; then
+    local rest="${url#https://}"
+    rest="${rest%/}"
+    rest="${rest#*@}"             # strip optional user[:pass]@
+    if [[ "$rest" != */* ]]; then
+      echo "URL has no path: $url" 1>&2; return 1
+    fi
+    host="${rest%%/*}"
+    path="${rest#*/}"
+  elif [[ "$url" == git@*:* ]]; then
+    local rest="${url#git@}"
+    host="${rest%%:*}"
+    path="${rest#*:}"
+  else
+    echo "unsupported URL format: $url" 1>&2
+    echo "expected https://host/owner/repo[.git] or git@host:owner/repo[.git]" 1>&2
+    return 1
+  fi
+
+  path="${path%/}"
+  path="${path%.git}"
+
+  [ -n "$host" ] || { echo "could not parse host from URL: $url" 1>&2; return 1; }
+  [ -n "$path" ] || { echo "could not parse path from URL: $url" 1>&2; return 1; }
+
+  local repo="${path##*/}"
+  local owner="${path%/*}"
+  # No '/' in path means we have a repo but no owner.
+  if [ "$owner" = "$path" ]; then
+    echo "URL is missing an owner segment: $url" 1>&2; return 1
+  fi
+  [ -n "$repo" ]  || { echo "could not parse repo from URL: $url"  1>&2; return 1; }
+  [ -n "$owner" ] || { echo "could not parse owner from URL: $url" 1>&2; return 1; }
+
+  printf '%s\t%s\t%s\n' "$host" "$owner" "$repo"
+}
+
+_extract_bulk_owner() {
+  # If $1 is a github.com URL pointing at just a user or org (no repo segment),
+  # emit the owner name on stdout. Otherwise emit nothing. Used by cmd_clone to
+  # decide between single-repo and bulk-org clone modes before falling through
+  # to _parse_clone_url (which errors on missing-owner URLs).
+  local url="$1"
+  local host="" path=""
+
+  if [[ "$url" == https://* ]]; then
+    local rest="${url#https://}"
+    rest="${rest%/}"
+    rest="${rest#*@}"
+    host="${rest%%/*}"
+    [ "$host" = "$rest" ] && return 0
+    path="${rest#*/}"
+  elif [[ "$url" == git@*:* ]]; then
+    local rest="${url#git@}"
+    host="${rest%%:*}"
+    path="${rest#*:}"
+  else
+    return 0
+  fi
+
+  [ "$host" = "github.com" ] || return 0
+  path="${path%/}"
+  path="${path%.git}"
+  [ -n "$path" ] || return 0
+  [[ "$path" != */* ]] || return 0
+
+  printf '%s' "$path"
+}
+
+_clone_worker() {
+  # xargs worker: clone one repo described by "owner/name<TAB>cloneUrl".
+  local record="$1"
+  local name url
+  IFS=$'\t' read -r name url <<< "$record"
+  [ -n "$name" ] || { echo "empty clone record" 1>&2; return 1; }
+  [ -n "$url" ]  || { echo "missing clone url for '$name'" 1>&2; return 1; }
+
+  local owner="${name%%/*}"
+  local repo="${name##*/}"
+  local dest="$SRC_ROOT/github.com/$owner/$repo"
+
+  local out rc=0
+  out=$(
+    if [ -e "$dest" ]; then
+      echo "    destination already exists: $dest"
+    else
+      mkdir -p "$(dirname "$dest")"
+      echo "    cloning $url -> $dest"
+      git clone "$url" "$dest" 2>&1
+    fi
+  ) || rc=$?
+
+  if [ "$rc" -ne 0 ]; then
+    if [ -n "${SRC_CLONE_FAIL_DIR:-}" ]; then
+      local reason
+      reason="$(printf '%s\n' "$out" | tail -n 1 | sed 's/^[[:space:]]*//')"
+      [ -z "$reason" ] && reason="(see output above)"
+      printf '%s\t%s\n' "$name" "$reason" > "$(mktemp "$SRC_CLONE_FAIL_DIR/fail.XXXXXX")"
+    fi
+    out="${out}"$'\n'"    clone failed: $name"
+  fi
+
+  if [ -n "${SRC_CLONE_LOCK_DIR:-}" ]; then
+    while ! mkdir "$SRC_CLONE_LOCK_DIR/lock" 2>/dev/null; do :; done
+    printf '==> %s\n%s\n' "$name" "$out" 1>&2
+    rmdir "$SRC_CLONE_LOCK_DIR/lock"
+  else
+    printf '==> %s\n%s\n' "$name" "$out" 1>&2
+  fi
+  return "$rc"
+}
+
+_clone_github_owner() {
+  # Bulk-clone every public, non-archived, non-fork repo owned by $1 on github.com.
+  # All progress and errors go to stderr; stdout is silent.
+  local owner="$1"
+  local jobs="$2"
+  require gh
+
+  local work_dir
+  work_dir="$(mktemp -d)"
+  # shellcheck disable=SC2064
+  trap "rm -rf '$work_dir'" EXIT
+
+  local stderr_file="$work_dir/gh-stderr"
+  echo "listing public source repos for github.com/$owner" 1>&2
+  local repos_tsv
+  if ! repos_tsv=$(gh repo list "$owner" \
+      --visibility public \
+      --no-archived \
+      --source \
+      --limit 4000 \
+      --json nameWithOwner,sshUrl \
+      --jq '.[] | [.nameWithOwner, .sshUrl] | @tsv' 2>"$stderr_file"); then
+    echo "gh repo list failed for '$owner':" 1>&2
+    cat "$stderr_file" 1>&2
+    exit 1
+  fi
+
+  if [ -z "$repos_tsv" ]; then
+    echo "no public, non-archived, non-fork repos found for github.com/$owner" 1>&2
+    return 0
+  fi
+
+  local count
+  count=$(printf '%s\n' "$repos_tsv" | wc -l | tr -d ' ')
+  echo "cloning $count repos under github.com/$owner (jobs=$jobs)" 1>&2
+
+  export SRC_ROOT
+  export SRC_CLONE_FAIL_DIR="$work_dir"
+  export SRC_CLONE_LOCK_DIR="$work_dir"
+
+  printf '%s\n' "$repos_tsv" \
+    | tr '\n' '\0' \
+    | xargs -0 -P "$jobs" -n 1 "$BASH" "${BASH_SOURCE[0]}" _clone-worker \
+    || true
+
+  local errors
+  errors=$(find "$work_dir" -maxdepth 1 -type f -name 'fail.*' | wc -l | tr -d ' ')
+
+  echo 1>&2
+  if [ "$errors" -gt 0 ]; then
+    echo "Failures ($errors):" 1>&2
+    while IFS= read -r -d '' f; do
+      local name reason
+      IFS=$'\t' read -r name reason < "$f"
+      printf '  %s\n      %s\n' "$name" "$reason" 1>&2
+    done < <(find "$work_dir" -maxdepth 1 -type f -name 'fail.*' -print0)
+    echo 1>&2
+    echo "done — $count repos, $errors error(s)" 1>&2
+    exit 1
+  fi
+  echo "done — $count repos" 1>&2
+}
+
+cmd_clone() {
+  require git
+
+  local url=""
+  local jobs="${SRC_SYNC_JOBS:-8}"
+  while [ $# -gt 0 ]; do
+    case "$1" in
+      -j|--jobs) jobs="${2:?-j requires a number}"; shift ;;
+      -h|--help)
+        cat <<EOF
+Usage: $(basename "$0") clone [-j N] <URL>
+
+Clone a git repository into \$SRC_ROOT/<host>/<owner>/<repo>, creating the
+intermediate host/owner directories as needed.
+
+Single-repo mode (default):
+  When <URL> points at a repo, the absolute destination path is printed on
+  stdout so it can be captured:
+
+      cd "\$(src clone https://github.com/owner/repo)"
+
+  Supported URL formats:
+    HTTPS:  https://host/owner/repo[.git]
+    SSH:    git@host:owner/repo[.git]
+
+  If the destination directory already exists, prints a warning to stderr,
+  skips the clone, and still prints the destination path on stdout (exit 0).
+  This makes the command idempotent: capturing the output with \$(...) works
+  whether or not the repo was already present.
+
+Bulk mode (GitHub user/org):
+  When <URL> points at a GitHub user or org with no repo segment, e.g.
+      https://github.com/<owner>      or      git@github.com:<owner>
+  clones every public, non-archived, non-fork repo owned by <owner> into
+  \$SRC_ROOT/github.com/<owner>/<repo>. Existing destinations are skipped
+  individually (not treated as errors). Stdout is silent; progress, per-repo
+  output, and the failure summary are written to stderr. Exits non-zero if
+  any repo failed to clone.
+
+  Requires the 'gh' CLI to be installed and authenticated against github.com.
+
+Options:
+  -j, --jobs N     Parallelism for bulk mode (default: \$SRC_SYNC_JOBS or 8).
+                   Ignored in single-repo mode.
+EOF
+        exit 0
+        ;;
+      --) shift; break ;;
+      -*) echo "unknown option: $1" 1>&2; exit 1 ;;
+      *)
+        if [ -z "$url" ]; then
+          url="$1"
+        else
+          echo "unexpected argument: $1" 1>&2; exit 1
+        fi
+        ;;
+    esac
+    shift
+  done
+
+  [ -n "$url" ] || { echo "missing required argument: URL" 1>&2; exit 1; }
+
+  case "$jobs" in
+    ''|*[!0-9]*|0) echo "invalid --jobs value: $jobs" 1>&2; exit 1 ;;
+  esac
+
+  local bulk_owner
+  bulk_owner="$(_extract_bulk_owner "$url")"
+  if [ -n "$bulk_owner" ]; then
+    _clone_github_owner "$bulk_owner" "$jobs"
+    return
+  fi
+
+  local host owner repo parsed
+  parsed="$(_parse_clone_url "$url")" || exit 1
+  IFS=$'\t' read -r host owner repo <<< "$parsed"
+
+  local dest="$SRC_ROOT/$host/$owner/$repo"
+
+  if [ -e "$dest" ]; then
+    echo "destination already exists: $dest" 1>&2
+  else
+    mkdir -p "$(dirname "$dest")"
+    echo "cloning $url -> $dest" 1>&2
+    git clone "$url" "$dest" 1>&2
+  fi
+  printf '%s\n' "$dest"
 }
 
 _update_repo() {
@@ -154,26 +437,38 @@ _sync_git_worker() {
 cmd_sync_git() {
   require git find xargs
 
-  [ -d "$SRC_ROOT" ] || { echo "no source dir: $SRC_ROOT" 1>&2; exit 1; }
-
   local jobs="${SRC_SYNC_JOBS:-8}"
+  local scope=""
   while [ $# -gt 0 ]; do
     case "$1" in
       -j|--jobs) jobs="${2:?-j requires a number}"; shift ;;
       -h|--help)
         cat <<EOF
-Usage: $(basename "$0") sync git [-j N]
+Usage: $(basename "$0") sync git [-j N] [PATH]
 
-Walks \$SRC_ROOT and fast-forwards each git repo to its default branch.
-Dirty working trees are stashed before the update and reapplied after.
+Walks \$SRC_ROOT (or PATH, if given) and fast-forwards each git repo to its
+default branch. Dirty working trees are stashed before the update and
+reapplied after. If PATH points directly at a git repo (a directory
+containing a .git/), only that repo is updated.
+
+Arguments:
+  PATH           Directory to scope the walk to. Resolved relative to the
+                 current working directory. Default: \$SRC_ROOT.
 
 Options:
   -j, --jobs N   Run N updates in parallel (default: \$SRC_SYNC_JOBS or 8)
 EOF
         exit 0
         ;;
+      --) shift; break ;;
       -*) echo "unknown option: $1" 1>&2; exit 1 ;;
-      *)  echo "unexpected argument: $1" 1>&2; exit 1 ;;
+      *)
+        if [ -z "$scope" ]; then
+          scope="$1"
+        else
+          echo "unexpected argument: $1" 1>&2; exit 1
+        fi
+        ;;
     esac
     shift
   done
@@ -182,12 +477,25 @@ EOF
     ''|*[!0-9]*|0) echo "invalid --jobs value: $jobs" 1>&2; exit 1 ;;
   esac
 
-  echo "updating git repos under $SRC_ROOT (jobs=$jobs)"
+  local search_root
+  if [ -n "$scope" ]; then
+    [ -d "$scope" ] || { echo "no such directory: $scope" 1>&2; exit 1; }
+    search_root="$(cd "$scope" && pwd -P)"
+  else
+    [ -d "$SRC_ROOT" ] || { echo "no source dir: $SRC_ROOT" 1>&2; exit 1; }
+    search_root="$SRC_ROOT"
+  fi
+
+  echo "updating git repos under $search_root (jobs=$jobs)"
 
   local repos=()
-  while IFS= read -r -d '' git_dir; do
-    repos+=("${git_dir%/.git}")
-  done < <(find "$SRC_ROOT" -mindepth 2 -maxdepth 6 -type d -name .git -prune -print0 2>/dev/null)
+  if [ -d "$search_root/.git" ]; then
+    repos+=("$search_root")
+  else
+    while IFS= read -r -d '' git_dir; do
+      repos+=("${git_dir%/.git}")
+    done < <(find "$search_root" -mindepth 1 -maxdepth 8 -type d -name .git -prune -print0 2>/dev/null)
+  fi
 
   local count=${#repos[@]}
   echo "found $count repos"
@@ -316,8 +624,10 @@ main() {
   [ $# -ge 1 ] || usage
   local subcmd="$1"; shift
   case "$subcmd" in
+    clone)             cmd_clone "$@" ;;
     sync)              cmd_sync "$@" ;;
     _sync-git-worker)  _sync_git_worker "$@" ;;  # internal, used by xargs fan-out
+    _clone-worker)     _clone_worker "$@" ;;     # internal, used by xargs fan-out
     help|-h|--help)    usage 0 ;;
     *)                 echo "unknown command: $subcmd" 1>&2; usage ;;
   esac
